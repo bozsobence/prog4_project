@@ -22,6 +22,8 @@ namespace CarRental.Program
         /// </param>
         public static void Main(string[] args)
         {
+            Menu menu = new Menu();
+            menu.Run();
         }
     }
 }
