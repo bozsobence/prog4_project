@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{BC807981-FEDE-437D-906B-F18AD6300358}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>App</RootNamespace>
-    <AssemblyName>App</AssemblyName>
+    <RootNamespace>CarRental.Program</RootNamespace>
+    <AssemblyName>CarRental.Program</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
