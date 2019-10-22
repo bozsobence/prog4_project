@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c1287dff153a442ab98dd739348e5be8" Name="Diagram1">
+        <EntityTypeShape EntityType="CarRentalDatabaseModel.Account" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalDatabaseModel.Car" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalDatabaseModel.Complaint" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalDatabaseModel.Invoice" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalDatabaseModel.License" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalDatabaseModel.Rent" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalDatabaseModel.Subscription" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
+        <AssociationConnector Association="CarRentalDatabaseModel.license_accountid" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalDatabaseModel.rents_accountid" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalDatabaseModel.subscriptions_accid" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalDatabaseModel.rents_carid" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalDatabaseModel.complaints_rentid" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalDatabaseModel.invoice_rentid" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

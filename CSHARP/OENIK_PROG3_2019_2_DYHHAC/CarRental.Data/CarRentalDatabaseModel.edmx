@@ -1,0 +1,487 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CarRentalDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="accountID" />
+          </Key>
+          <Property Name="accountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="birthdate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="plate" />
+          </Key>
+          <Property Name="plate" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="brand" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="model" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="battery" Type="int" Nullable="false" />
+          <Property Name="extraPrice" Type="int" />
+        </EntityType>
+        <EntityType Name="Complaint">
+          <Key>
+            <PropertyRef Name="complaintID" />
+          </Key>
+          <Property Name="complaintID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rentID" Type="int" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="time" Type="datetime" Nullable="false" />
+          <Property Name="checked" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="invoiceID" />
+          </Key>
+          <Property Name="invoiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rentID" Type="int" Nullable="false" />
+          <Property Name="total" Type="int" />
+          <Property Name="completed" Type="int" Nullable="false" />
+          <Property Name="time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="License">
+          <Key>
+            <PropertyRef Name="licenseID" />
+          </Key>
+          <Property Name="licenseID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="accountID" Type="int" Nullable="false" />
+          <Property Name="category" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="startDate" Type="datetime" Nullable="false" />
+          <Property Name="expiryDate" Type="datetime" Nullable="false" />
+          <Property Name="penaltyPoints" Type="int" />
+        </EntityType>
+        <EntityType Name="Rent">
+          <Key>
+            <PropertyRef Name="rentID" />
+          </Key>
+          <Property Name="rentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accountID" Type="int" Nullable="false" />
+          <Property Name="carID" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="starttime" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="endtime" Type="datetime2" Precision="0" />
+          <Property Name="distance" Type="int" />
+        </EntityType>
+        <EntityType Name="Subscription">
+          <Key>
+            <PropertyRef Name="subID" />
+          </Key>
+          <Property Name="subID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accountID" Type="int" Nullable="false" />
+          <Property Name="minute" Type="int" />
+          <Property Name="monthly" Type="int" />
+          <Property Name="company" Type="int" />
+        </EntityType>
+        <Association Name="complaints_rentid">
+          <End Role="Rent" Type="Self.Rent" Multiplicity="1" />
+          <End Role="Complaint" Type="Self.Complaint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rent">
+              <PropertyRef Name="rentID" />
+            </Principal>
+            <Dependent Role="Complaint">
+              <PropertyRef Name="rentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="invoice_rentid">
+          <End Role="Rent" Type="Self.Rent" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rent">
+              <PropertyRef Name="rentID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="rentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="license_accountid">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="License" Type="Self.License" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="accountID" />
+            </Principal>
+            <Dependent Role="License">
+              <PropertyRef Name="accountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="rents_accountid">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="accountID" />
+            </Principal>
+            <Dependent Role="Rent">
+              <PropertyRef Name="accountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="rents_carid">
+          <End Role="Car" Type="Self.Car" Multiplicity="1" />
+          <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="plate" />
+            </Principal>
+            <Dependent Role="Rent">
+              <PropertyRef Name="carID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="subscriptions_accid">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Subscription" Type="Self.Subscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="accountID" />
+            </Principal>
+            <Dependent Role="Subscription">
+              <PropertyRef Name="accountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CarRentalDatabaseModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Complaint" EntityType="Self.Complaint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="License" EntityType="Self.License" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rent" EntityType="Self.Rent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subscription" EntityType="Self.Subscription" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="complaints_rentid" Association="Self.complaints_rentid">
+            <End Role="Rent" EntitySet="Rent" />
+            <End Role="Complaint" EntitySet="Complaint" />
+          </AssociationSet>
+          <AssociationSet Name="invoice_rentid" Association="Self.invoice_rentid">
+            <End Role="Rent" EntitySet="Rent" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="license_accountid" Association="Self.license_accountid">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="License" EntitySet="License" />
+          </AssociationSet>
+          <AssociationSet Name="rents_accountid" Association="Self.rents_accountid">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Rent" EntitySet="Rent" />
+          </AssociationSet>
+          <AssociationSet Name="rents_carid" Association="Self.rents_carid">
+            <End Role="Car" EntitySet="Car" />
+            <End Role="Rent" EntitySet="Rent" />
+          </AssociationSet>
+          <AssociationSet Name="subscriptions_accid" Association="Self.subscriptions_accid">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Subscription" EntitySet="Subscription" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CarRentalDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="accountID" />
+          </Key>
+          <Property Name="accountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="birthdate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="License" Relationship="Self.license_accountid" FromRole="Account" ToRole="License" />
+          <NavigationProperty Name="Rent" Relationship="Self.rents_accountid" FromRole="Account" ToRole="Rent" />
+          <NavigationProperty Name="Subscription" Relationship="Self.subscriptions_accid" FromRole="Account" ToRole="Subscription" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="plate" />
+          </Key>
+          <Property Name="plate" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="brand" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="model" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="battery" Type="Int32" Nullable="false" />
+          <Property Name="extraPrice" Type="Int32" />
+          <NavigationProperty Name="Rent" Relationship="Self.rents_carid" FromRole="Car" ToRole="Rent" />
+        </EntityType>
+        <EntityType Name="Complaint">
+          <Key>
+            <PropertyRef Name="complaintID" />
+          </Key>
+          <Property Name="complaintID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rentID" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="checked" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Rent" Relationship="Self.complaints_rentid" FromRole="Complaint" ToRole="Rent" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="invoiceID" />
+          </Key>
+          <Property Name="invoiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rentID" Type="Int32" Nullable="false" />
+          <Property Name="total" Type="Int32" />
+          <Property Name="completed" Type="Int32" Nullable="false" />
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Rent" Relationship="Self.invoice_rentid" FromRole="Invoice" ToRole="Rent" />
+        </EntityType>
+        <EntityType Name="License">
+          <Key>
+            <PropertyRef Name="licenseID" />
+          </Key>
+          <Property Name="licenseID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="accountID" Type="Int32" Nullable="false" />
+          <Property Name="category" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="expiryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="penaltyPoints" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="Self.license_accountid" FromRole="License" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Rent">
+          <Key>
+            <PropertyRef Name="rentID" />
+          </Key>
+          <Property Name="rentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accountID" Type="Int32" Nullable="false" />
+          <Property Name="carID" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="starttime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="endtime" Type="DateTime" Precision="0" />
+          <Property Name="distance" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="Self.rents_accountid" FromRole="Rent" ToRole="Account" />
+          <NavigationProperty Name="Car" Relationship="Self.rents_carid" FromRole="Rent" ToRole="Car" />
+          <NavigationProperty Name="Complaint" Relationship="Self.complaints_rentid" FromRole="Rent" ToRole="Complaint" />
+          <NavigationProperty Name="Invoice" Relationship="Self.invoice_rentid" FromRole="Rent" ToRole="Invoice" />
+        </EntityType>
+        <EntityType Name="Subscription">
+          <Key>
+            <PropertyRef Name="subID" />
+          </Key>
+          <Property Name="subID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accountID" Type="Int32" Nullable="false" />
+          <Property Name="minute" Type="Int32" />
+          <Property Name="monthly" Type="Int32" />
+          <Property Name="company" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="Self.subscriptions_accid" FromRole="Subscription" ToRole="Account" />
+        </EntityType>
+        <Association Name="license_accountid">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="License" Type="Self.License" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="accountID" />
+            </Principal>
+            <Dependent Role="License">
+              <PropertyRef Name="accountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="rents_accountid">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="accountID" />
+            </Principal>
+            <Dependent Role="Rent">
+              <PropertyRef Name="accountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="subscriptions_accid">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Subscription" Type="Self.Subscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="accountID" />
+            </Principal>
+            <Dependent Role="Subscription">
+              <PropertyRef Name="accountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="rents_carid">
+          <End Role="Car" Type="Self.Car" Multiplicity="1" />
+          <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="plate" />
+            </Principal>
+            <Dependent Role="Rent">
+              <PropertyRef Name="carID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="complaints_rentid">
+          <End Role="Rent" Type="Self.Rent" Multiplicity="1" />
+          <End Role="Complaint" Type="Self.Complaint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rent">
+              <PropertyRef Name="rentID" />
+            </Principal>
+            <Dependent Role="Complaint">
+              <PropertyRef Name="rentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="invoice_rentid">
+          <End Role="Rent" Type="Self.Rent" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rent">
+              <PropertyRef Name="rentID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="rentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CarRentalDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Account" EntityType="Self.Account" />
+          <EntitySet Name="Car" EntityType="Self.Car" />
+          <EntitySet Name="Complaint" EntityType="Self.Complaint" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" />
+          <EntitySet Name="License" EntityType="Self.License" />
+          <EntitySet Name="Rent" EntityType="Self.Rent" />
+          <EntitySet Name="Subscription" EntityType="Self.Subscription" />
+          <AssociationSet Name="license_accountid" Association="Self.license_accountid">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="License" EntitySet="License" />
+          </AssociationSet>
+          <AssociationSet Name="rents_accountid" Association="Self.rents_accountid">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Rent" EntitySet="Rent" />
+          </AssociationSet>
+          <AssociationSet Name="subscriptions_accid" Association="Self.subscriptions_accid">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Subscription" EntitySet="Subscription" />
+          </AssociationSet>
+          <AssociationSet Name="rents_carid" Association="Self.rents_carid">
+            <End Role="Car" EntitySet="Car" />
+            <End Role="Rent" EntitySet="Rent" />
+          </AssociationSet>
+          <AssociationSet Name="complaints_rentid" Association="Self.complaints_rentid">
+            <End Role="Rent" EntitySet="Rent" />
+            <End Role="Complaint" EntitySet="Complaint" />
+          </AssociationSet>
+          <AssociationSet Name="invoice_rentid" Association="Self.invoice_rentid">
+            <End Role="Rent" EntitySet="Rent" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CarRentalDatabaseModelStoreContainer" CdmEntityContainer="CarRentalDatabaseEntities">
+          <EntitySetMapping Name="Account">
+            <EntityTypeMapping TypeName="CarRentalDatabaseModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="accountID" ColumnName="accountID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Car">
+            <EntityTypeMapping TypeName="CarRentalDatabaseModel.Car">
+              <MappingFragment StoreEntitySet="Car">
+                <ScalarProperty Name="plate" ColumnName="plate" />
+                <ScalarProperty Name="brand" ColumnName="brand" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="battery" ColumnName="battery" />
+                <ScalarProperty Name="extraPrice" ColumnName="extraPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Complaint">
+            <EntityTypeMapping TypeName="CarRentalDatabaseModel.Complaint">
+              <MappingFragment StoreEntitySet="Complaint">
+                <ScalarProperty Name="complaintID" ColumnName="complaintID" />
+                <ScalarProperty Name="rentID" ColumnName="rentID" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="checked" ColumnName="checked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoice">
+            <EntityTypeMapping TypeName="CarRentalDatabaseModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="invoiceID" ColumnName="invoiceID" />
+                <ScalarProperty Name="rentID" ColumnName="rentID" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="completed" ColumnName="completed" />
+                <ScalarProperty Name="time" ColumnName="time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="License">
+            <EntityTypeMapping TypeName="CarRentalDatabaseModel.License">
+              <MappingFragment StoreEntitySet="License">
+                <ScalarProperty Name="licenseID" ColumnName="licenseID" />
+                <ScalarProperty Name="accountID" ColumnName="accountID" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="expiryDate" ColumnName="expiryDate" />
+                <ScalarProperty Name="penaltyPoints" ColumnName="penaltyPoints" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rent">
+            <EntityTypeMapping TypeName="CarRentalDatabaseModel.Rent">
+              <MappingFragment StoreEntitySet="Rent">
+                <ScalarProperty Name="rentID" ColumnName="rentID" />
+                <ScalarProperty Name="accountID" ColumnName="accountID" />
+                <ScalarProperty Name="carID" ColumnName="carID" />
+                <ScalarProperty Name="starttime" ColumnName="starttime" />
+                <ScalarProperty Name="endtime" ColumnName="endtime" />
+                <ScalarProperty Name="distance" ColumnName="distance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subscription">
+            <EntityTypeMapping TypeName="CarRentalDatabaseModel.Subscription">
+              <MappingFragment StoreEntitySet="Subscription">
+                <ScalarProperty Name="subID" ColumnName="subID" />
+                <ScalarProperty Name="accountID" ColumnName="accountID" />
+                <ScalarProperty Name="minute" ColumnName="minute" />
+                <ScalarProperty Name="monthly" ColumnName="monthly" />
+                <ScalarProperty Name="company" ColumnName="company" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -67,53 +67,53 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CarRentalModel.Context.cs">
+    <Compile Include="Account.cs">
+      <DependentUpon>CarRentalDatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Car.cs">
+      <DependentUpon>CarRentalDatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CarRentalDatabaseModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CarRentalModel.Context.tt</DependentUpon>
+      <DependentUpon>CarRentalDatabaseModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="CarRentalModel.cs">
+    <Compile Include="CarRentalDatabaseModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CarRentalModel.tt</DependentUpon>
+      <DependentUpon>CarRentalDatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CarRentalModel.Designer.cs">
+    <Compile Include="CarRentalDatabaseModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CarRentalModel.edmx</DependentUpon>
+      <DependentUpon>CarRentalDatabaseModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="cars.cs">
-      <DependentUpon>CarRentalModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="complaints.cs">
-      <DependentUpon>CarRentalModel.tt</DependentUpon>
+    <Compile Include="Complaint.cs">
+      <DependentUpon>CarRentalDatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataClasses.cs" />
-    <Compile Include="invoices.cs">
-      <DependentUpon>CarRentalModel.tt</DependentUpon>
+    <Compile Include="Invoice.cs">
+      <DependentUpon>CarRentalDatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="licenses.cs">
-      <DependentUpon>CarRentalModel.tt</DependentUpon>
+    <Compile Include="License.cs">
+      <DependentUpon>CarRentalDatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="rents.cs">
-      <DependentUpon>CarRentalModel.tt</DependentUpon>
+    <Compile Include="Rent.cs">
+      <DependentUpon>CarRentalDatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="subscriptions.cs">
-      <DependentUpon>CarRentalModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="users.cs">
-      <DependentUpon>CarRentalModel.tt</DependentUpon>
+    <Compile Include="Subscription.cs">
+      <DependentUpon>CarRentalDatabaseModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="CarRentalModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CarRentalModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="App.Config" />
-    <None Include="CarRentalModel.edmx.diagram">
-      <DependentUpon>CarRentalModel.edmx</DependentUpon>
+    <EntityDeploy Include="CarRentalDatabaseModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CarRentalDatabaseModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="CarRentalDatabaseModel.edmx.diagram">
+      <DependentUpon>CarRentalDatabaseModel.edmx</DependentUpon>
     </None>
     <None Include="oenik.ruleset" />
     <None Include="packages.config" />
@@ -126,19 +126,19 @@
     <Content Include="CarRentalDatabase.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="CarRentalDatabaseModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CarRentalDatabaseModel.edmx</DependentUpon>
+      <LastGenOutput>CarRentalDatabaseModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="CarRentalDatabaseModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CarRentalDatabaseModel.edmx</DependentUpon>
+      <LastGenOutput>CarRentalDatabaseModel.cs</LastGenOutput>
+    </Content>
     <Content Include="CarRentalDatabase_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>CarRentalDatabase.mdf</DependentUpon>
-    </Content>
-    <Content Include="CarRentalModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CarRentalModel.Context.cs</LastGenOutput>
-      <DependentUpon>CarRentalModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="CarRentalModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CarRentalModel.edmx</DependentUpon>
-      <LastGenOutput>CarRentalModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
