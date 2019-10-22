@@ -17,9 +17,9 @@ namespace CarRental.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Account()
         {
-            this.License = new HashSet<License>();
-            this.Rent = new HashSet<Rent>();
-            this.Subscription = new HashSet<Subscription>();
+            this.Licenses = new HashSet<License>();
+            this.Rents = new HashSet<Rent>();
+            this.Subscriptions = new HashSet<Subscription>();
         }
     
         public int accountID { get; set; }
@@ -29,10 +29,10 @@ namespace CarRental.Data
         public System.DateTime birthdate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<License> License { get; set; }
+        public virtual ICollection<License> Licenses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rent> Rent { get; set; }
+        public virtual ICollection<Rent> Rents { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Subscription> Subscription { get; set; }
+        public virtual ICollection<Subscription> Subscriptions { get; set; }
     }
 }

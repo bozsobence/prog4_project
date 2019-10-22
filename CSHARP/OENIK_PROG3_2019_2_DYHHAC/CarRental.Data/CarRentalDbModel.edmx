@@ -196,9 +196,9 @@
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="birthdate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="License" Relationship="Self.license_accountid" FromRole="Account" ToRole="License" />
-          <NavigationProperty Name="Rent" Relationship="Self.rents_accountid" FromRole="Account" ToRole="Rent" />
-          <NavigationProperty Name="Subscription" Relationship="Self.subscriptions_accid" FromRole="Account" ToRole="Subscription" />
+          <NavigationProperty Name="Licenses" Relationship="Self.license_accountid" FromRole="Account" ToRole="License" />
+          <NavigationProperty Name="Rents" Relationship="Self.rents_accountid" FromRole="Account" ToRole="Rent" />
+          <NavigationProperty Name="Subscriptions" Relationship="Self.subscriptions_accid" FromRole="Account" ToRole="Subscription" />
         </EntityType>
         <EntityType Name="Car">
           <Key>
@@ -209,7 +209,7 @@
           <Property Name="model" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="battery" Type="Int32" Nullable="false" />
           <Property Name="extraPrice" Type="Int32" />
-          <NavigationProperty Name="Rent" Relationship="Self.rents_carid" FromRole="Car" ToRole="Rent" />
+          <NavigationProperty Name="Rents" Relationship="Self.rents_carid" FromRole="Car" ToRole="Rent" />
         </EntityType>
         <EntityType Name="Complaint">
           <Key>
@@ -257,8 +257,8 @@
           <Property Name="distance" Type="Int32" />
           <NavigationProperty Name="Account" Relationship="Self.rents_accountid" FromRole="Rent" ToRole="Account" />
           <NavigationProperty Name="Car" Relationship="Self.rents_carid" FromRole="Rent" ToRole="Car" />
-          <NavigationProperty Name="Complaint" Relationship="Self.complaints_rentid" FromRole="Rent" ToRole="Complaint" />
-          <NavigationProperty Name="Invoice" Relationship="Self.invoice_rentid" FromRole="Rent" ToRole="Invoice" />
+          <NavigationProperty Name="Complaints" Relationship="Self.complaints_rentid" FromRole="Rent" ToRole="Complaint" />
+          <NavigationProperty Name="Invoices" Relationship="Self.invoice_rentid" FromRole="Rent" ToRole="Invoice" />
         </EntityType>
         <EntityType Name="Subscription">
           <Key>
@@ -344,36 +344,36 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CarRentalDatabaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Account" EntityType="Self.Account" />
-          <EntitySet Name="Car" EntityType="Self.Car" />
-          <EntitySet Name="Complaint" EntityType="Self.Complaint" />
-          <EntitySet Name="Invoice" EntityType="Self.Invoice" />
-          <EntitySet Name="License" EntityType="Self.License" />
-          <EntitySet Name="Rent" EntityType="Self.Rent" />
-          <EntitySet Name="Subscription" EntityType="Self.Subscription" />
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Cars" EntityType="Self.Car" />
+          <EntitySet Name="Complaints" EntityType="Self.Complaint" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+          <EntitySet Name="Licenses" EntityType="Self.License" />
+          <EntitySet Name="Rents" EntityType="Self.Rent" />
+          <EntitySet Name="Subscriptions" EntityType="Self.Subscription" />
           <AssociationSet Name="license_accountid" Association="Self.license_accountid">
-            <End Role="Account" EntitySet="Account" />
-            <End Role="License" EntitySet="License" />
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="License" EntitySet="Licenses" />
           </AssociationSet>
           <AssociationSet Name="rents_accountid" Association="Self.rents_accountid">
-            <End Role="Account" EntitySet="Account" />
-            <End Role="Rent" EntitySet="Rent" />
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Rent" EntitySet="Rents" />
           </AssociationSet>
           <AssociationSet Name="subscriptions_accid" Association="Self.subscriptions_accid">
-            <End Role="Account" EntitySet="Account" />
-            <End Role="Subscription" EntitySet="Subscription" />
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Subscription" EntitySet="Subscriptions" />
           </AssociationSet>
           <AssociationSet Name="rents_carid" Association="Self.rents_carid">
-            <End Role="Car" EntitySet="Car" />
-            <End Role="Rent" EntitySet="Rent" />
+            <End Role="Car" EntitySet="Cars" />
+            <End Role="Rent" EntitySet="Rents" />
           </AssociationSet>
           <AssociationSet Name="complaints_rentid" Association="Self.complaints_rentid">
-            <End Role="Rent" EntitySet="Rent" />
-            <End Role="Complaint" EntitySet="Complaint" />
+            <End Role="Rent" EntitySet="Rents" />
+            <End Role="Complaint" EntitySet="Complaints" />
           </AssociationSet>
           <AssociationSet Name="invoice_rentid" Association="Self.invoice_rentid">
-            <End Role="Rent" EntitySet="Rent" />
-            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="Rent" EntitySet="Rents" />
+            <End Role="Invoice" EntitySet="Invoices" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -382,7 +382,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CarRentalDatabaseModelStoreContainer" CdmEntityContainer="CarRentalDatabaseEntities">
-          <EntitySetMapping Name="Account">
+          <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="CarRentalDatabaseModel.Account">
               <MappingFragment StoreEntitySet="Account">
                 <ScalarProperty Name="accountID" ColumnName="accountID" />
@@ -393,7 +393,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Car">
+          <EntitySetMapping Name="Cars">
             <EntityTypeMapping TypeName="CarRentalDatabaseModel.Car">
               <MappingFragment StoreEntitySet="Car">
                 <ScalarProperty Name="plate" ColumnName="plate" />
@@ -404,7 +404,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Complaint">
+          <EntitySetMapping Name="Complaints">
             <EntityTypeMapping TypeName="CarRentalDatabaseModel.Complaint">
               <MappingFragment StoreEntitySet="Complaint">
                 <ScalarProperty Name="complaintID" ColumnName="complaintID" />
@@ -415,7 +415,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Invoice">
+          <EntitySetMapping Name="Invoices">
             <EntityTypeMapping TypeName="CarRentalDatabaseModel.Invoice">
               <MappingFragment StoreEntitySet="Invoice">
                 <ScalarProperty Name="invoiceID" ColumnName="invoiceID" />
@@ -426,7 +426,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="License">
+          <EntitySetMapping Name="Licenses">
             <EntityTypeMapping TypeName="CarRentalDatabaseModel.License">
               <MappingFragment StoreEntitySet="License">
                 <ScalarProperty Name="licenseID" ColumnName="licenseID" />
@@ -438,7 +438,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Rent">
+          <EntitySetMapping Name="Rents">
             <EntityTypeMapping TypeName="CarRentalDatabaseModel.Rent">
               <MappingFragment StoreEntitySet="Rent">
                 <ScalarProperty Name="rentID" ColumnName="rentID" />
@@ -450,7 +450,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Subscription">
+          <EntitySetMapping Name="Subscriptions">
             <EntityTypeMapping TypeName="CarRentalDatabaseModel.Subscription">
               <MappingFragment StoreEntitySet="Subscription">
                 <ScalarProperty Name="subID" ColumnName="subID" />
@@ -475,7 +475,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
