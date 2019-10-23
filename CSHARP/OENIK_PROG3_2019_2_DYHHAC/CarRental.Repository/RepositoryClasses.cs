@@ -9,6 +9,7 @@ namespace CarRental.Repository
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using CarRental.Data;
 
     /// <summary>
     /// The container class for the classes of repository layer.
