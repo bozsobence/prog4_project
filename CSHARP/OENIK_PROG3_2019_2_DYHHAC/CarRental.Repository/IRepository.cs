@@ -23,6 +23,7 @@ namespace CarRental.Repository
         /// <param name="id">The ID of the object.</param>
         /// <returns>Data object to return.</returns>
         T GetOne(int id);
+
         /// <summary>
         /// Returns all objects of the database (table).
         /// </summary>
