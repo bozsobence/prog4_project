@@ -1,4 +1,7 @@
-﻿
+﻿// <copyright file="IRentRepository.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
 namespace CarRental.Repository
 {
     using System;
@@ -54,6 +57,5 @@ namespace CarRental.Repository
         /// </summary>
         /// <param name="id">The rent to be deleted.</param>
         void DeleteRent(int id);
-
     }
 }

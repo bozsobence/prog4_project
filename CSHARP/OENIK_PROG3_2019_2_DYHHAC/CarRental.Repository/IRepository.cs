@@ -30,6 +30,5 @@ namespace CarRental.Repository
         /// </summary>
         /// <returns>All objects of the database (table).</returns>
         IQueryable<T> GetAll();
-
     }
 }

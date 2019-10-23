@@ -57,6 +57,5 @@ namespace CarRental.Repository
         /// </summary>
         /// <param name="id">The license to be deleted.</param>
         void DeleteLicense(string id);
-
     }
 }
