@@ -15,7 +15,7 @@ namespace CarRental.Repository
     /// The interface for the Account Repository.
     /// </summary>
     /// <typeparam name="TAccount">Generic parameter for an Account object.</typeparam>
-    public interface IAccountRepository<TAccount> : IRepository<TAccount>
+    public interface IAccountRepository<TAccount> : IRepository<TAccount, int>
         where TAccount : Account
     {
         /// <summary>

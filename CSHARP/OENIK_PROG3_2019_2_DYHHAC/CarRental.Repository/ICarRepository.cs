@@ -15,7 +15,7 @@ namespace CarRental.Repository
     /// Interface for the CarRepository.
     /// </summary>
     /// <typeparam name="TCar">Generic parameter for Car object.</typeparam>
-    public interface ICarRepository<TCar> : IRepository<TCar>
+    public interface ICarRepository<TCar> : IRepository<TCar, string>
         where TCar : Car
     {
         /// <summary>

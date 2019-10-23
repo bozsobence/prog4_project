@@ -15,7 +15,7 @@ namespace CarRental.Repository
     /// Interface for the License Repository.
     /// </summary>
     /// <typeparam name="TLicense">Generic parameter for License object.</typeparam>
-    public interface ILicenseRepository<TLicense> : IRepository<TLicense>
+    public interface ILicenseRepository<TLicense> : IRepository<TLicense, string>
         where TLicense : License
     {
         /// <summary>

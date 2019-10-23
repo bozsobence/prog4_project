@@ -14,7 +14,8 @@ namespace CarRental.Repository
     /// This is the interface which contains methods that all repositories must implement.
     /// </summary>
     /// <typeparam name="T">Entity Model Class.</typeparam>
-    public interface IRepository<T>
+    /// <typeparam name="TK">Type of the primary key.</typeparam>
+    public interface IRepository<T, TK>
         where T : class
     {
         /// <summary>
@@ -22,7 +23,7 @@ namespace CarRental.Repository
         /// </summary>
         /// <param name="id">The ID of the object.</param>
         /// <returns>Data object to return.</returns>
-        T GetOne(int id);
+        T GetOne(TK id);
 
         /// <summary>
         /// Returns all objects of the database (table).
