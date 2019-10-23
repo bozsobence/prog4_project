@@ -17,8 +17,8 @@ namespace CarRental.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Rent()
         {
-            this.Complaints = new HashSet<Complaint>();
-            this.Invoices = new HashSet<Invoice>();
+            this.Complaint = new HashSet<Complaint>();
+            this.Invoice = new HashSet<Invoice>();
         }
     
         public int rentID { get; set; }
@@ -31,8 +31,8 @@ namespace CarRental.Data
         public virtual Account Account { get; set; }
         public virtual Car Car { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Complaint> Complaints { get; set; }
+        public virtual ICollection<Complaint> Complaint { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Invoice> Invoices { get; set; }
+        public virtual ICollection<Invoice> Invoice { get; set; }
     }
 }

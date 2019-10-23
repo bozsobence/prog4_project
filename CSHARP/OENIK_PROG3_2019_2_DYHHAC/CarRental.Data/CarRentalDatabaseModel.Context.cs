@@ -25,12 +25,12 @@ namespace CarRental.Data
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Account> Accounts { get; set; }
-        public virtual DbSet<Car> Cars { get; set; }
-        public virtual DbSet<Complaint> Complaints { get; set; }
-        public virtual DbSet<Invoice> Invoices { get; set; }
-        public virtual DbSet<License> Licenses { get; set; }
-        public virtual DbSet<Rent> Rents { get; set; }
-        public virtual DbSet<Subscription> Subscriptions { get; set; }
+        public virtual DbSet<Account> Account { get; set; }
+        public virtual DbSet<Car> Car { get; set; }
+        public virtual DbSet<Complaint> Complaint { get; set; }
+        public virtual DbSet<Invoice> Invoice { get; set; }
+        public virtual DbSet<License> License { get; set; }
+        public virtual DbSet<Rent> Rent { get; set; }
+        public virtual DbSet<Subscription> Subscription { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace CarRental.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Car()
         {
-            this.Rents = new HashSet<Rent>();
+            this.Rent = new HashSet<Rent>();
         }
     
         public string plate { get; set; }
@@ -27,6 +27,6 @@ namespace CarRental.Data
         public Nullable<int> extraPrice { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rent> Rents { get; set; }
+        public virtual ICollection<Rent> Rent { get; set; }
     }
 }
