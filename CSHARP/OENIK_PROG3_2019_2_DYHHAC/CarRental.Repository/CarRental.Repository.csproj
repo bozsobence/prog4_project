@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAccountRepository.cs" />
+    <Compile Include="ILicenseRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="ICarRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

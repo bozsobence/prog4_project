@@ -13,7 +13,7 @@ namespace CarRental.Repository
     /// <summary>
     /// This is the interface which contains methods that all repositories must implement.
     /// </summary>
-    /// <typeparam name="T">Entity Model Class</typeparam>
+    /// <typeparam name="T">Entity Model Class.</typeparam>
     public interface IRepository<T>
         where T : class
     {
