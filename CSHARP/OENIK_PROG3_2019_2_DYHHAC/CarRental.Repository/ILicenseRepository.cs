@@ -36,14 +36,14 @@ namespace CarRental.Repository
         /// </summary>
         /// <param name="id">The license to be updated.</param>
         /// <param name="newDate">The new date to be set.</param>
-        void UpdateStartDate(string id, string newDate);
+        void UpdateStartDate(string id, DateTime newDate);
 
         /// <summary>
         /// Updates the selected license's expiry date.
         /// </summary>
         /// <param name="id">The license to be updated.</param>
         /// <param name="newDate">The new date to be set.</param>
-        void UpdateExpiryDate(string id, string newDate);
+        void UpdateExpiryDate(string id, DateTime newDate);
 
         /// <summary>
         /// Updates the selected license's penalty points.
