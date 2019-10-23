@@ -37,7 +37,7 @@ namespace CarRental.Repository
         /// <inheritdoc/>
         public void DeleteAccount(int id)
         {
-            Account acc = this.db.Account.Where(x => x.accountID == id).Single();
+            Account acc = this.GetOne(id);
             this.db.Account.Remove(acc);
             this.db.SaveChanges();
         }
@@ -51,7 +51,7 @@ namespace CarRental.Repository
         /// <inheritdoc/>
         public Account GetOne(int id)
         {
-            return this.db.Account.Where(x => x.accountID == id).Single();
+            return this.db.Account.Where(x => x.accountID == id).SingleOrDefault();
         }
 
         /// <inheritdoc/>
