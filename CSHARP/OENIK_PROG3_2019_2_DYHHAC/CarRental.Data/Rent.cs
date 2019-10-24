@@ -18,7 +18,6 @@ namespace CarRental.Data
         public Rent()
         {
             this.Complaint = new HashSet<Complaint>();
-            this.Invoice = new HashSet<Invoice>();
         }
     
         public int rentID { get; set; }
@@ -27,12 +26,11 @@ namespace CarRental.Data
         public System.DateTime starttime { get; set; }
         public Nullable<System.DateTime> endtime { get; set; }
         public Nullable<int> distance { get; set; }
+        public Nullable<int> price { get; set; }
     
         public virtual Account Account { get; set; }
         public virtual Car Car { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Complaint> Complaint { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Invoice> Invoice { get; set; }
     }
 }

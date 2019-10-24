@@ -14,6 +14,8 @@
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="address" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="birthdate" Type="datetime" Nullable="false" />
+          <Property Name="minute" Type="int" />
+          <Property Name="monthly" Type="int" />
         </EntityType>
         <EntityType Name="Car">
           <Key>
@@ -34,16 +36,6 @@
           <Property Name="description" Type="varchar" MaxLength="256" Nullable="false" />
           <Property Name="time" Type="datetime" Nullable="false" />
           <Property Name="checked" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Invoice">
-          <Key>
-            <PropertyRef Name="invoiceID" />
-          </Key>
-          <Property Name="invoiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="rentID" Type="int" Nullable="false" />
-          <Property Name="total" Type="int" />
-          <Property Name="completed" Type="int" Nullable="false" />
-          <Property Name="time" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="License">
           <Key>
@@ -66,16 +58,7 @@
           <Property Name="starttime" Type="datetime2" Precision="0" Nullable="false" />
           <Property Name="endtime" Type="datetime2" Precision="0" />
           <Property Name="distance" Type="int" />
-        </EntityType>
-        <EntityType Name="Subscription">
-          <Key>
-            <PropertyRef Name="subID" />
-          </Key>
-          <Property Name="subID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="accountID" Type="int" Nullable="false" />
-          <Property Name="minute" Type="int" />
-          <Property Name="monthly" Type="int" />
-          <Property Name="company" Type="int" />
+          <Property Name="price" Type="int" />
         </EntityType>
         <Association Name="complaints_rentid">
           <End Role="Rent" Type="Self.Rent" Multiplicity="1" />
@@ -85,18 +68,6 @@
               <PropertyRef Name="rentID" />
             </Principal>
             <Dependent Role="Complaint">
-              <PropertyRef Name="rentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="invoice_rentid">
-          <End Role="Rent" Type="Self.Rent" Multiplicity="1" />
-          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rent">
-              <PropertyRef Name="rentID" />
-            </Principal>
-            <Dependent Role="Invoice">
               <PropertyRef Name="rentID" />
             </Dependent>
           </ReferentialConstraint>
@@ -137,33 +108,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="subscriptions_accid">
-          <End Role="Account" Type="Self.Account" Multiplicity="1" />
-          <End Role="Subscription" Type="Self.Subscription" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="accountID" />
-            </Principal>
-            <Dependent Role="Subscription">
-              <PropertyRef Name="accountID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="CarRentalDatabaseModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Complaint" EntityType="Self.Complaint" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="License" EntityType="Self.License" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rent" EntityType="Self.Rent" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Subscription" EntityType="Self.Subscription" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="complaints_rentid" Association="Self.complaints_rentid">
             <End Role="Rent" EntitySet="Rent" />
             <End Role="Complaint" EntitySet="Complaint" />
-          </AssociationSet>
-          <AssociationSet Name="invoice_rentid" Association="Self.invoice_rentid">
-            <End Role="Rent" EntitySet="Rent" />
-            <End Role="Invoice" EntitySet="Invoice" />
           </AssociationSet>
           <AssociationSet Name="license_accountid" Association="Self.license_accountid">
             <End Role="Account" EntitySet="Account" />
@@ -176,10 +129,6 @@
           <AssociationSet Name="rents_carid" Association="Self.rents_carid">
             <End Role="Car" EntitySet="Car" />
             <End Role="Rent" EntitySet="Rent" />
-          </AssociationSet>
-          <AssociationSet Name="subscriptions_accid" Association="Self.subscriptions_accid">
-            <End Role="Account" EntitySet="Account" />
-            <End Role="Subscription" EntitySet="Subscription" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -196,9 +145,10 @@
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="birthdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="minute" Type="Int32" />
+          <Property Name="monthly" Type="Int32" />
           <NavigationProperty Name="License" Relationship="Self.license_accountid" FromRole="Account" ToRole="License" />
           <NavigationProperty Name="Rent" Relationship="Self.rents_accountid" FromRole="Account" ToRole="Rent" />
-          <NavigationProperty Name="Subscription" Relationship="Self.subscriptions_accid" FromRole="Account" ToRole="Subscription" />
         </EntityType>
         <EntityType Name="Car">
           <Key>
@@ -222,17 +172,6 @@
           <Property Name="checked" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Rent" Relationship="Self.complaints_rentid" FromRole="Complaint" ToRole="Rent" />
         </EntityType>
-        <EntityType Name="Invoice">
-          <Key>
-            <PropertyRef Name="invoiceID" />
-          </Key>
-          <Property Name="invoiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="rentID" Type="Int32" Nullable="false" />
-          <Property Name="total" Type="Int32" />
-          <Property Name="completed" Type="Int32" Nullable="false" />
-          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Rent" Relationship="Self.invoice_rentid" FromRole="Invoice" ToRole="Rent" />
-        </EntityType>
         <EntityType Name="License">
           <Key>
             <PropertyRef Name="licenseID" />
@@ -255,21 +194,10 @@
           <Property Name="starttime" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="endtime" Type="DateTime" Precision="0" />
           <Property Name="distance" Type="Int32" />
+          <Property Name="price" Type="Int32" />
           <NavigationProperty Name="Account" Relationship="Self.rents_accountid" FromRole="Rent" ToRole="Account" />
           <NavigationProperty Name="Car" Relationship="Self.rents_carid" FromRole="Rent" ToRole="Car" />
           <NavigationProperty Name="Complaint" Relationship="Self.complaints_rentid" FromRole="Rent" ToRole="Complaint" />
-          <NavigationProperty Name="Invoice" Relationship="Self.invoice_rentid" FromRole="Rent" ToRole="Invoice" />
-        </EntityType>
-        <EntityType Name="Subscription">
-          <Key>
-            <PropertyRef Name="subID" />
-          </Key>
-          <Property Name="subID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="accountID" Type="Int32" Nullable="false" />
-          <Property Name="minute" Type="Int32" />
-          <Property Name="monthly" Type="Int32" />
-          <Property Name="company" Type="Int32" />
-          <NavigationProperty Name="Account" Relationship="Self.subscriptions_accid" FromRole="Subscription" ToRole="Account" />
         </EntityType>
         <Association Name="license_accountid">
           <End Role="Account" Type="Self.Account" Multiplicity="1" />
@@ -291,18 +219,6 @@
               <PropertyRef Name="accountID" />
             </Principal>
             <Dependent Role="Rent">
-              <PropertyRef Name="accountID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="subscriptions_accid">
-          <End Role="Account" Type="Self.Account" Multiplicity="1" />
-          <End Role="Subscription" Type="Self.Subscription" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="accountID" />
-            </Principal>
-            <Dependent Role="Subscription">
               <PropertyRef Name="accountID" />
             </Dependent>
           </ReferentialConstraint>
@@ -331,26 +247,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="invoice_rentid">
-          <End Role="Rent" Type="Self.Rent" Multiplicity="1" />
-          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rent">
-              <PropertyRef Name="rentID" />
-            </Principal>
-            <Dependent Role="Invoice">
-              <PropertyRef Name="rentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="CarRentalDatabaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Account" EntityType="Self.Account" />
           <EntitySet Name="Car" EntityType="Self.Car" />
           <EntitySet Name="Complaint" EntityType="Self.Complaint" />
-          <EntitySet Name="Invoice" EntityType="Self.Invoice" />
           <EntitySet Name="License" EntityType="Self.License" />
           <EntitySet Name="Rent" EntityType="Self.Rent" />
-          <EntitySet Name="Subscription" EntityType="Self.Subscription" />
           <AssociationSet Name="license_accountid" Association="Self.license_accountid">
             <End Role="Account" EntitySet="Account" />
             <End Role="License" EntitySet="License" />
@@ -359,10 +261,6 @@
             <End Role="Account" EntitySet="Account" />
             <End Role="Rent" EntitySet="Rent" />
           </AssociationSet>
-          <AssociationSet Name="subscriptions_accid" Association="Self.subscriptions_accid">
-            <End Role="Account" EntitySet="Account" />
-            <End Role="Subscription" EntitySet="Subscription" />
-          </AssociationSet>
           <AssociationSet Name="rents_carid" Association="Self.rents_carid">
             <End Role="Car" EntitySet="Car" />
             <End Role="Rent" EntitySet="Rent" />
@@ -370,10 +268,6 @@
           <AssociationSet Name="complaints_rentid" Association="Self.complaints_rentid">
             <End Role="Rent" EntitySet="Rent" />
             <End Role="Complaint" EntitySet="Complaint" />
-          </AssociationSet>
-          <AssociationSet Name="invoice_rentid" Association="Self.invoice_rentid">
-            <End Role="Rent" EntitySet="Rent" />
-            <End Role="Invoice" EntitySet="Invoice" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -390,6 +284,8 @@
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="address" ColumnName="address" />
                 <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="minute" ColumnName="minute" />
+                <ScalarProperty Name="monthly" ColumnName="monthly" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -415,17 +311,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Invoice">
-            <EntityTypeMapping TypeName="CarRentalDatabaseModel.Invoice">
-              <MappingFragment StoreEntitySet="Invoice">
-                <ScalarProperty Name="invoiceID" ColumnName="invoiceID" />
-                <ScalarProperty Name="rentID" ColumnName="rentID" />
-                <ScalarProperty Name="total" ColumnName="total" />
-                <ScalarProperty Name="completed" ColumnName="completed" />
-                <ScalarProperty Name="time" ColumnName="time" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="License">
             <EntityTypeMapping TypeName="CarRentalDatabaseModel.License">
               <MappingFragment StoreEntitySet="License">
@@ -447,17 +332,7 @@
                 <ScalarProperty Name="starttime" ColumnName="starttime" />
                 <ScalarProperty Name="endtime" ColumnName="endtime" />
                 <ScalarProperty Name="distance" ColumnName="distance" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Subscription">
-            <EntityTypeMapping TypeName="CarRentalDatabaseModel.Subscription">
-              <MappingFragment StoreEntitySet="Subscription">
-                <ScalarProperty Name="subID" ColumnName="subID" />
-                <ScalarProperty Name="accountID" ColumnName="accountID" />
-                <ScalarProperty Name="minute" ColumnName="minute" />
-                <ScalarProperty Name="monthly" ColumnName="monthly" />
-                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="price" ColumnName="price" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

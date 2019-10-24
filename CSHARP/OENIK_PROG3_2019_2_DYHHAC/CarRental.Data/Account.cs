@@ -19,7 +19,6 @@ namespace CarRental.Data
         {
             this.License = new HashSet<License>();
             this.Rent = new HashSet<Rent>();
-            this.Subscription = new HashSet<Subscription>();
         }
     
         public int accountID { get; set; }
@@ -27,12 +26,12 @@ namespace CarRental.Data
         public string email { get; set; }
         public string address { get; set; }
         public System.DateTime birthdate { get; set; }
+        public Nullable<int> minute { get; set; }
+        public Nullable<int> monthly { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<License> License { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rent> Rent { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Subscription> Subscription { get; set; }
     }
 }

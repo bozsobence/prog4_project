@@ -93,17 +93,11 @@
       <DependentUpon>CarRentalDatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataClasses.cs" />
-    <Compile Include="Invoice.cs">
-      <DependentUpon>CarRentalDatabaseModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="License.cs">
       <DependentUpon>CarRentalDatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rent.cs">
-      <DependentUpon>CarRentalDatabaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Subscription.cs">
       <DependentUpon>CarRentalDatabaseModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

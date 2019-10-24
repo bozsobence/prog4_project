@@ -26,8 +26,6 @@ namespace CarRental.Repository
             this.CarRepo = new CarRepository(db);
             this.LicenseRepo = new LicenseRepository(db);
             this.RentRepo = new RentRepository(db);
-            this.SubscriptionRepo = new SubscriptionRepository(db);
-            this.InvoiceRepo = new InvoiceRepository(db);
             this.ComplaintRepo = new ComplaintRepository(db);
         }
 
@@ -50,16 +48,6 @@ namespace CarRental.Repository
         /// Gets the <see cref="RentRepository"/>.
         /// </summary>
         public RentRepository RentRepo { get; }
-
-        /// <summary>
-        /// Gets the <see cref="SubscriptionRepository"/>.
-        /// </summary>
-        public SubscriptionRepository SubscriptionRepo { get; }
-
-        /// <summary>
-        /// Gets the <see cref="InvoiceRepository"/>.
-        /// </summary>
-        public InvoiceRepository InvoiceRepo { get; }
 
         /// <summary>
         /// Gets the <see cref="ComplaintRepository"/>.

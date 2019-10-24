@@ -28,9 +28,7 @@ namespace CarRental.Data
         public virtual DbSet<Account> Account { get; set; }
         public virtual DbSet<Car> Car { get; set; }
         public virtual DbSet<Complaint> Complaint { get; set; }
-        public virtual DbSet<Invoice> Invoice { get; set; }
         public virtual DbSet<License> License { get; set; }
         public virtual DbSet<Rent> Rent { get; set; }
-        public virtual DbSet<Subscription> Subscription { get; set; }
     }
 }
