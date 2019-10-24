@@ -54,26 +54,13 @@ namespace CarRental.Repository
         }
 
         /// <inheritdoc/>
-        public void UpdateChecked(int id, int newValue)
+        public void UpdateComplaint(int id, int rentId, string desc, DateTime time, int chk)
         {
-            Complaint com = this.GetOne(id);
-            com.@checked = newValue;
-            this.db.SaveChanges();
-        }
-
-        /// <inheritdoc/>
-        public void UpdateDescription(int id, string desc)
-        {
-            Complaint com = this.GetOne(id);
-            com.description = desc;
-            this.db.SaveChanges();
-        }
-
-        /// <inheritdoc/>
-        public void UpdateTime(int id, DateTime newTime)
-        {
-            Complaint com = this.GetOne(id);
-            com.time = newTime;
+            Complaint c = this.GetOne(id);
+            c.rentID = rentId;
+            c.description = desc;
+            c.time = time;
+            c.@checked = chk;
             this.db.SaveChanges();
         }
     }

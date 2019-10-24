@@ -55,34 +55,14 @@ namespace CarRental.Repository
         }
 
         /// <inheritdoc/>
-        public void UpdateCategory(string id, string newCat)
+        public void UpdateLicense(string id, int accId, string category, DateTime startDate, DateTime expiryDate, int penaltyPoints)
         {
-            License lic = this.GetOne(id);
-            lic.category = newCat;
-            this.db.SaveChanges();
-        }
-
-        /// <inheritdoc/>
-        public void UpdateExpiryDate(string id, DateTime newDate)
-        {
-            License lic = this.GetOne(id);
-            lic.expiryDate = newDate;
-            this.db.SaveChanges();
-        }
-
-        /// <inheritdoc/>
-        public void UpdatePenaltyPoints(string id, int newPoints)
-        {
-            License lic = this.GetOne(id);
-            lic.penaltyPoints = newPoints;
-            this.db.SaveChanges();
-        }
-
-        /// <inheritdoc/>
-        public void UpdateStartDate(string id, DateTime newDate)
-        {
-            License lic = this.GetOne(id);
-            lic.startDate = newDate;
+            License l = this.GetOne(id);
+            l.accountID = accId;
+            l.category = category;
+            l.startDate = startDate;
+            l.expiryDate = expiryDate;
+            l.penaltyPoints = penaltyPoints;
             this.db.SaveChanges();
         }
     }

@@ -55,42 +55,15 @@ namespace CarRental.Repository
         }
 
         /// <inheritdoc/>
-        public void UpdateAddress(int id, string newAddress)
+        public void UpdateAccount(int id, string name, string email, string address, DateTime bdate, int minute, int monthly)
         {
-            Account acc = this.GetOne(id);
-            acc.address = newAddress;
-            this.db.SaveChanges();
-        }
-
-        /// <inheritdoc/>
-        public void UpdateMinute(int id, int newMinute)
-        {
-            Account acc = this.GetOne(id);
-            acc.minute = newMinute;
-            this.db.SaveChanges();
-        }
-
-        /// <inheritdoc/>
-        public void UpdateMonthly(int id, int newMonth)
-        {
-            Account acc = this.GetOne(id);
-            acc.monthly = newMonth;
-            this.db.SaveChanges();
-        }
-
-        /// <inheritdoc/>
-        public void UpdateEmail(int id, string newMail)
-        {
-            Account acc = this.GetOne(id);
-            acc.email = newMail;
-            this.db.SaveChanges();
-        }
-
-        /// <inheritdoc/>
-        public void UpdateName(int id, string newName)
-        {
-            Account acc = this.GetOne(id);
-            acc.name = newName;
+            Account a = this.GetOne(id);
+            a.name = name;
+            a.email = email;
+            a.address = address;
+            a.birthdate = bdate;
+            a.minute = minute;
+            a.monthly = monthly;
             this.db.SaveChanges();
         }
     }

@@ -25,32 +25,15 @@ namespace CarRental.Repository
         void AddLicense(License license);
 
         /// <summary>
-        /// Updates the selected license's category.
+        /// Updates the selected license data.
         /// </summary>
-        /// <param name="id">The license to be updated.</param>
-        /// <param name="newCat">The new category to be set.</param>
-        void UpdateCategory(string id, string newCat);
-
-        /// <summary>
-        /// Updates the selected license's start date.
-        /// </summary>
-        /// <param name="id">The license to be updated.</param>
-        /// <param name="newDate">The new date to be set.</param>
-        void UpdateStartDate(string id, DateTime newDate);
-
-        /// <summary>
-        /// Updates the selected license's expiry date.
-        /// </summary>
-        /// <param name="id">The license to be updated.</param>
-        /// <param name="newDate">The new date to be set.</param>
-        void UpdateExpiryDate(string id, DateTime newDate);
-
-        /// <summary>
-        /// Updates the selected license's penalty points.
-        /// </summary>
-        /// <param name="id">The license to be updated.</param>
-        /// <param name="newPoints">The new penalty points to be set.</param>
-        void UpdatePenaltyPoints(string id, int newPoints);
+        /// <param name="id">The license we want to update.</param>
+        /// <param name="accId">The account whom the license belongs to.</param>
+        /// <param name="category">The new category of the license.</param>
+        /// <param name="startDate">The new start date of the license.</param>
+        /// <param name="expiryDate">The new expiry date of the license.</param>
+        /// <param name="penaltyPoints">The new value of penalty points.</param>
+        void UpdateLicense(string id, int accId, string category, DateTime startDate, DateTime expiryDate, int penaltyPoints);
 
         /// <summary>
         /// Deletes the selected license from the database.

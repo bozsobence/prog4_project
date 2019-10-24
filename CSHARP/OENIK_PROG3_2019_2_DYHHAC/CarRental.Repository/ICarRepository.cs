@@ -25,25 +25,14 @@ namespace CarRental.Repository
         void AddCar(Car car);
 
         /// <summary>
-        /// Updates the battery level of the selected car.
+        /// Updates the selected car.
         /// </summary>
-        /// <param name="plate">The plate of the car we want tp update.</param>
+        /// <param name="plate">The numberplate of the car we want to update.</param>
+        /// <param name="brand">The new brand to be set.</param>
+        /// <param name="model">The new model to be set.</param>
         /// <param name="battery">The new battery level to be set.</param>
-        void UpdateBatteryLevel(string plate, int battery);
-
-        /// <summary>
-        /// Updates the extra price of the selected car.
-        /// </summary>
-        /// <param name="plate">The plate of the car we want tp update.</param>
         /// <param name="extraPrice">The new extra price to be set.</param>
-        void UpdateExtraPrice(string plate, int extraPrice);
-
-        /// <summary>
-        /// Updates the numberplate of the selected car.
-        /// </summary>
-        /// <param name="oldPlate">The current plate of the car. This is the primary key.</param>
-        /// <param name="newPlate">The new numberplate to be set, must be unique.</param>
-        void UpdatePlate(string oldPlate, string newPlate);
+        void UpdateCar(string plate, string brand, string model, int battery, int extraPrice);
 
         /// <summary>
         /// Deletes a car from the database.

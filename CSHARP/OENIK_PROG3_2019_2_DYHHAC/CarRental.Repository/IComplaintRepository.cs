@@ -25,25 +25,14 @@ namespace CarRental.Repository
         void AddComplaint(Complaint complaint);
 
         /// <summary>
-        /// Updates the description of the selected complaint.
+        /// Updates the selected complaint data.
         /// </summary>
-        /// <param name="id">The complaint to be updated.</param>
-        /// <param name="desc">The new description of the selected complaint.</param>
-        void UpdateDescription(int id, string desc);
-
-        /// <summary>
-        /// Updates the time of the selected complaint.
-        /// </summary>
-        /// <param name="id">The complaint to be updated.</param>
-        /// <param name="newTime">The new time value to be set.</param>
-        void UpdateTime(int id, DateTime newTime);
-
-        /// <summary>
-        /// Updates whether the complaint has been checked or not.
-        /// </summary>
-        /// <param name="id">The complaint to be updated.</param>
-        /// <param name="newValue">The value to be set. Must be 0 or 1.</param>
-        void UpdateChecked(int id, int newValue);
+        /// <param name="id">The complaint we want to update.</param>
+        /// <param name="rentId">The rent which the complaint refers to.</param>
+        /// <param name="desc">The new description to be set.</param>
+        /// <param name="time">The new time to be set.</param>
+        /// <param name="chk">The new check status to be set. Must be 1 or 0.</param>
+        void UpdateComplaint(int id, int rentId, string desc, DateTime time, int chk);
 
         /// <summary>
         /// Deletes the selected complaint from the database.

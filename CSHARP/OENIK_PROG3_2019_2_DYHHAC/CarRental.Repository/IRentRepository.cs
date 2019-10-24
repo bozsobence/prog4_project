@@ -25,32 +25,16 @@ namespace CarRental.Repository
         void AddRent(Rent rent);
 
         /// <summary>
-        /// Updates the car belonging to the selected rent.
+        /// Updates the selected rent data.
         /// </summary>
         /// <param name="id">The rent to be updated.</param>
-        /// <param name="newCarId">The new car to be set.</param>
-        void UpdateCar(int id, string newCarId);
-
-        /// <summary>
-        /// Updates the start time of the selected rent.
-        /// </summary>
-        /// <param name="id">The rent to be updated.</param>
-        /// <param name="newStart">The new start time to be set.</param>
-        void UpdateStart(int id, DateTime newStart);
-
-        /// <summary>
-        /// Updates the end time of the selected rent.
-        /// </summary>
-        /// <param name="id">The rent to be updated.</param>
-        /// <param name="newEnd">The new end time to be set.</param>
-        void UpdateEnd(int id, DateTime newEnd);
-
-        /// <summary>
-        /// Updates the driven distance of the selected rent.
-        /// </summary>
-        /// <param name="id">The rent to be updated.</param>
-        /// <param name="newDistance">The new distance to be set.</param>
-        void UpdateDistance(int id, int newDistance);
+        /// <param name="accId">The new account who started the rent.</param>
+        /// <param name="carId">The new car which the rent was done.</param>
+        /// <param name="startTime">The new start time of the rent.</param>
+        /// <param name="endTime">The new end time of the rent.</param>
+        /// <param name="distance">The new distance of the rent.</param>
+        /// <param name="price">The new price paid by the user.</param>
+        void UpdateRent(int id, int accId, string carId, DateTime startTime, DateTime endTime, int distance, int price);
 
         /// <summary>
         /// Deletes the selected rent from the database.

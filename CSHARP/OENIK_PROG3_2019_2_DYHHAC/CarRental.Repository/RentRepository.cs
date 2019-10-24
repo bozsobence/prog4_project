@@ -54,34 +54,15 @@ namespace CarRental.Repository
         }
 
         /// <inheritdoc/>
-        public void UpdateCar(int id, string newCarId)
+        public void UpdateRent(int id, int accId, string carId, DateTime startTime, DateTime endTime, int distance, int price)
         {
-            Rent rent = this.GetOne(id);
-            rent.carID = newCarId;
-            this.db.SaveChanges();
-        }
-
-        /// <inheritdoc/>
-        public void UpdateDistance(int id, int newDistance)
-        {
-            Rent rent = this.GetOne(id);
-            rent.distance = newDistance;
-            this.db.SaveChanges();
-        }
-
-        /// <inheritdoc/>
-        public void UpdateEnd(int id, DateTime newEnd)
-        {
-            Rent rent = this.GetOne(id);
-            rent.endtime = newEnd;
-            this.db.SaveChanges();
-        }
-
-        /// <inheritdoc/>
-        public void UpdateStart(int id, DateTime newStart)
-        {
-            Rent rent = this.GetOne(id);
-            rent.starttime = newStart;
+            Rent r = this.GetOne(id);
+            r.accountID = accId;
+            r.carID = carId;
+            r.starttime = startTime;
+            r.endtime = endTime;
+            r.distance = distance;
+            r.price = price;
             this.db.SaveChanges();
         }
     }

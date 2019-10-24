@@ -25,39 +25,16 @@ namespace CarRental.Repository
         void AddAccount(Account account);
 
         /// <summary>
-        /// Updates the selected account's name.
+        /// Updates an account data.
         /// </summary>
         /// <param name="id">The account to be updated.</param>
-        /// <param name="newName">The new name to be set.</param>
-        void UpdateName(int id, string newName);
-
-        /// <summary>
-        /// Updates the selected account's email.
-        /// </summary>
-        /// <param name="id">The account to be updated.</param>
-        /// <param name="newMail">The new mail to be set.</param>
-        void UpdateEmail(int id, string newMail);
-
-        /// <summary>
-        /// Updates the selected account's address.
-        /// </summary>
-        /// <param name="id">The account to be updated.</param>
-        /// <param name="newAddress">The new address to be set.</param>
-        void UpdateAddress(int id, string newAddress);
-
-        /// <summary>
-        /// Updates the price per minute value of the selected account.
-        /// </summary>
-        /// <param name="id">The account to be updated.</param>
-        /// <param name="newMinute">The new price per minute value to be set.</param>
-        void UpdateMinute(int id, int newMinute);
-
-        /// <summary>
-        /// Updates the monthly subscription price of the selected account.
-        /// </summary>
-        /// <param name="id">The account to be updated.</param>
-        /// <param name="newMonth">The new price per month value to be set.</param>
-        void UpdateMonthly(int id, int newMonth);
+        /// <param name="name">The new name to be set.</param>
+        /// <param name="email">The new email to be set. </param>
+        /// <param name="address">The new address to be set.</param>
+        /// <param name="bdate">The new birth date to be set.</param>
+        /// <param name="minute">The new price per minute to be set.</param>
+        /// <param name="monthly">The new monthly price to be set.</param>
+        void UpdateAccount(int id, string name, string email, string address, DateTime bdate, int minute, int monthly);
 
         /// <summary>
         /// Deletes the selected account from the database.

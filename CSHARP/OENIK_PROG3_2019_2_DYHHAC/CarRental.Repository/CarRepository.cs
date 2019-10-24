@@ -55,26 +55,13 @@ namespace CarRental.Repository
         }
 
         /// <inheritdoc/>
-        public void UpdateBatteryLevel(string plate, int battery)
+        public void UpdateCar(string plate, string brand, string model, int battery, int extraPrice)
         {
             Car c = this.GetOne(plate);
+            c.brand = brand;
+            c.model = model;
             c.battery = battery;
-            this.db.SaveChanges();
-        }
-
-        /// <inheritdoc/>
-        public void UpdateExtraPrice(string plate, int extraPrice)
-        {
-            Car c = this.GetOne(plate);
             c.extraPrice = extraPrice;
-            this.db.SaveChanges();
-        }
-
-        /// <inheritdoc/>
-        public void UpdatePlate(string oldPlate, string newPlate)
-        {
-            Car c = this.GetOne(oldPlate);
-            c.plate = newPlate;
             this.db.SaveChanges();
         }
     }
