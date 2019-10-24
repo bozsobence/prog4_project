@@ -46,6 +46,20 @@ namespace CarRental.Repository
         void UpdateAddress(int id, string newAddress);
 
         /// <summary>
+        /// Updates the price per minute value of the selected account.
+        /// </summary>
+        /// <param name="id">The account to be updated.</param>
+        /// <param name="newMinute">The new price per minute value to be set.</param>
+        void UpdateMinute(int id, int newMinute);
+
+        /// <summary>
+        /// Updates the monthly subscription price of the selected account.
+        /// </summary>
+        /// <param name="id">The account to be updated.</param>
+        /// <param name="newMonth">The new price per month value to be set.</param>
+        void UpdateMonthly(int id, int newMonth);
+
+        /// <summary>
         /// Deletes the selected account from the database.
         /// </summary>
         /// <param name="id">The account to delete.</param>
