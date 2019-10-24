@@ -34,6 +34,29 @@ namespace CarRental.Repository
             this.db.SaveChanges();
         }
 
+        /// <summary>
+        /// Adds a new rent to the database.
+        /// </summary>
+        /// <param name="rAccountId">The user who started the rent.</param>
+        /// <param name="rCarId">The numberplate of the car that was used.</param>
+        /// <param name="rStartTime">The start time of the rent.</param>
+        /// <param name="rEndTime">The end time of the rent.</param>
+        /// <param name="rDistance">The distance driven with the car.</param>
+        /// <param name="rPrice">The price paid by the user.</param>
+        public void AddRent(int rAccountId, string rCarId, DateTime rStartTime, DateTime rEndTime, int rDistance, int rPrice)
+        {
+            Rent r = new Rent()
+            {
+                accountID = rAccountId,
+                carID = rCarId,
+                starttime = rStartTime,
+                endtime = rEndTime,
+                distance = rDistance,
+                price = rPrice,
+            };
+            this.AddRent(r);
+        }
+
         /// <inheritdoc/>
         public void DeleteRent(int id)
         {

@@ -34,6 +34,29 @@ namespace CarRental.Repository
             this.db.SaveChanges();
         }
 
+        /// <summary>
+        /// Adds a new account to the database.
+        /// </summary>
+        /// <param name="accName">The name of the user.</param>
+        /// <param name="accEmail">The email of the user.</param>
+        /// <param name="accAddress">The city where the user lives.</param>
+        /// <param name="bdate">The birth date of the user.</param>
+        /// <param name="min">The price per minute the user will pay for the rents.</param>
+        /// <param name="month">The monthly price the user will pay for the services.</param>
+        public void AddAccount(string accName, string accEmail, string accAddress, DateTime bdate, int min, int month)
+        {
+            Account acc = new Account()
+            {
+                name = accName,
+                email = accEmail,
+                address = accAddress,
+                birthdate = bdate,
+                minute = min,
+                monthly = month,
+            };
+            this.AddAccount(acc);
+        }
+
         /// <inheritdoc/>
         public void DeleteAccount(int id)
         {

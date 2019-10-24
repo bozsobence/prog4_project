@@ -19,14 +19,14 @@ namespace CarRental.Repository
         /// <summary>
         /// Initializes a new instance of the <see cref="Repositories"/> class.
         /// </summary>
-        /// <param name="db">The database entities object.</param>
-        public Repositories(CarRentalDatabaseEntities db)
+        public Repositories()
         {
-            this.AccountRepo = new AccountRepository(db);
-            this.CarRepo = new CarRepository(db);
-            this.LicenseRepo = new LicenseRepository(db);
-            this.RentRepo = new RentRepository(db);
-            this.ComplaintRepo = new ComplaintRepository(db);
+            this.Db = new CarRentalDatabaseEntities();
+            this.AccountRepo = new AccountRepository(this.Db);
+            this.CarRepo = new CarRepository(this.Db);
+            this.LicenseRepo = new LicenseRepository(this.Db);
+            this.RentRepo = new RentRepository(this.Db);
+            this.ComplaintRepo = new ComplaintRepository(this.Db);
         }
 
         /// <summary>
@@ -34,6 +34,10 @@ namespace CarRental.Repository
         /// </summary>
         public AccountRepository AccountRepo { get; }
 
+        /// <summary>
+        /// Database.
+        /// </summary>
+        public CarRentalDatabaseEntities Db { get; }
         /// <summary>
         /// Gets the <see cref="CarRepository"/>.
         /// </summary>

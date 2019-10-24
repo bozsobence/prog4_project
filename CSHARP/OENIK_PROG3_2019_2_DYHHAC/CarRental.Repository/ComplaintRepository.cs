@@ -34,6 +34,25 @@ namespace CarRental.Repository
             this.db.SaveChanges();
         }
 
+        /// <summary>
+        /// Adds a new complaint to the database.
+        /// </summary>
+        /// <param name="cRentId">The rent which the complaint refers to.</param>
+        /// <param name="cDesc">The description of the complaint.</param>
+        /// <param name="cTime">The time the complaint was filed.</param>
+        /// <param name="cChk">1 or 0, whether the complaint was handled by the service provider.</param>
+        public void AddComplaint(int cRentId, string cDesc, DateTime cTime, int cChk)
+        {
+            Complaint comp = new Complaint()
+            {
+                rentID = cRentId,
+                description = cDesc,
+                time = cTime,
+                @checked = cChk,
+            };
+            this.AddComplaint(comp);
+        }
+
         /// <inheritdoc/>
         public void DeleteComplaint(int id)
         {
