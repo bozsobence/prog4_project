@@ -16,40 +16,34 @@ namespace CarRental.Logic
     public interface ILogic
     {
         /// <summary>
-        /// Gets all table name in the database.
-        /// </summary>
-        /// <returns>Returns with a list of table names.</returns>
-        List<string> GetAllTables();
-
-        /// <summary>
         /// Gets all data from the Account table.
         /// </summary>
         /// <returns>Returns the data from the Account table in a formatted string.</returns>
-        string GetAccountData();
+        IQueryable GetAccountData();
 
         /// <summary>
         /// Gets all data from the Car table.
         /// </summary>
         /// <returns>Returns the data from the Car table in a formatted string.</returns>
-        string GetCarData();
+        IQueryable GetCarData();
 
         /// <summary>
         /// Gets all data from the License table.
         /// </summary>
         /// <returns>Returns the data from the Account table in a formatted string.</returns>
-        string GetLicenseData();
+        IQueryable GetLicenseData();
 
         /// <summary>
         /// Gets all data from the Rent table.
         /// </summary>
         /// <returns>Returns the data from the Account table in a formatted string.</returns>
-        string GetRentData();
+        IQueryable GetRentData();
 
         /// <summary>
         /// Gets all data from the Complaint table.
         /// </summary>
         /// <returns>Returns the data from the Account table in a formatted string.</returns>
-        string GetComplaintData();
+        IQueryable GetComplaintData();
 
         /// <summary>
         /// Checks if the given account exists in the database.
