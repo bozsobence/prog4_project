@@ -27,6 +27,22 @@ namespace CarRental.Repository
             this.db = db;
         }
 
+        /// <summary>
+        /// Gets the content of the table.
+        /// </summary>
+        /// <returns>Returns a formatted string with the table data.</returns>
+        public string GetAccountData()
+        {
+            List<Account> accData = this.GetAll().ToList();
+            string formatted = string.Empty;
+            foreach (var acc in accData)
+            {
+                formatted += string.Format($">>ID: {acc.accountID} | Name: {acc.name} | Email: {acc.email} | Address: {acc.address} | Birth date: {acc.birthdate.ToString()} | Price per minute: {acc.minute} | Monthly price: {acc.monthly}\n");
+            }
+
+            return formatted;
+        }
+
         /// <inheritdoc/>
         public void AddAccount(Account account)
         {

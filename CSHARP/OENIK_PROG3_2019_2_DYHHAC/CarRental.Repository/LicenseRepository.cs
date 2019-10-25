@@ -27,6 +27,21 @@ namespace CarRental.Repository
             this.db = db;
         }
 
+        /// <summary>
+        /// Gets the content of the table.
+        /// </summary>
+        /// <returns>Returns a formatted string with the table data.</returns>
+        public string GetLicenseData()
+        {
+            List<License> licenses = this.GetAll().ToList();
+            string formatted = string.Empty;
+            foreach (var lic in licenses)
+            {
+                formatted += string.Format($">> ID: {lic.licenseID} | ACCOUNT: {lic.accountID} | CATEGORY: {lic.category} | START: {lic.startDate.ToString()} | EXPIRES: {lic.expiryDate} | PENALTY POINTS: {lic.penaltyPoints}\n");
+            }
+            return formatted;
+        }
+
         /// <inheritdoc/>
         public void AddLicense(License license)
         {

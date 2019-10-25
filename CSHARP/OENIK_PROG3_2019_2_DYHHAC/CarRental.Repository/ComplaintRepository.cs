@@ -27,6 +27,22 @@ namespace CarRental.Repository
             this.db = db;
         }
 
+        /// <summary>
+        /// Gets the content of the table.
+        /// </summary>
+        /// <returns>Returns a formatted string with the table data.</returns>
+        public string GetComplaintData()
+        {
+            List<Complaint> comps = this.GetAll().ToList();
+            string formatted = string.Empty;
+            foreach (var comp in comps)
+            {
+                formatted += string.Format($">> ID: {comp.complaintID} | RENT: {comp.rentID} | DESCRIPTION: {comp.description} | TIME: {comp.time.ToString()} | CHECKED: {comp.@checked}\n");
+            }
+
+            return formatted;
+        }
+
         /// <inheritdoc/>
         public void AddComplaint(Complaint complaint)
         {

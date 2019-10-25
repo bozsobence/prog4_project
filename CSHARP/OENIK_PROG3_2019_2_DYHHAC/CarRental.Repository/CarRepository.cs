@@ -27,6 +27,22 @@ namespace CarRental.Repository
             this.db = db;
         }
 
+        /// <summary>
+        /// Gets the content of the table.
+        /// </summary>
+        /// <returns>Returns a formatted string with the table data.</returns>
+        public string GetCarData()
+        {
+            List<Car> carData = this.GetAll().ToList();
+            string formatted = string.Empty;
+            foreach (var car in carData)
+            {
+                formatted += string.Format($">> Numberplate: {car.plate} | Brand: {car.brand} | Model: {car.model} | Battery level: {car.battery} | Extra price: {car.extraPrice}\n");
+            }
+
+            return formatted;
+        }
+
         /// <inheritdoc/>
         public void AddCar(Car car)
         {

@@ -27,6 +27,22 @@ namespace CarRental.Repository
             this.db = db;
         }
 
+        /// <summary>
+        /// Gets the content of the table.
+        /// </summary>
+        /// <returns>Returns a formatted string with the table data.</returns>
+        public string GetRentData()
+        {
+            List<Rent> rents = this.GetAll().ToList();
+            string formatted = string.Empty;
+            foreach (var rent in rents)
+            {
+                formatted += string.Format($">> ID: {rent.rentID} | ACCOUNT: {rent.accountID} | CAR: {rent.carID} | START: {rent.starttime.ToString()} | END: {rent.endtime.ToString()} | DISTANCE: {rent.distance} | PRICE: {rent.price}\n");
+            }
+
+            return formatted;
+        }
+
         /// <inheritdoc/>
         public void AddRent(Rent rent)
         {
