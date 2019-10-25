@@ -1,3 +1,5 @@
+# Közösségi autómegosztó szolgáltatás adatbázis-kezelő alkalmazása
+---
 # A projekt alapötlete
 A projekthez az ötletet az Adatbázisok tárgyhoz készült beadandó feladatomból vettem.  
 Ennek során egy közösségi autómegosztó (e-carsharing) alkalmazás adatbázisát terveztem meg.  
