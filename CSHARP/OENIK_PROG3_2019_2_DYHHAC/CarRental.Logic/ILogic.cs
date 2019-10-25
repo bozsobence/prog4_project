@@ -19,31 +19,31 @@ namespace CarRental.Logic
         /// Gets all data from the Account table.
         /// </summary>
         /// <returns>Returns the data from the Account table in a formatted string.</returns>
-        IQueryable GetAccountData();
+        string GetAccountData();
 
         /// <summary>
         /// Gets all data from the Car table.
         /// </summary>
         /// <returns>Returns the data from the Car table in a formatted string.</returns>
-        IQueryable GetCarData();
+        string GetCarData();
 
         /// <summary>
         /// Gets all data from the License table.
         /// </summary>
         /// <returns>Returns the data from the Account table in a formatted string.</returns>
-        IQueryable GetLicenseData();
+        string GetLicenseData();
 
         /// <summary>
         /// Gets all data from the Rent table.
         /// </summary>
         /// <returns>Returns the data from the Account table in a formatted string.</returns>
-        IQueryable GetRentData();
+        string GetRentData();
 
         /// <summary>
         /// Gets all data from the Complaint table.
         /// </summary>
         /// <returns>Returns the data from the Account table in a formatted string.</returns>
-        IQueryable GetComplaintData();
+        string GetComplaintData();
 
         /// <summary>
         /// Checks if the given account exists in the database.

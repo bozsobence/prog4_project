@@ -7,6 +7,7 @@ namespace CarRental.Logic
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
     using System.Text;
     using System.Threading.Tasks;
     using CarRental.Data;
@@ -168,33 +169,33 @@ namespace CarRental.Logic
         }
 
         /// <inheritdoc/>
-        public IQueryable GetAccountData()
+        public string GetAccountData()
         {
-            return this.repository.AccountRepo.GetAll();
+            return this.repository.AccountRepo.GetAccountData();
         }
 
         /// <inheritdoc/>
-        public IQueryable GetCarData()
+        public string GetCarData()
         {
-            return this.repository.CarRepo.GetAll();
+            return this.repository.CarRepo.GetCarData();
         }
 
         /// <inheritdoc/>
-        public IQueryable GetComplaintData()
+        public string GetComplaintData()
         {
-            return this.repository.ComplaintRepo.GetAll();
+            return this.repository.ComplaintRepo.GetComplaintData();
         }
 
         /// <inheritdoc/>
-        public IQueryable GetLicenseData()
+        public string GetLicenseData()
         {
-            return this.repository.LicenseRepo.GetAll();
+            return this.repository.LicenseRepo.GetLicenseData();
         }
 
         /// <inheritdoc/>
-        public IQueryable GetRentData()
+        public string GetRentData()
         {
-            return this.repository.RentRepo.GetAll();
+            return this.repository.RentRepo.GetRentData();
         }
 
         /// <inheritdoc/>
