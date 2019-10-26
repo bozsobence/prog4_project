@@ -39,6 +39,7 @@ namespace CarRental.Repository
             {
                 formatted += string.Format($">> ID: {lic.licenseID} | ACCOUNT: {lic.accountID} | CATEGORY: {lic.category} | START: {lic.startDate.ToString()} | EXPIRES: {lic.expiryDate} | PENALTY POINTS: {lic.penaltyPoints}\n");
             }
+
             return formatted;
         }
 

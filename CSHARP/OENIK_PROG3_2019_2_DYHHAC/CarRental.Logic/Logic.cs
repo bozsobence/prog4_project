@@ -337,5 +337,50 @@ namespace CarRental.Logic
                 return false;
             }
         }
+
+        /// <summary>
+        /// Gets the daily income of each month.
+        /// </summary>
+        /// <returns>Returns a formatted string containing the daily income data.</returns>
+        public string GetDailyIncome()
+        {
+            return this.repository.RentRepo.GetDailyIncome();
+        }
+
+        /// <summary>
+        /// Gets the overall income and the daily average price of the rents.
+        /// </summary>
+        /// <returns>Returns a formatted string.</returns>
+        public string GetOverallIncome()
+        {
+            return this.repository.RentRepo.GetOverallIncome();
+        }
+
+        /// <summary>
+        /// Gets the people who started the most and least rents.
+        /// </summary>
+        /// <returns>Returns a formatted string.</returns>
+        public string GetRentsByUser()
+        {
+            return this.repository.GetRentsByUser();
+        }
+
+        /// <summary>
+        /// Gets the distance driven with each car.
+        /// </summary>
+        /// <returns>Returns a formatted string.</returns>
+        public string GetDistanceByCar()
+        {
+            return this.repository.GetDistanceByCar();
+        }
+
+        /// <summary>
+        /// Gets the users who are excluded from starting rents.
+        /// </summary>
+        /// <returns>Returns a formatted string.</returns>
+        public string GetExcludedUsers()
+        {
+            return this.repository.GetExcludedUsers();
+        }
     }
 }

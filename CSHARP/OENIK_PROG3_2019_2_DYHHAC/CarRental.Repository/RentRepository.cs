@@ -104,5 +104,55 @@ namespace CarRental.Repository
             r.price = price;
             this.db.SaveChanges();
         }
+
+        /// <summary>
+        /// Gets the daily income of each month.
+        /// </summary>
+        /// <returns>Returns a formatted string.</returns>
+        public string GetDailyIncome()
+        {
+            string formatted = string.Empty;
+            for (int i = 1; i <= 12; i++)
+            {
+                var daily = from x in this.GetAll()
+                            where x.starttime.Month == i
+                            group x by x.starttime.Day into g
+                            select new
+                            {
+                                g.Key,
+                                INCOME = g.Sum(x => x.price),
+                            };
+                if (daily.Count() != 0)
+                {
+                    formatted += string.Format($">> HÓNAP: {i}\n");
+                    foreach (var item in daily)
+                    {
+                        formatted += string.Format($"> NAP: {item.Key}.\tBEVÉTEL: {item.INCOME} Ft\n");
+                    }
+                }
+            }
+
+            return formatted;
+        }
+
+        /// <summary>
+        /// Gets the overall income and the daily average price of the rents.
+        /// </summary>
+        /// <returns>Returns a formatted string.</returns>
+        public string GetOverallIncome()
+        {
+            string formatted = string.Empty;
+            var income = this.GetAll().Sum(x => x.price);
+            var avg1 = from x in this.GetAll()
+                          group x by x.starttime.Day into g
+                          select new
+                          {
+                              Avg = g.Sum(x => x.price),
+                          };
+            var avg = avg1.Sum(x => x.Avg) / avg1.Count();
+            formatted += string.Format($">> ÖSSZES BEVÉTEL: {income}\tÁTLAGOS NAPI BEVÉTEL: {avg}\n");
+            return formatted;
+
+        }
     }
 }

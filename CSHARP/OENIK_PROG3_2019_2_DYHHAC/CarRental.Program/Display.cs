@@ -55,6 +55,16 @@ namespace CarRental.Program
                         break;
                     case 4: this.DeleteRecord();
                         break;
+                    case 5: Console.WriteLine(this.logic.GetDailyIncome());
+                        break;
+                    case 6: Console.WriteLine(this.logic.GetOverallIncome());
+                        break;
+                    case 7: Console.WriteLine(this.logic.GetRentsByUser());
+                        break;
+                    case 8: Console.WriteLine(this.logic.GetDistanceByCar());
+                        break;
+                    case 9: Console.WriteLine(this.logic.GetExcludedUsers());
+                        break;
                     default:
                         Console.WriteLine("Ez a funkció jelenleg nem elérhető.");
                         break;
@@ -388,7 +398,7 @@ namespace CarRental.Program
             Console.WriteLine("4. Megadott tábla adott elemének törlése");
             Console.WriteLine("5. Napi bevételek listázása, nap szerint csoportosítva");
             Console.WriteLine("6. Összes bevétel kiírása, napi átlagos bevétel megjelenítése");
-            Console.WriteLine("7. Legtöbb és legkevesebb bérlést indító felhasználók listázása");
+            Console.WriteLine("7. Legtöbb bérlést indító felhasználó listázása");
             Console.WriteLine("8. Megtett távolság (kilométeróra állása) autónként csoportosítva");
             Console.WriteLine("9. Az alkalmazás használatára nem jogosult felhasználók listázása");
             Console.ForegroundColor = ConsoleColor.Red;
