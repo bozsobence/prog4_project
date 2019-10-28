@@ -25,6 +25,17 @@ namespace CarRental.Repository
         void AddLicense(License license);
 
         /// <summary>
+        /// Adds a new license to the database.
+        /// </summary>
+        /// <param name="lId">The number of the license. Contains numbers and letters.</param>
+        /// <param name="lAccountId">The user whom the license belongs to.</param>
+        /// <param name="lCategory">The highest category of the license.</param>
+        /// <param name="lStartDate">The license is valid from this date.</param>
+        /// <param name="lExpiryDate">The expiration date of the license.</param>
+        /// <param name="lPenaltyPoints">The penalty points the user has. Issued by authorities.</param>
+        void AddLicense(string lId, int lAccountId, string lCategory, DateTime lStartDate, DateTime lExpiryDate, int lPenaltyPoints);
+
+        /// <summary>
         /// Updates the selected license data.
         /// </summary>
         /// <param name="id">The license we want to update.</param>

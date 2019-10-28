@@ -25,6 +25,17 @@ namespace CarRental.Repository
         void AddAccount(Account account);
 
         /// <summary>
+        /// Adds a new account to the database.
+        /// </summary>
+        /// <param name="accName">The name of the user.</param>
+        /// <param name="accEmail">The email of the user.</param>
+        /// <param name="accAddress">The city where the user lives.</param>
+        /// <param name="bdate">The birth date of the user.</param>
+        /// <param name="min">The price per minute the user will pay for the rents.</param>
+        /// <param name="month">The monthly price the user will pay for the services.</param>
+        void AddAccount(string accName, string accEmail, string accAddress, DateTime bdate, int min, int month);
+
+        /// <summary>
         /// Updates an account data.
         /// </summary>
         /// <param name="id">The account to be updated.</param>

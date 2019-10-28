@@ -25,6 +25,16 @@ namespace CarRental.Repository
         void AddCar(Car car);
 
         /// <summary>
+        /// Adds a new car to the database.
+        /// </summary>
+        /// <param name="carPlate">The numberplate of the car. This is the primary key.</param>
+        /// <param name="carBrand">The brand of the car.</param>
+        /// <param name="carModel">The model of the car.</param>
+        /// <param name="carBattery">The battery level of the car.</param>
+        /// <param name="carExtraPrice">The additional per minute fee paid by the user when using this car.</param>
+        void AddCar(string carPlate, string carBrand, string carModel, int carBattery, int carExtraPrice);
+
+        /// <summary>
         /// Updates the selected car.
         /// </summary>
         /// <param name="plate">The numberplate of the car we want to update.</param>
