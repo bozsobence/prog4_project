@@ -102,6 +102,7 @@ namespace CarRental.Repository
             {
                 formatted += string.Format($">> RENDSZÁM: {car.CAR}\tKM: {car.KM}\n");
             }
+
             return formatted;
         }
 

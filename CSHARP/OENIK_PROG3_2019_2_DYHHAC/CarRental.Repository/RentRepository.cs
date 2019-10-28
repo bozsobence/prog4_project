@@ -144,7 +144,6 @@ namespace CarRental.Repository
             var avg = avg1.Sum(x => x.Avg) / avg1.Count();
             formatted += string.Format($">> ÖSSZES BEVÉTEL: {income}\tÁTLAGOS NAPI BEVÉTEL: {avg}\n");
             return formatted;
-
         }
     }
 }
