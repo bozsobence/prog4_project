@@ -12,11 +12,11 @@ namespace CarRental.Program
     using CarRental.Logic;
 
     /// <summary>
-    /// This is a menu which displays at the start of the program.
+    /// This is the main application which the user interacts with.
     /// </summary>
     public class Display
     {
-        private Logic logic;
+        private ILogic logic;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Display"/> class.
@@ -47,24 +47,26 @@ namespace CarRental.Program
 
                 switch (choice)
                 {
-                    case 1: this.ShowTableContent();
+                    /*
+                    case 1:  this.ShowTableContent();
                         break;
-                    case 2: this.AddNewRecord();
+                    case 2:  this.AddNewRecord();
                         break;
-                    case 3: this.ModifyRecord();
+                    case 3:  this.ModifyRecord();
                         break;
-                    case 4: this.DeleteRecord();
+                    case 4:  this.DeleteRecord();
                         break;
-                    case 5: Console.WriteLine(this.logic.GetDailyIncome());
+                    case 5:  Console.WriteLine(this.logic.GetDailyIncome());
                         break;
-                    case 6: Console.WriteLine(this.logic.GetOverallIncome());
+                    case 6:  Console.WriteLine(this.logic.GetOverallIncome());
                         break;
-                    case 7: Console.WriteLine(this.logic.GetRentsByUser());
+                    case 7:  Console.WriteLine(this.logic.GetRentsByUser());
                         break;
-                    case 8: Console.WriteLine(this.logic.GetDistanceByCar());
+                    case 8:  Console.WriteLine(this.logic.GetDistanceByCar());
                         break;
-                    case 9: Console.WriteLine(this.logic.GetExcludedUsers());
+                    case 9:  Console.WriteLine(this.logic.GetExcludedUsers());
                         break;
+                        */
                     default:
                         Console.WriteLine("Ez a funkció jelenleg nem elérhető.");
                         break;
@@ -73,6 +75,7 @@ namespace CarRental.Program
             while (true);
         }
 
+        /*
         private void ShowTableContent()
         {
             bool success = false;
@@ -112,7 +115,7 @@ namespace CarRental.Program
             }
             while (!success);
         }
-
+        */
         private void AddNewRecord()
         {
             bool correctTable = true;
