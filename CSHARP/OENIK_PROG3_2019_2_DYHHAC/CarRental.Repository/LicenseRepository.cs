@@ -27,42 +27,23 @@ namespace CarRental.Repository
             this.db = db;
         }
 
-        /// <summary>
-        /// Gets the content of the table.
-        /// </summary>
-        /// <returns>Returns a formatted string with the table data.</returns>
-        public string GetLicenseData()
-        {
-            List<License> licenses = this.GetAll().ToList();
-            string formatted = string.Empty;
-            foreach (var lic in licenses)
-            {
-                formatted += string.Format($">> ID: {lic.licenseID} | ACCOUNT: {lic.accountID} | CATEGORY: {lic.category} | START: {lic.startDate.ToString()} | EXPIRES: {lic.expiryDate} | PENALTY POINTS: {lic.penaltyPoints}\n");
-            }
+        // public string GetLicenseData()
+        // {
+        //    List<License> licenses = this.GetAll().ToList();
+        //    string formatted = string.Empty;
+        //    foreach (var lic in licenses)
+        //    {
+        //        formatted += string.Format($">> ID: {lic.licenseID} | ACCOUNT: {lic.accountID} | CATEGORY: {lic.category} | START: {lic.startDate.ToString()} | EXPIRES: {lic.expiryDate} | PENALTY POINTS: {lic.penaltyPoints}\n");
+        //    }
 
-            return formatted;
-        }
+        // return formatted;
+        // }
 
         /// <inheritdoc/>
         public void AddLicense(License license)
         {
             this.db.License.Add(license);
             this.db.SaveChanges();
-        }
-
-        /// <inheritdoc/>
-        public void AddLicense(string lId, int lAccountId, string lCategory, DateTime lStartDate, DateTime lExpiryDate, int lPenaltyPoints)
-        {
-            License lic = new License()
-            {
-                licenseID = lId,
-                accountID = lAccountId,
-                category = lCategory,
-                startDate = lStartDate,
-                expiryDate = lExpiryDate,
-                penaltyPoints = lPenaltyPoints,
-            };
-            this.AddLicense(lic);
         }
 
         /// <inheritdoc/>

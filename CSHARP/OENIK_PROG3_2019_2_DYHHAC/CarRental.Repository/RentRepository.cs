@@ -27,42 +27,23 @@ namespace CarRental.Repository
             this.db = db;
         }
 
-        /// <summary>
-        /// Gets the content of the table.
-        /// </summary>
-        /// <returns>Returns a formatted string with the table data.</returns>
-        public string GetRentData()
-        {
-            List<Rent> rents = this.GetAll().ToList();
-            string formatted = string.Empty;
-            foreach (var rent in rents)
-            {
-                formatted += string.Format($">> ID: {rent.rentID} | ACCOUNT: {rent.accountID} | CAR: {rent.carID} | START: {rent.starttime.ToString()} | END: {rent.endtime.ToString()} | DISTANCE: {rent.distance} | PRICE: {rent.price}\n");
-            }
+        // public string GetRentData()
+        // {
+        //    List<Rent> rents = this.GetAll().ToList();
+        //    string formatted = string.Empty;
+        //    foreach (var rent in rents)
+        //    {
+        //        formatted += string.Format($">> ID: {rent.rentID} | ACCOUNT: {rent.accountID} | CAR: {rent.carID} | START: {rent.starttime.ToString()} | END: {rent.endtime.ToString()} | DISTANCE: {rent.distance} | PRICE: {rent.price}\n");
+        //    }
 
-            return formatted;
-        }
+        // return formatted;
+        // }
 
         /// <inheritdoc/>
         public void AddRent(Rent rent)
         {
             this.db.Rent.Add(rent);
             this.db.SaveChanges();
-        }
-
-        /// <inheritdoc/>
-        public void AddRent(int rAccountId, string rCarId, DateTime rStartTime, DateTime rEndTime, int rDistance, int rPrice)
-        {
-            Rent r = new Rent()
-            {
-                accountID = rAccountId,
-                carID = rCarId,
-                starttime = rStartTime,
-                endtime = rEndTime,
-                distance = rDistance,
-                price = rPrice,
-            };
-            this.AddRent(r);
         }
 
         /// <inheritdoc/>
@@ -97,10 +78,7 @@ namespace CarRental.Repository
             this.db.SaveChanges();
         }
 
-        /// <summary>
-        /// Gets the daily income of each month.
-        /// </summary>
-        /// <returns>Returns a formatted string.</returns>
+        /*
         public string GetDailyIncome()
         {
             string formatted = string.Empty;
@@ -126,24 +104,20 @@ namespace CarRental.Repository
 
             return formatted;
         }
-
-        /// <summary>
-        /// Gets the overall income and the daily average price of the rents.
-        /// </summary>
-        /// <returns>Returns a formatted string.</returns>
-        public string GetOverallIncome()
-        {
-            string formatted = string.Empty;
-            var income = this.GetAll().Sum(x => x.price);
-            var avg1 = from x in this.GetAll()
-                          group x by x.starttime.Day into g
-                          select new
-                          {
-                              Avg = g.Sum(x => x.price),
-                          };
-            var avg = avg1.Sum(x => x.Avg) / avg1.Count();
-            formatted += string.Format($">> ÖSSZES BEVÉTEL: {income}\tÁTLAGOS NAPI BEVÉTEL: {avg}\n");
-            return formatted;
-        }
+        */
+        // public string GetOverallIncome()
+        // {
+        //    string formatted = string.Empty;
+        //    var income = this.GetAll().Sum(x => x.price);
+        //    var avg1 = from x in this.GetAll()
+        //                  group x by x.starttime.Day into g
+        //                  select new
+        //                  {
+        //                      Avg = g.Sum(x => x.price),
+        //                  };
+        //    var avg = avg1.Sum(x => x.Avg) / avg1.Count();
+        //    formatted += string.Format($">> ÖSSZES BEVÉTEL: {income}\tÁTLAGOS NAPI BEVÉTEL: {avg}\n");
+        //    return formatted;
+        // }
     }
 }

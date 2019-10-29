@@ -92,7 +92,6 @@
     <Compile Include="Complaint.cs">
       <DependentUpon>CarRentalDatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataClasses.cs" />
     <Compile Include="License.cs">
       <DependentUpon>CarRentalDatabaseModel.tt</DependentUpon>
     </Compile>

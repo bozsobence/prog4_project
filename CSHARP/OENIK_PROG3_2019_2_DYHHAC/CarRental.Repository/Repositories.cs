@@ -33,7 +33,7 @@ namespace CarRental.Repository
         /// <summary>
         /// Gets the <see cref="AccountRepository"/>.
         /// </summary>
-        public AccountRepository AccountRepo { get; }
+        public IAccountRepository<Account> AccountRepo { get; }
 
         /// <summary>
         /// Gets database.
@@ -43,22 +43,22 @@ namespace CarRental.Repository
         /// <summary>
         /// Gets the <see cref="CarRepository"/>.
         /// </summary>
-        public CarRepository CarRepo { get; }
+        public ICarRepository<Car> CarRepo { get; }
 
         /// <summary>
         /// Gets the <see cref="LicenseRepository"/>.
         /// </summary>
-        public LicenseRepository LicenseRepo { get; }
+        public ILicenseRepository<License> LicenseRepo { get; }
 
         /// <summary>
         /// Gets the <see cref="RentRepository"/>.
         /// </summary>
-        public RentRepository RentRepo { get; }
+        public IRentRepository<Rent> RentRepo { get; }
 
         /// <summary>
         /// Gets the <see cref="ComplaintRepository"/>.
         /// </summary>
-        public ComplaintRepository ComplaintRepo { get; }
+        public IComplaintRepository<Complaint> ComplaintRepo { get; }
 
         /// <summary>
         /// Gets the people who started the most and least rents.

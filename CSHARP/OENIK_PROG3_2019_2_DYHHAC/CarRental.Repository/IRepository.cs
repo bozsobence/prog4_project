@@ -14,7 +14,7 @@ namespace CarRental.Repository
     /// This is the interface which contains methods that all repositories must implement.
     /// </summary>
     /// <typeparam name="T">Entity Model Class.</typeparam>
-    /// <typeparam name="TK">Type of the primary key.</typeparam>
+    /// <typeparam name="TK">Type of the primary key. This is needed because it is possible that in a table the primary key is a string or int.</typeparam>
     public interface IRepository<T, TK>
         where T : class
     {

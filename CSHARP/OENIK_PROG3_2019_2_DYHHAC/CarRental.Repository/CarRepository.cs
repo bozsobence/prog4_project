@@ -27,10 +27,7 @@ namespace CarRental.Repository
             this.db = db;
         }
 
-        /// <summary>
-        /// Gets the content of the table.
-        /// </summary>
-        /// <returns>Returns a formatted string with the table data.</returns>
+        /*
         public string GetCarData()
         {
             List<Car> carData = this.GetAll().ToList();
@@ -42,26 +39,13 @@ namespace CarRental.Repository
 
             return formatted;
         }
+        */
 
         /// <inheritdoc/>
         public void AddCar(Car car)
         {
             this.db.Car.Add(car);
             this.db.SaveChanges();
-        }
-
-        /// <inheritdoc/>
-        public void AddCar(string carPlate, string carBrand, string carModel, int carBattery, int carExtraPrice)
-        {
-            Car car = new Car()
-            {
-                plate = carPlate,
-                brand = carBrand,
-                model = carModel,
-                battery = carBattery,
-                extraPrice = carExtraPrice,
-            };
-            this.AddCar(car);
         }
 
         /// <inheritdoc/>

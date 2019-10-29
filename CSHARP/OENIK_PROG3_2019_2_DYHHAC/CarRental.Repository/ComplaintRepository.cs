@@ -27,40 +27,23 @@ namespace CarRental.Repository
             this.db = db;
         }
 
-        /// <summary>
-        /// Gets the content of the table.
-        /// </summary>
-        /// <returns>Returns a formatted string with the table data.</returns>
-        public string GetComplaintData()
-        {
-            List<Complaint> comps = this.GetAll().ToList();
-            string formatted = string.Empty;
-            foreach (var comp in comps)
-            {
-                formatted += string.Format($">> ID: {comp.complaintID} | RENT: {comp.rentID} | DESCRIPTION: {comp.description} | TIME: {comp.time.ToString()} | CHECKED: {comp.@checked}\n");
-            }
+        // public string GetComplaintData()
+        // {
+        //    List<Complaint> comps = this.GetAll().ToList();
+        //    string formatted = string.Empty;
+        //    foreach (var comp in comps)
+        //    {
+        //        formatted += string.Format($">> ID: {comp.complaintID} | RENT: {comp.rentID} | DESCRIPTION: {comp.description} | TIME: {comp.time.ToString()} | CHECKED: {comp.@checked}\n");
+        //    }
 
-            return formatted;
-        }
+        // return formatted;
+        // }
 
         /// <inheritdoc/>
         public void AddComplaint(Complaint complaint)
         {
             this.db.Complaint.Add(complaint);
             this.db.SaveChanges();
-        }
-
-        /// <inheritdoc/>
-        public void AddComplaint(int cRentId, string cDesc, DateTime cTime, int cChk)
-        {
-            Complaint comp = new Complaint()
-            {
-                rentID = cRentId,
-                description = cDesc,
-                time = cTime,
-                @checked = cChk,
-            };
-            this.AddComplaint(comp);
         }
 
         /// <inheritdoc/>
