@@ -31,9 +31,18 @@ namespace CarRental.Logic
         /// <inheritdoc/>
         public bool AddNewAccount(string name, string email, string address, DateTime bdate, int minute, int monthly)
         {
+            Account acc = new Account()
+            {
+                name = name,
+                email = email,
+                address = address,
+                birthdate = bdate,
+                minute = minute,
+                monthly = monthly,
+            };
             try
             {
-                this.repository.AccountRepo.AddAccount(name, email, address, bdate, minute, monthly);
+                this.repository.AccountRepo.AddAccount(acc);
                 return true;
             }
             catch (Exception)
@@ -45,9 +54,17 @@ namespace CarRental.Logic
         /// <inheritdoc/>
         public bool AddNewCar(string plate, string brand, string model, int battery, int extraPrice)
         {
+            Car car = new Car()
+            {
+                plate = plate,
+                brand = brand,
+                model = model,
+                battery = battery,
+                extraPrice = extraPrice,
+            };
             try
             {
-                this.repository.CarRepo.AddCar(plate, brand, model, battery, extraPrice);
+                this.repository.CarRepo.AddCar(car);
                 return true;
             }
             catch (Exception)
@@ -59,9 +76,16 @@ namespace CarRental.Logic
         /// <inheritdoc/>
         public bool AddNewComplaint(int rentId, string desc, DateTime time, int chk)
         {
+            Complaint comp = new Complaint()
+            {
+                rentID = rentId,
+                description = desc,
+                time = time,
+                @checked = chk,
+            };
             try
             {
-                this.repository.ComplaintRepo.AddComplaint(rentId, desc, time, chk);
+                this.repository.ComplaintRepo.AddComplaint(comp);
                 return true;
             }
             catch (Exception)
@@ -73,9 +97,18 @@ namespace CarRental.Logic
         /// <inheritdoc/>
         public bool AddNewLicense(string licenseId, int accountId, string category, DateTime startDate, DateTime expiryDate, int penaltyPoints)
         {
+            License lic = new License()
+            {
+                licenseID = licenseId,
+                accountID = accountId,
+                category = category,
+                startDate = startDate,
+                expiryDate = expiryDate,
+                penaltyPoints = penaltyPoints,
+            };
             try
             {
-                this.repository.LicenseRepo.AddLicense(licenseId, accountId, category, startDate, expiryDate, penaltyPoints);
+                this.repository.LicenseRepo.AddLicense(lic);
                 return true;
             }
             catch (Exception)
@@ -87,9 +120,18 @@ namespace CarRental.Logic
         /// <inheritdoc/>
         public bool AddNewRent(int accountId, string carId, DateTime startTime, DateTime endTime, int distance, int price)
         {
+            Rent r = new Rent()
+            {
+                accountID = accountId,
+                carID = carId,
+                starttime = startTime,
+                endtime = endTime,
+                distance = distance,
+                price = price,
+            };
             try
             {
-                this.repository.RentRepo.AddRent(accountId, carId, startTime, endTime, distance, price);
+                this.repository.RentRepo.AddRent(r);
                 return true;
             }
             catch (Exception)
@@ -168,6 +210,7 @@ namespace CarRental.Logic
             }
         }
 
+        /*
         /// <inheritdoc/>
         public string GetAccountData()
         {
@@ -197,6 +240,7 @@ namespace CarRental.Logic
         {
             return this.repository.RentRepo.GetRentData();
         }
+        */
 
         /// <inheritdoc/>
         public bool IsValidAccount(int id)
@@ -342,45 +386,45 @@ namespace CarRental.Logic
         /// Gets the daily income of each month.
         /// </summary>
         /// <returns>Returns a formatted string containing the daily income data.</returns>
-        public string GetDailyIncome()
-        {
-            return this.repository.RentRepo.GetDailyIncome();
-        }
+        // public string GetDailyIncome()
+        // {
+        //    return this.repository.RentRepo.GetDailyIncome();
+        // }
 
         /// <summary>
         /// Gets the overall income and the daily average price of the rents.
         /// </summary>
         /// <returns>Returns a formatted string.</returns>
-        public string GetOverallIncome()
-        {
-            return this.repository.RentRepo.GetOverallIncome();
-        }
+        // public string GetOverallIncome()
+        // {
+        //    return this.repository.RentRepo.GetOverallIncome();
+        // }
 
         /// <summary>
         /// Gets the people who started the most and least rents.
         /// </summary>
         /// <returns>Returns a formatted string.</returns>
-        public string GetRentsByUser()
-        {
-            return this.repository.GetRentsByUser();
-        }
+        // public string GetRentsByUser()
+        // {
+        //    return this.repository.GetRentsByUser();
+        // }
 
         /// <summary>
         /// Gets the distance driven with each car.
         /// </summary>
         /// <returns>Returns a formatted string.</returns>
-        public string GetDistanceByCar()
-        {
-            return this.repository.GetDistanceByCar();
-        }
+        // public string GetDistanceByCar()
+        // {
+        //    return this.repository.GetDistanceByCar();
+        // }
 
         /// <summary>
         /// Gets the users who are excluded from starting rents.
         /// </summary>
         /// <returns>Returns a formatted string.</returns>
-        public string GetExcludedUsers()
-        {
-            return this.repository.GetExcludedUsers();
-        }
+        // public string GetExcludedUsers()
+        // {
+        //    return this.repository.GetExcludedUsers();
+        // }
     }
 }

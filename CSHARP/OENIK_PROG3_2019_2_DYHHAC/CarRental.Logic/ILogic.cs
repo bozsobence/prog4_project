@@ -15,6 +15,7 @@ namespace CarRental.Logic
     /// </summary>
     public interface ILogic
     {
+        /*
         /// <summary>
         /// Gets all data from the Account table.
         /// </summary>
@@ -44,7 +45,7 @@ namespace CarRental.Logic
         /// </summary>
         /// <returns>Returns the data from the Account table in a formatted string.</returns>
         string GetComplaintData();
-
+        */
         /// <summary>
         /// Checks if the given account exists in the database.
         /// </summary>
