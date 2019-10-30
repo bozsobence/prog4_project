@@ -238,6 +238,12 @@ namespace CarRental.Logic
         /// Gets the daily income of each month.
         /// </summary>
         /// <returns>Returns <see cref="IEnumerable{DailyIncomeResult}"/>.</returns>
-        IEnumerable<DailyIncomeResult> GetDailyIncome();
+        IEnumerable<ResultClasses.DailyIncomeResult> GetDailyIncome();
+
+        /// <summary>
+        /// Gets the overall income and the daily average price of the rents.
+        /// </summary>
+        /// <returns>Returns <see cref="ResultClasses.OverallIncomeResult"/>.</returns>
+        ResultClasses.OverallIncomeResult GetOverallIncome();
     }
 }

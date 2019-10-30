@@ -60,9 +60,9 @@ namespace CarRental.Program
                         break;
                     case 5: this.GetDailyIncome();
                         break;
-                        /*
-                    case 6:  Console.WriteLine(this.logic.GetOverallIncome());
+                    case 6: this.GetOverallIncome();
                         break;
+                        /*
                     case 7:  Console.WriteLine(this.logic.GetRentsByUser());
                         break;
                     case 8:  Console.WriteLine(this.logic.GetDistanceByCar());
@@ -76,6 +76,12 @@ namespace CarRental.Program
                 }
             }
             while (true);
+        }
+
+        private void GetOverallIncome()
+        {
+            Console.WriteLine(">> OVERALL INCOME AND AVERAGE DAILY INCOME RESULT:\n");
+            Console.WriteLine(this.logic.GetOverallIncome());
         }
 
         private void GetDailyIncome()

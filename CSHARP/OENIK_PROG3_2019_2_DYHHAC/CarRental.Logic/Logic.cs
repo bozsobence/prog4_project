@@ -416,15 +416,15 @@ namespace CarRental.Logic
         }
 
         /// <inheritdoc/>
-        public IEnumerable<DailyIncomeResult> GetDailyIncome()
+        public IEnumerable<ResultClasses.DailyIncomeResult> GetDailyIncome()
         {
-            List<DailyIncomeResult> results = new List<DailyIncomeResult>();
+            List<ResultClasses.DailyIncomeResult> results = new List<ResultClasses.DailyIncomeResult>();
             for (int i = 1; i <= 12; i++)
             {
                 var daily = from x in this.repository.RentRepo.GetAll()
                             where x.starttime.Month == i
                             group x by x.starttime.Day into g
-                            select new DailyIncomeResult
+                            select new ResultClasses.DailyIncomeResult
                             {
                                 Month = i,
                                 Day = g.Key,
@@ -442,14 +442,20 @@ namespace CarRental.Logic
             return results;
         }
 
-        /// <summary>
-        /// Gets the overall income and the daily average price of the rents.
-        /// </summary>
-        /// <returns>Returns a formatted string.</returns>
-        // public string GetOverallIncome()
-        // {
-        //    return this.repository.RentRepo.GetOverallIncome();
-        // }
+        /// <inheritdoc/>
+        public ResultClasses.OverallIncomeResult GetOverallIncome()
+        {
+            var rentData = this.repository.RentRepo.GetAll();
+            var income = rentData.Sum(x => x.price);
+            var avgDaily = from x in rentData
+                           group x by x.starttime.Day into g
+                           select new
+                           {
+                               Avg = g.Sum(x => x.price),
+                           };
+            var avg = avgDaily.Sum(x => x.Avg) / avgDaily.Count();
+            return new ResultClasses.OverallIncomeResult() { OverallIncome = (int)income, Average = (double)avg };
+        }
 
         /// <summary>
         /// Gets the people who started the most and least rents.
