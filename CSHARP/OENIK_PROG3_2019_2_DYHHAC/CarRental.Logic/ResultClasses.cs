@@ -44,7 +44,7 @@ namespace CarRental.Logic
         }
 
         /// <summary>
-        /// This class contains the result of <see cref="ILogic.get"/>.
+        /// This class contains the result of <see cref="ILogic.GetOverallIncome"/>.
         /// </summary>
         public class OverallIncomeResult
         {
@@ -62,6 +62,67 @@ namespace CarRental.Logic
             public override string ToString()
             {
                 return string.Format($"> OVERALL INCOME: {this.OverallIncome}\tAVERAGE DAILY INCOME: {this.Average}");
+            }
+        }
+
+        /// <summary>
+        /// This class contains the result of <see cref="ILogic.GetUserWithMostRents"/>.
+        /// </summary>
+        public class UserWithMostRentsResult
+        {
+            /// <summary>
+            /// Gets or sets the account name.
+            /// </summary>
+            public string AccountName { get; set; }
+
+            /// <summary>
+            /// Gets or sets the count.
+            /// </summary>
+            public int Count { get; set; }
+
+            /// <inheritdoc/>
+            public override string ToString()
+            {
+                return string.Format($"> NAME: {this.AccountName}\tCOUNT OF RENTS: {this.Count}");
+            }
+        }
+
+        /// <summary>
+        /// This class contains the result of <see cref="ILogic.GetDistanceByCar"/>.
+        /// </summary>
+        public class DistancesByCarResult
+        {
+            /// <summary>
+            /// Gets or sets the car.
+            /// </summary>
+            public string Car { get; set; }
+
+            /// <summary>
+            /// Gets or sets the distance.
+            /// </summary>
+            public int Distance { get; set; }
+
+            /// <inheritdoc/>
+            public override string ToString()
+            {
+                return string.Format($"> CAR: {this.Car}\tDISTANCE: {this.Distance} KM");
+            }
+        }
+
+        /// <summary>
+        /// This class contains the result of <see cref="ILogic.GetExcludedUsers"/>.
+        /// </summary>
+        public class ExcludedUsersResult
+        {
+            /// <summary>
+            /// Gets or sets the name.
+            /// </summary>
+            public string Name { get; set; }
+
+            /// <inheritdoc/>
+            public override string ToString()
+            {
+                return string.Format($">NAME: {this.Name}");
             }
         }
     }
