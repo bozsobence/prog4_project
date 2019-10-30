@@ -9,7 +9,9 @@ namespace CarRental.Program
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using CarRental.Data;
     using CarRental.Logic;
+    using CarRental.Repository;
 
     /// <summary>
     /// This is the main application which the user interacts with.
@@ -47,17 +49,18 @@ namespace CarRental.Program
 
                 switch (choice)
                 {
-                    /*
-                    case 1:  this.ShowTableContent();
+                    case 1: this.ShowTableContent();
                         break;
-                    case 2:  this.AddNewRecord();
+
+                    case 2: this.AddNewRecord();
                         break;
-                    case 3:  this.ModifyRecord();
+                    case 3: this.ModifyRecord();
                         break;
-                    case 4:  this.DeleteRecord();
+                    case 4: this.DeleteRecord();
                         break;
-                    case 5:  Console.WriteLine(this.logic.GetDailyIncome());
+                    case 5: this.GetDailyIncome();
                         break;
+                        /*
                     case 6:  Console.WriteLine(this.logic.GetOverallIncome());
                         break;
                     case 7:  Console.WriteLine(this.logic.GetRentsByUser());
@@ -75,7 +78,21 @@ namespace CarRental.Program
             while (true);
         }
 
-        /*
+        private void GetDailyIncome()
+        {
+            Console.WriteLine(">> DAILY INCOMES RESULT:\n");
+            var incomes = this.logic.GetDailyIncome();
+            for (int i = 1; i < 13; i++)
+            {
+                Console.WriteLine($">> MONTH: {i}");
+                var monthly = from x in incomes where x.Month == i select x;
+                foreach (var day in monthly)
+                {
+                    Console.WriteLine("\t" + day);
+                }
+            }
+        }
+
         private void ShowTableContent()
         {
             bool success = false;
@@ -85,27 +102,57 @@ namespace CarRental.Program
                 string table = Console.ReadLine();
                 if (table.ToUpper().Contains("ACCOUNT"))
                 {
-                    Console.WriteLine(this.logic.GetAccountData());
+                    Console.WriteLine(">> RECORDS OF ACCOUNT TABLE:\n");
+                    var accData = this.logic.GetAccountData();
+                    foreach (var acc in accData)
+                    {
+                        Console.WriteLine(string.Format($"> ID: {acc.accountID} | NAME: {acc.name} | EMAIL: {acc.email} | ADDRESS: {acc.address} | BIRTHDATE: {acc.birthdate.Date.ToString()} | MINUTE: {acc.minute} | MONTHLY: {acc.monthly}"));
+                    }
+
                     success = true;
                 }
                 else if (table.ToUpper().Contains("CAR"))
                 {
-                    Console.WriteLine(this.logic.GetCarData());
+                    Console.WriteLine(">> RECORDS OF CAR TABLE:\n");
+                    var carData = this.logic.GetCarData();
+                    foreach (var car in carData)
+                    {
+                        Console.WriteLine(string.Format($"> NUMBERPLATE: {car.plate} | BRAND: {car.brand} | MODEL: {car.model} | BATTERY: {car.battery}% | EXTRA PRICE: {car.extraPrice}"));
+                    }
+
                     success = true;
                 }
                 else if (table.ToUpper().Contains("LICENSE"))
                 {
-                    Console.WriteLine(this.logic.GetLicenseData());
+                    Console.WriteLine(">> RECORDS OF LICENSE TABLE:\n");
+                    var licenseData = this.logic.GetLicenseData();
+                    foreach (var lic in licenseData)
+                    {
+                        Console.WriteLine(string.Format($"> ID: {lic.licenseID} | ACCOUNT: {lic.accountID} | CATEGORY: {lic.category} | START: {lic.startDate.ToString()} | EXPIRES: {lic.expiryDate} | PENALTY POINTS: {lic.penaltyPoints}"));
+                    }
+
                     success = true;
                 }
                 else if (table.ToUpper().Contains("RENT"))
                 {
-                    Console.WriteLine(this.logic.GetRentData());
+                    Console.WriteLine(">> RECORDS OF RENT TABLE:\n");
+                    var rentData = this.logic.GetRentData();
+                    foreach (var rent in rentData)
+                    {
+                        Console.WriteLine(string.Format($"> ID: {rent.rentID} | ACCOUNT: {rent.accountID} | CAR: {rent.carID} | START: {rent.starttime.ToString()} | END: {rent.endtime.ToString()} | DISTANCE: {rent.distance} | PRICE: {rent.price}"));
+                    }
+
                     success = true;
                 }
                 else if (table.ToUpper().Contains("COMPLAINT"))
                 {
-                    Console.WriteLine(this.logic.GetComplaintData());
+                    Console.WriteLine(">> RECORDS OF COMPLAINT TABLE:\n");
+                    var complaintData = this.logic.GetComplaintData();
+                    foreach (var comp in complaintData)
+                    {
+                        Console.WriteLine(string.Format($"> ID: {comp.complaintID} | RENT: {comp.rentID} | DESCRIPTION: {comp.description} | TIME: {comp.time.ToString()} | CHECKED: {comp.@checked}"));
+                    }
+
                     success = true;
                 }
                 else
@@ -115,7 +162,7 @@ namespace CarRental.Program
             }
             while (!success);
         }
-        */
+
         private void AddNewRecord()
         {
             bool correctTable = true;
@@ -243,9 +290,11 @@ namespace CarRental.Program
                     Console.WriteLine("Add meg a születési időpontját! (YYYY-MM-DD)");
                     DateTime birthdate = DateTime.Parse(Console.ReadLine());
                     Console.WriteLine("Add meg a percdíjat! (csak szám lehet)");
-                    int minute = int.Parse(Console.ReadLine());
+                    string cr = Console.ReadLine();
+                    int minute = cr != string.Empty ? int.Parse(cr) : -1;
                     Console.WriteLine("Add meg a havidíjat! (csak szám lehet)");
-                    int monthly = int.Parse(Console.ReadLine());
+                    cr = Console.ReadLine();
+                    int monthly = cr != string.Empty ? int.Parse(cr) : -1;
 
                     bool success = this.logic.UpdateAccountData(id, name, email, address, birthdate, minute, monthly);
                     string msg = success ? "Sikeres módosítás." : "Hiba történt a módosítás során.";
@@ -260,9 +309,11 @@ namespace CarRental.Program
                     Console.WriteLine("Add meg a modellt!");
                     string model = Console.ReadLine();
                     Console.WriteLine("Add meg az akkumulátor töltöttségét!");
-                    int battery = int.Parse(Console.ReadLine());
+                    string cr = Console.ReadLine();
+                    int battery = cr != string.Empty ? int.Parse(cr) : -1;
                     Console.WriteLine("Add meg a felár értékét! (0 ha nincs)");
-                    int extra = int.Parse(Console.ReadLine());
+                    cr = Console.ReadLine();
+                    int extra = cr != string.Empty ? int.Parse(cr) : -1;
 
                     bool success = this.logic.UpdateCarData(plate, brand, model, battery, extra);
                     string msg = success ? "Sikeres módosítás." : "Hiba történt a módosítás során.";
@@ -273,15 +324,21 @@ namespace CarRental.Program
                     Console.WriteLine("Add meg a jopgosítvány számát amit módosítani szeretnél!");
                     string licenseID = Console.ReadLine();
                     Console.WriteLine("Add meg a hozzá tartozó felhasználó azonosítóját! (csak szám lehet)");
-                    int accId = int.Parse(Console.ReadLine());
+                    string cr = Console.ReadLine();
+                    int accId = cr != string.Empty ? int.Parse(cr) : -1;
                     Console.WriteLine("Add meg a kategóriát!");
                     string category = Console.ReadLine();
                     Console.WriteLine("Add meg az érvényesség kezdetét! (YYYY-MM-DD)");
-                    DateTime start = DateTime.Parse(Console.ReadLine());
+                    DateTime start;
+                    cr = Console.ReadLine();
+                    bool startParse = DateTime.TryParse(cr, out start);
                     Console.WriteLine("Add meg az érvényesség végét! (YYYY-MM-DD)");
-                    DateTime expiry = DateTime.Parse(Console.ReadLine());
+                    DateTime expiry;
+                    cr = Console.ReadLine();
+                    bool expiryParse = DateTime.TryParse(cr, out expiry);
                     Console.WriteLine("Add meg a büntetőpontok számát!");
-                    int penalty = int.Parse(Console.ReadLine());
+                    cr = Console.ReadLine();
+                    int penalty = cr != string.Empty ? int.Parse(cr) : -1;
 
                     bool success = this.logic.UpdateLicenseData(licenseID, accId, category, start, expiry, penalty);
                     string msg = success ? "Sikeres módosítás." : "Hiba történt a módosítás során.";
@@ -292,17 +349,24 @@ namespace CarRental.Program
                     Console.WriteLine("Add meg a módosítani kívánt bérlés azonosítóját!");
                     int rentId = int.Parse(Console.ReadLine());
                     Console.WriteLine("Add meg a bérléshez tartozó felhasználó azonosítóját!");
-                    int accountId = int.Parse(Console.ReadLine());
+                    string cr = Console.ReadLine();
+                    int accountId = cr != string.Empty ? int.Parse(cr) : -1;
                     Console.WriteLine("Add meg az autó rendszámát!");
                     string carId = Console.ReadLine();
                     Console.WriteLine("Add meg a kezdés időpontját! (YYYY-MM-DD HH:MM)");
-                    DateTime start = DateTime.Parse(Console.ReadLine());
+                    DateTime start;
+                    cr = Console.ReadLine();
+                    bool startParse = DateTime.TryParse(cr, out start);
                     Console.WriteLine("Add meg a befejezés időpontját! (YYYY-MM-DD HH:MM)");
-                    DateTime end = DateTime.Parse(Console.ReadLine());
+                    DateTime end;
+                    cr = Console.ReadLine();
+                    bool endParse = DateTime.TryParse(cr, out end);
                     Console.WriteLine("Add meg a megtett távolságot!");
-                    int distance = int.Parse(Console.ReadLine());
+                    cr = Console.ReadLine();
+                    int distance = cr != string.Empty ? int.Parse(cr) : -1;
                     Console.WriteLine("Add meg a bérlés árát!");
-                    int price = int.Parse(Console.ReadLine());
+                    cr = Console.ReadLine();
+                    int price = cr != string.Empty ? int.Parse(cr) : -1;
 
                     bool success = this.logic.UpdateRentData(rentId, accountId, carId, start, end, distance, price);
                     string msg = success ? "Sikeres módosítás." : "Hiba történt a módosítás során.";
@@ -313,13 +377,17 @@ namespace CarRental.Program
                     Console.WriteLine("Add meg a módosítani kívánt bejelentés azonosítóját!");
                     int compId = int.Parse(Console.ReadLine());
                     Console.WriteLine("Add meg a bejelentéshez tartozó bérlés azonosítóját!");
-                    int rentId = int.Parse(Console.ReadLine());
+                    string cr = Console.ReadLine();
+                    int rentId = cr != string.Empty ? int.Parse(cr) : -1;
                     Console.WriteLine("Add meg a bejelentés szövegét!");
                     string description = Console.ReadLine();
                     Console.WriteLine("Add meg a bejelentés időpontját! (YYYY-MM-DD HH:MM)");
-                    DateTime time = DateTime.Parse(Console.ReadLine());
+                    DateTime time;
+                    cr = Console.ReadLine();
+                    bool timeParse = DateTime.TryParse(cr, out time);
                     Console.WriteLine("Add meg hogy ellenőrizve lett-e a bejelentés! (0 vagy 1 lehet)");
-                    int chk = int.Parse(Console.ReadLine());
+                    cr = Console.ReadLine();
+                    int chk = cr != string.Empty ? int.Parse(cr) : -1;
 
                     bool success = this.logic.UpdateComplaintData(compId, rentId, description, time, chk);
                     string msg = success ? "Sikeres módosítás." : "Hiba történt a módosítás során.";
