@@ -9,43 +9,44 @@ namespace CarRental.Logic
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using CarRental.Data;
+    using CarRental.Repository;
 
     /// <summary>
     /// Interface for the logic classes.
     /// </summary>
     public interface ILogic
     {
-        /*
         /// <summary>
         /// Gets all data from the Account table.
         /// </summary>
         /// <returns>Returns the data from the Account table in a formatted string.</returns>
-        string GetAccountData();
+        IQueryable<Account> GetAccountData();
 
         /// <summary>
         /// Gets all data from the Car table.
         /// </summary>
         /// <returns>Returns the data from the Car table in a formatted string.</returns>
-        string GetCarData();
+        IQueryable<Car> GetCarData();
 
         /// <summary>
         /// Gets all data from the License table.
         /// </summary>
         /// <returns>Returns the data from the Account table in a formatted string.</returns>
-        string GetLicenseData();
+        IQueryable<License> GetLicenseData();
 
         /// <summary>
         /// Gets all data from the Rent table.
         /// </summary>
         /// <returns>Returns the data from the Account table in a formatted string.</returns>
-        string GetRentData();
+        IQueryable<Rent> GetRentData();
 
         /// <summary>
         /// Gets all data from the Complaint table.
         /// </summary>
         /// <returns>Returns the data from the Account table in a formatted string.</returns>
-        string GetComplaintData();
-        */
+        IQueryable<Complaint> GetComplaintData();
+
         /// <summary>
         /// Checks if the given account exists in the database.
         /// </summary>
@@ -232,5 +233,11 @@ namespace CarRental.Logic
         /// <param name="id">The complaint we want to delete.</param>
         /// <returns>True or false whether the deletion was successful or not.</returns>
         bool DeleteComplaintData(int id);
+
+        /// <summary>
+        /// Gets the daily income of each month.
+        /// </summary>
+        /// <returns>Returns <see cref="IEnumerable{DailyIncomeResult}"/>.</returns>
+        IEnumerable<DailyIncomeResult> GetDailyIncome();
     }
 }

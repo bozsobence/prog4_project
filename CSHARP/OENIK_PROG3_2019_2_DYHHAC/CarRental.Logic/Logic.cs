@@ -210,37 +210,35 @@ namespace CarRental.Logic
             }
         }
 
-        /*
         /// <inheritdoc/>
-        public string GetAccountData()
+        public IQueryable<Account> GetAccountData()
         {
-            return this.repository.AccountRepo.GetAccountData();
+            return this.repository.AccountRepo.GetAll();
         }
 
         /// <inheritdoc/>
-        public string GetCarData()
+        public IQueryable<Car> GetCarData()
         {
-            return this.repository.CarRepo.GetCarData();
+            return this.repository.CarRepo.GetAll();
         }
 
         /// <inheritdoc/>
-        public string GetComplaintData()
+        public IQueryable<Complaint> GetComplaintData()
         {
-            return this.repository.ComplaintRepo.GetComplaintData();
+            return this.repository.ComplaintRepo.GetAll();
         }
 
         /// <inheritdoc/>
-        public string GetLicenseData()
+        public IQueryable<License> GetLicenseData()
         {
-            return this.repository.LicenseRepo.GetLicenseData();
+            return this.repository.LicenseRepo.GetAll();
         }
 
         /// <inheritdoc/>
-        public string GetRentData()
+        public IQueryable<Rent> GetRentData()
         {
-            return this.repository.RentRepo.GetRentData();
+            return this.repository.RentRepo.GetAll();
         }
-        */
 
         /// <inheritdoc/>
         public bool IsValidAccount(int id)
@@ -315,12 +313,19 @@ namespace CarRental.Logic
         /// <inheritdoc/>
         public bool UpdateAccountData(int id, string name, string email, string address, DateTime bdate, int minute, int monthly)
         {
-            try
+            if (this.IsValidAccount(id))
             {
-                this.repository.AccountRepo.UpdateAccount(id, name, email, address, bdate, minute, monthly);
-                return true;
+                try
+                {
+                    this.repository.AccountRepo.UpdateAccount(id, name, email, address, bdate, minute, monthly);
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
             }
-            catch (Exception)
+            else
             {
                 return false;
             }
@@ -329,12 +334,19 @@ namespace CarRental.Logic
         /// <inheritdoc/>
         public bool UpdateCarData(string plate, string brand, string model, int battery, int extraPrice)
         {
-            try
+            if (this.IsValidCar(plate))
             {
-                this.repository.CarRepo.UpdateCar(plate, brand, model, battery, extraPrice);
-                return true;
+                try
+                {
+                    this.repository.CarRepo.UpdateCar(plate, brand, model, battery, extraPrice);
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
             }
-            catch (Exception)
+            else
             {
                 return false;
             }
@@ -343,12 +355,19 @@ namespace CarRental.Logic
         /// <inheritdoc/>
         public bool UpdateComplaintData(int id, int rentId, string desc, DateTime time, int chk)
         {
-            try
+            if (this.IsValidComplaint(id))
             {
-                this.repository.ComplaintRepo.UpdateComplaint(id, rentId, desc, time, chk);
-                return true;
+                try
+                {
+                    this.repository.ComplaintRepo.UpdateComplaint(id, rentId, desc, time, chk);
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
             }
-            catch (Exception)
+            else
             {
                 return false;
             }
@@ -357,12 +376,19 @@ namespace CarRental.Logic
         /// <inheritdoc/>
         public bool UpdateLicenseData(string id, int accId, string category, DateTime startDate, DateTime expiryDate, int penaltyPoints)
         {
-            try
+            if (this.IsValidLicense(id))
             {
-                this.repository.LicenseRepo.UpdateLicense(id, accId, category, startDate, expiryDate, penaltyPoints);
-                return true;
+                try
+                {
+                    this.repository.LicenseRepo.UpdateLicense(id, accId, category, startDate, expiryDate, penaltyPoints);
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
             }
-            catch (Exception)
+            else
             {
                 return false;
             }
@@ -371,25 +397,50 @@ namespace CarRental.Logic
         /// <inheritdoc/>
         public bool UpdateRentData(int id, int accId, string carId, DateTime startTime, DateTime endTime, int distance, int price)
         {
-            try
+            if (this.IsValidRent(id))
             {
-                this.repository.RentRepo.UpdateRent(id, accId, carId, startTime, endTime, distance, price);
-                return true;
+                try
+                {
+                    this.repository.RentRepo.UpdateRent(id, accId, carId, startTime, endTime, distance, price);
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
             }
-            catch (Exception)
+            else
             {
                 return false;
             }
         }
 
-        /// <summary>
-        /// Gets the daily income of each month.
-        /// </summary>
-        /// <returns>Returns a formatted string containing the daily income data.</returns>
-        // public string GetDailyIncome()
-        // {
-        //    return this.repository.RentRepo.GetDailyIncome();
-        // }
+        /// <inheritdoc/>
+        public IEnumerable<DailyIncomeResult> GetDailyIncome()
+        {
+            List<DailyIncomeResult> results = new List<DailyIncomeResult>();
+            for (int i = 1; i <= 12; i++)
+            {
+                var daily = from x in this.repository.RentRepo.GetAll()
+                            where x.starttime.Month == i
+                            group x by x.starttime.Day into g
+                            select new DailyIncomeResult
+                            {
+                                Month = i,
+                                Day = g.Key,
+                                Income = (int) g.Sum(x => x.price),
+                            };
+                if (daily.Count() != 0)
+                {
+                    foreach (var day in daily)
+                    {
+                        results.Add(day);
+                    }
+                }
+            }
+
+            return results;
+        }
 
         /// <summary>
         /// Gets the overall income and the daily average price of the rents.
