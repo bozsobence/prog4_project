@@ -89,20 +89,5 @@ namespace CarRental.Repository
 
             this.db.SaveChanges();
         }
-
-        // public string GetOverallIncome()
-        // {
-        //    string formatted = string.Empty;
-        //    var income = this.GetAll().Sum(x => x.price);
-        //    var avg1 = from x in this.GetAll()
-        //                  group x by x.starttime.Day into g
-        //                  select new
-        //                  {
-        //                      Avg = g.Sum(x => x.price),
-        //                  };
-        //    var avg = avg1.Sum(x => x.Avg) / avg1.Count();
-        //    formatted += string.Format($">> ÖSSZES BEVÉTEL: {income}\tÁTLAGOS NAPI BEVÉTEL: {avg}\n");
-        //    return formatted;
-        // }
     }
 }

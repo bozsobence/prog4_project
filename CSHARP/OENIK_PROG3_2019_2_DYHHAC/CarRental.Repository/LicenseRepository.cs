@@ -73,7 +73,7 @@ namespace CarRental.Repository
                 l.startDate = startDate;
             }
 
-            if (expiryDate!=DateTime.MinValue)
+            if (expiryDate != DateTime.MinValue)
             {
                 l.expiryDate = expiryDate;
             }
