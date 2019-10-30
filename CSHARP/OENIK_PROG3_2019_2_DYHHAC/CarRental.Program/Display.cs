@@ -62,14 +62,12 @@ namespace CarRental.Program
                         break;
                     case 6: this.GetOverallIncome();
                         break;
-                        /*
-                    case 7:  Console.WriteLine(this.logic.GetRentsByUser());
+                    case 7: this.GetUserWithMostRents();
                         break;
-                    case 8:  Console.WriteLine(this.logic.GetDistanceByCar());
+                    case 8: this.GetDistanceByCar();
                         break;
-                    case 9:  Console.WriteLine(this.logic.GetExcludedUsers());
+                    case 9: this.GetExcludedUsers();
                         break;
-                        */
                     default:
                         Console.WriteLine("Ez a funkció jelenleg nem elérhető.");
                         break;
@@ -96,6 +94,32 @@ namespace CarRental.Program
                 {
                     Console.WriteLine("\t" + day);
                 }
+            }
+        }
+
+        private void GetUserWithMostRents()
+        {
+            Console.WriteLine(">> USER WITH MOST RENTS RESULT:\n");
+            Console.WriteLine(this.logic.GetUserWithMostRents());
+        }
+
+        private void GetDistanceByCar()
+        {
+            Console.WriteLine(">> DRIVEN DISTANCES BY CAR RESULT:\n");
+            var res = this.logic.GetDistanceByCar();
+            foreach (var car in res)
+            {
+                Console.WriteLine(car);
+            }
+        }
+
+        private void GetExcludedUsers()
+        {
+            Console.WriteLine(">> EXCLUDED USERS RESULT:\n");
+            var excluded = this.logic.GetExcludedUsers();
+            foreach (var user in excluded)
+            {
+                Console.WriteLine(user);
             }
         }
 

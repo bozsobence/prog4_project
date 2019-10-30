@@ -6,6 +6,7 @@ namespace CarRental.Logic
 {
     using System;
     using System.Collections.Generic;
+    using System.Data.Entity;
     using System.Linq;
     using System.Reflection;
     using System.Text;
@@ -457,31 +458,56 @@ namespace CarRental.Logic
             return new ResultClasses.OverallIncomeResult() { OverallIncome = (int)income, Average = (double)avg };
         }
 
-        /// <summary>
-        /// Gets the people who started the most and least rents.
-        /// </summary>
-        /// <returns>Returns a formatted string.</returns>
-        // public string GetRentsByUser()
-        // {
-        //    return this.repository.GetRentsByUser();
-        // }
+        /// <inheritdoc/>
+        public ResultClasses.UserWithMostRentsResult GetUserWithMostRents()
+        {
+            var rentData = this.repository.RentRepo.GetAll();
+            var accData = this.repository.AccountRepo.GetAll();
+            var rents = (from rent in rentData
+                         join account in accData
+                         on rent.accountID equals account.accountID
+                         group rent by rent.accountID into g
+                         select new
+                         {
+                             ID = g.Key,
+                             RENTS = g.Count(),
+                         }).OrderByDescending(x => x.RENTS).FirstOrDefault();
+            var mostRents = accData.Where(x => x.accountID == rents.ID).FirstOrDefault().name;
+            var count = rents.RENTS;
+            return new ResultClasses.UserWithMostRentsResult() { AccountName = mostRents, Count = count };
+        }
 
-        /// <summary>
-        /// Gets the distance driven with each car.
-        /// </summary>
-        /// <returns>Returns a formatted string.</returns>
-        // public string GetDistanceByCar()
-        // {
-        //    return this.repository.GetDistanceByCar();
-        // }
+        /// <inheritdoc/>
+        public IEnumerable<ResultClasses.DistancesByCarResult> GetDistanceByCar()
+        {
+            var rentData = this.repository.RentRepo.GetAll();
+            var carData = this.repository.CarRepo.GetAll();
+            var result = (from rent in rentData
+                            join car in carData
+                            on rent.carID equals car.plate
+                            group rent by car into g
+                            select new ResultClasses.DistancesByCarResult()
+                            {
+                                Car = g.Key.plate,
+                                Distance = (int)g.Sum(x => x.distance),
+                            }).OrderByDescending(x => x.Distance);
+            return result;
+        }
 
-        /// <summary>
-        /// Gets the users who are excluded from starting rents.
-        /// </summary>
-        /// <returns>Returns a formatted string.</returns>
-        // public string GetExcludedUsers()
-        // {
-        //    return this.repository.GetExcludedUsers();
-        // }
+        /// <inheritdoc/>
+        public IEnumerable<ResultClasses.ExcludedUsersResult> GetExcludedUsers()
+        {
+            var accData = this.repository.AccountRepo.GetAll();
+            var licenseData = this.repository.LicenseRepo.GetAll();
+            var excluded = from acc in accData
+                           join lic in licenseData
+                           on acc.accountID equals lic.accountID
+                           where DbFunctions.DiffYears(acc.birthdate, DateTime.Now) < 18 || lic.expiryDate.CompareTo(DateTime.Now) == -1 || lic.category.Contains("A")
+                           select new ResultClasses.ExcludedUsersResult()
+                           {
+                               Name = acc.name,
+                           };
+            return excluded;
+        }
     }
 }
