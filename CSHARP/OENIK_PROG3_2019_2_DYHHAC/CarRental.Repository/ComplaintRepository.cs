@@ -27,18 +27,6 @@ namespace CarRental.Repository
             this.db = db;
         }
 
-        // public string GetComplaintData()
-        // {
-        //    List<Complaint> comps = this.GetAll().ToList();
-        //    string formatted = string.Empty;
-        //    foreach (var comp in comps)
-        //    {
-        //        formatted += string.Format($">> ID: {comp.complaintID} | RENT: {comp.rentID} | DESCRIPTION: {comp.description} | TIME: {comp.time.ToString()} | CHECKED: {comp.@checked}\n");
-        //    }
-
-        // return formatted;
-        // }
-
         /// <inheritdoc/>
         public void AddComplaint(Complaint complaint)
         {
@@ -69,10 +57,26 @@ namespace CarRental.Repository
         public void UpdateComplaint(int id, int rentId, string desc, DateTime time, int chk)
         {
             Complaint c = this.GetOne(id);
-            c.rentID = rentId;
-            c.description = desc;
-            c.time = time;
-            c.@checked = chk;
+            if (rentId != -1)
+            {
+                c.rentID = rentId;
+            }
+
+            if (desc != string.Empty)
+            {
+                c.description = desc;
+            }
+
+            if (time != DateTime.MinValue)
+            {
+                c.time = time;
+            }
+
+            if (chk != -1)
+            {
+                c.@checked = chk;
+            }
+
             this.db.SaveChanges();
         }
     }

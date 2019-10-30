@@ -27,18 +27,6 @@ namespace CarRental.Repository
             this.db = db;
         }
 
-        // public string GetLicenseData()
-        // {
-        //    List<License> licenses = this.GetAll().ToList();
-        //    string formatted = string.Empty;
-        //    foreach (var lic in licenses)
-        //    {
-        //        formatted += string.Format($">> ID: {lic.licenseID} | ACCOUNT: {lic.accountID} | CATEGORY: {lic.category} | START: {lic.startDate.ToString()} | EXPIRES: {lic.expiryDate} | PENALTY POINTS: {lic.penaltyPoints}\n");
-        //    }
-
-        // return formatted;
-        // }
-
         /// <inheritdoc/>
         public void AddLicense(License license)
         {
@@ -70,11 +58,31 @@ namespace CarRental.Repository
         public void UpdateLicense(string id, int accId, string category, DateTime startDate, DateTime expiryDate, int penaltyPoints)
         {
             License l = this.GetOne(id);
-            l.accountID = accId;
-            l.category = category;
-            l.startDate = startDate;
-            l.expiryDate = expiryDate;
-            l.penaltyPoints = penaltyPoints;
+            if (accId != -1)
+            {
+                l.accountID = accId;
+            }
+
+            if (category != string.Empty)
+            {
+                l.category = category;
+            }
+
+            if (startDate != DateTime.MinValue)
+            {
+                l.startDate = startDate;
+            }
+
+            if (expiryDate!=DateTime.MinValue)
+            {
+                l.expiryDate = expiryDate;
+            }
+
+            if (penaltyPoints != -1)
+            {
+                l.penaltyPoints = penaltyPoints;
+            }
+
             this.db.SaveChanges();
         }
     }

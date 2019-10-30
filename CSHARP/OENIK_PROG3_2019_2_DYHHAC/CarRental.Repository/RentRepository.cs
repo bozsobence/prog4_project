@@ -27,18 +27,6 @@ namespace CarRental.Repository
             this.db = db;
         }
 
-        // public string GetRentData()
-        // {
-        //    List<Rent> rents = this.GetAll().ToList();
-        //    string formatted = string.Empty;
-        //    foreach (var rent in rents)
-        //    {
-        //        formatted += string.Format($">> ID: {rent.rentID} | ACCOUNT: {rent.accountID} | CAR: {rent.carID} | START: {rent.starttime.ToString()} | END: {rent.endtime.ToString()} | DISTANCE: {rent.distance} | PRICE: {rent.price}\n");
-        //    }
-
-        // return formatted;
-        // }
-
         /// <inheritdoc/>
         public void AddRent(Rent rent)
         {
@@ -69,42 +57,39 @@ namespace CarRental.Repository
         public void UpdateRent(int id, int accId, string carId, DateTime startTime, DateTime endTime, int distance, int price)
         {
             Rent r = this.GetOne(id);
-            r.accountID = accId;
-            r.carID = carId;
-            r.starttime = startTime;
-            r.endtime = endTime;
-            r.distance = distance;
-            r.price = price;
+            if (accId != -1)
+            {
+                r.accountID = accId;
+            }
+
+            if (carId != string.Empty)
+            {
+                r.carID = carId;
+            }
+
+            if (startTime != DateTime.MinValue)
+            {
+                r.starttime = startTime;
+            }
+
+            if (endTime != DateTime.MinValue)
+            {
+                r.endtime = endTime;
+            }
+
+            if (distance != -1)
+            {
+                r.distance = distance;
+            }
+
+            if (price != -1)
+            {
+                r.price = price;
+            }
+
             this.db.SaveChanges();
         }
 
-        /*
-        public string GetDailyIncome()
-        {
-            string formatted = string.Empty;
-            for (int i = 1; i <= 12; i++)
-            {
-                var daily = from x in this.GetAll()
-                            where x.starttime.Month == i
-                            group x by x.starttime.Day into g
-                            select new
-                            {
-                                g.Key,
-                                INCOME = g.Sum(x => x.price),
-                            };
-                if (daily.Count() != 0)
-                {
-                    formatted += string.Format($">> HÓNAP: {i}\n");
-                    foreach (var item in daily)
-                    {
-                        formatted += string.Format($"> NAP: {item.Key}.\tBEVÉTEL: {item.INCOME} Ft\n");
-                    }
-                }
-            }
-
-            return formatted;
-        }
-        */
         // public string GetOverallIncome()
         // {
         //    string formatted = string.Empty;

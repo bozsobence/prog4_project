@@ -27,18 +27,6 @@ namespace CarRental.Repository
             this.db = db;
         }
 
-        // public string GetAccountData()
-        // {
-        //    List<Account> accData = this.GetAll().ToList();
-        //    string formatted = string.Empty;
-        //    foreach (var acc in accData)
-        //    {
-        //        formatted += string.Format($">>ID: {acc.accountID} | Name: {acc.name} | Email: {acc.email} | Address: {acc.address} | Birth date: {acc.birthdate.ToString()} | Price per minute: {acc.minute} | Monthly price: {acc.monthly}\n");
-        //    }
-
-        // return formatted;
-        // }
-
         /// <inheritdoc/>
         public void AddAccount(Account account)
         {
@@ -70,12 +58,36 @@ namespace CarRental.Repository
         public void UpdateAccount(int id, string name, string email, string address, DateTime bdate, int minute, int monthly)
         {
             Account a = this.GetOne(id);
-            a.name = name;
-            a.email = email;
-            a.address = address;
-            a.birthdate = bdate;
-            a.minute = minute;
-            a.monthly = monthly;
+            if (name != string.Empty)
+            {
+                a.name = name;
+            }
+
+            if (email != string.Empty)
+            {
+                a.email = email;
+            }
+
+            if (address != string.Empty)
+            {
+                a.address = address;
+            }
+
+            if (bdate != DateTime.MinValue)
+            {
+                a.birthdate = bdate;
+            }
+
+            if (minute != -1)
+            {
+                a.minute = minute;
+            }
+
+            if (monthly != -1)
+            {
+                a.monthly = monthly;
+            }
+
             this.db.SaveChanges();
         }
     }

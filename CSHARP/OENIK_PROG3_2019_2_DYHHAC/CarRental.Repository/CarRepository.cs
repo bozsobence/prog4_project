@@ -27,20 +27,6 @@ namespace CarRental.Repository
             this.db = db;
         }
 
-        /*
-        public string GetCarData()
-        {
-            List<Car> carData = this.GetAll().ToList();
-            string formatted = string.Empty;
-            foreach (var car in carData)
-            {
-                formatted += string.Format($">> Numberplate: {car.plate} | Brand: {car.brand} | Model: {car.model} | Battery level: {car.battery} | Extra price: {car.extraPrice}\n");
-            }
-
-            return formatted;
-        }
-        */
-
         /// <inheritdoc/>
         public void AddCar(Car car)
         {
@@ -72,10 +58,26 @@ namespace CarRental.Repository
         public void UpdateCar(string plate, string brand, string model, int battery, int extraPrice)
         {
             Car c = this.GetOne(plate);
-            c.brand = brand;
-            c.model = model;
-            c.battery = battery;
-            c.extraPrice = extraPrice;
+            if (brand != string.Empty)
+            {
+                c.brand = brand;
+            }
+
+            if (model != string.Empty)
+            {
+                c.model = model;
+            }
+
+            if (battery != -1)
+            {
+                c.battery = battery;
+            }
+
+            if (extraPrice != -1)
+            {
+                c.extraPrice = extraPrice;
+            }
+
             this.db.SaveChanges();
         }
     }
