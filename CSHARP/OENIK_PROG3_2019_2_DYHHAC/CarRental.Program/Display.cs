@@ -66,7 +66,7 @@ namespace CarRental.Program
                         break;
                     case 8: this.GetDistanceByCar();
                         break;
-                    case 9: this.GetExcludedUsers();
+                    case 9: this.GetRentsByUser();
                         break;
                     default:
                         Console.WriteLine("Ez a funkció jelenleg nem elérhető.");
@@ -107,17 +107,18 @@ namespace CarRental.Program
         {
             Console.WriteLine(">> DRIVEN DISTANCES BY CAR RESULT:\n");
             var res = this.logic.GetDistanceByCar();
+
             foreach (var car in res)
             {
                 Console.WriteLine(car);
             }
         }
 
-        private void GetExcludedUsers()
+        private void GetRentsByUser()
         {
-            Console.WriteLine(">> EXCLUDED USERS RESULT:\n");
-            var excluded = this.logic.GetExcludedUsers();
-            foreach (var user in excluded)
+            Console.WriteLine(">> COUNT OF RENTS BY USER RESULT:\n");
+            var rents = this.logic.GetRentsByUser();
+            foreach (var user in rents)
             {
                 Console.WriteLine(user);
             }
@@ -501,7 +502,7 @@ namespace CarRental.Program
             Console.WriteLine("6. Összes bevétel kiírása, napi átlagos bevétel megjelenítése");
             Console.WriteLine("7. Legtöbb bérlést indító felhasználó listázása");
             Console.WriteLine("8. Megtett távolság (kilométeróra állása) autónként csoportosítva");
-            Console.WriteLine("9. Az alkalmazás használatára nem jogosult felhasználók listázása");
+            Console.WriteLine("9. Felhasználónkénti bérlések száma");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Választani az adott szám beküldésével lehetséges!");
             Console.ResetColor();

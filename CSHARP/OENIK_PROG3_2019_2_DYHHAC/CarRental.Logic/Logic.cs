@@ -459,7 +459,7 @@ namespace CarRental.Logic
         }
 
         /// <inheritdoc/>
-        public ResultClasses.UserWithMostRentsResult GetUserWithMostRents()
+        public ResultClasses.RentsByUserResult GetUserWithMostRents()
         {
             var rentData = this.repository.RentRepo.GetAll();
             var accData = this.repository.AccountRepo.GetAll();
@@ -474,7 +474,7 @@ namespace CarRental.Logic
                          }).OrderByDescending(x => x.RENTS).FirstOrDefault();
             var mostRents = accData.Where(x => x.accountID == rents.ID).FirstOrDefault().name;
             var count = rents.RENTS;
-            return new ResultClasses.UserWithMostRentsResult() { AccountName = mostRents, Count = count };
+            return new ResultClasses.RentsByUserResult() { AccountName = mostRents, Count = count };
         }
 
         /// <inheritdoc/>
@@ -495,19 +495,20 @@ namespace CarRental.Logic
         }
 
         /// <inheritdoc/>
-        public IEnumerable<ResultClasses.ExcludedUsersResult> GetExcludedUsers()
+        public IEnumerable<ResultClasses.RentsByUserResult> GetRentsByUser()
         {
+            var rentData = this.repository.RentRepo.GetAll();
             var accData = this.repository.AccountRepo.GetAll();
-            var licenseData = this.repository.LicenseRepo.GetAll();
-            var excluded = from acc in accData
-                           join lic in licenseData
-                           on acc.accountID equals lic.accountID
-                           where DbFunctions.DiffYears(acc.birthdate, DateTime.Now) < 18 || lic.expiryDate.CompareTo(DateTime.Now) == -1 || lic.category.Contains("A")
-                           select new ResultClasses.ExcludedUsersResult()
-                           {
-                               Name = acc.name,
-                           };
-            return excluded;
+            var rents = (from rent in rentData
+                         join account in accData
+                         on rent.accountID equals account.accountID
+                         group rent by rent.accountID into g
+                         select new ResultClasses.RentsByUserResult
+                         {
+                             AccountName = accData.Where(x => x.accountID == g.Key).FirstOrDefault().name,
+                             Count = g.Count(),
+                         }).OrderByDescending(x => x.Count);
+            return rents;
         }
     }
 }

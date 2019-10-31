@@ -247,10 +247,10 @@ namespace CarRental.Logic
         ResultClasses.OverallIncomeResult GetOverallIncome();
 
         /// <summary>
-        /// Gets the people who started the most and least rents.
+        /// Gets the people who started the most rents.
         /// </summary>
         /// <returns>Returns <see cref="IEnumerable{RentsByUserResult}"/>.</returns>
-        ResultClasses.UserWithMostRentsResult GetUserWithMostRents();
+        ResultClasses.RentsByUserResult GetUserWithMostRents();
 
         /// <summary>
         /// Gets the distance driven with each car.
@@ -261,7 +261,7 @@ namespace CarRental.Logic
         /// <summary>
         /// Gets the users who are excluded from starting rents.
         /// </summary>
-        /// <returns>Returns <see cref="IEnumerable{ExcludedUsersResult}"/></returns>
-        IEnumerable<ResultClasses.ExcludedUsersResult> GetExcludedUsers();
+        /// <returns>Returns <see cref="IEnumerable{RentsByUserResult}"/></returns>
+        IEnumerable<ResultClasses.RentsByUserResult> GetRentsByUser();
     }
 }

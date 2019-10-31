@@ -68,7 +68,7 @@ namespace CarRental.Logic
         /// <summary>
         /// This class contains the result of <see cref="ILogic.GetUserWithMostRents"/>.
         /// </summary>
-        public class UserWithMostRentsResult
+        public class RentsByUserResult
         {
             /// <summary>
             /// Gets or sets the account name.
