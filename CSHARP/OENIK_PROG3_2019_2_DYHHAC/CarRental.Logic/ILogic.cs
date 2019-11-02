@@ -261,7 +261,7 @@ namespace CarRental.Logic
         /// <summary>
         /// Gets the users who are excluded from starting rents.
         /// </summary>
-        /// <returns>Returns <see cref="IEnumerable{RentsByUserResult}"/></returns>
+        /// <returns>Returns <see cref="IEnumerable{RentsByUserResult}"/>.</returns>
         IEnumerable<ResultClasses.RentsByUserResult> GetRentsByUser();
     }
 }
