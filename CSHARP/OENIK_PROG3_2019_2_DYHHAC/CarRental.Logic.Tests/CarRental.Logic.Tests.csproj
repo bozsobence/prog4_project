@@ -38,6 +38,15 @@
     <CodeAnalysisRuleSet>oenik.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CarRental.Data">
+      <HintPath>..\CarRental.Data\bin\Debug\CarRental.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="CarRental.Logic">
+      <HintPath>..\CarRental.Logic\bin\Debug\CarRental.Logic.dll</HintPath>
+    </Reference>
+    <Reference Include="CarRental.Repository">
+      <HintPath>..\CarRental.Repository\bin\Debug\CarRental.Repository.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
