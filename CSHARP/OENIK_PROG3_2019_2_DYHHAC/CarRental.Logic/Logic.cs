@@ -429,7 +429,7 @@ namespace CarRental.Logic
                             {
                                 Month = i,
                                 Day = g.Key,
-                                Income = (int) g.Sum(x => x.price),
+                                Income = (int)g.Sum(x => x.price),
                             };
                 if (daily.Count() != 0)
                 {
