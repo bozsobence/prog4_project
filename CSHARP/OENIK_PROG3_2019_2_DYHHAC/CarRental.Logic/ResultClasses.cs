@@ -40,7 +40,6 @@ namespace CarRental.Logic
             {
                 return string.Format($"> DAY: {this.Day}\tINCOME: {this.Income} Ft");
             }
-
         }
 
         /// <summary>

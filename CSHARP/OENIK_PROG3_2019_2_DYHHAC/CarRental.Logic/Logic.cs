@@ -24,9 +24,20 @@ namespace CarRental.Logic
         /// <summary>
         /// Initializes a new instance of the <see cref="Logic"/> class.
         /// </summary>
-        public Logic()
+        /// <param name="repo">The repository that the logic handles.</param>
+        public Logic(Repositories repo)
         {
-            this.repository = new Repositories();
+            this.repository = repo;
+        }
+
+        /// <summary>
+        /// Creates a new Logic instance.
+        /// </summary>
+        /// <returns>Returns a <see cref="Logic"/> object.</returns>
+        public static ILogic CreateLogic()
+        {
+            Repositories repo = new Repositories();
+            return new Logic(repo);
         }
 
         /// <inheritdoc/>
@@ -215,6 +226,12 @@ namespace CarRental.Logic
         public IQueryable<Account> GetAccountData()
         {
             return this.repository.AccountRepo.GetAll();
+        }
+
+        /// <inheritdoc/>
+        public Account GetAccountById(int id)
+        {
+            return this.repository.AccountRepo.GetOne(id);
         }
 
         /// <inheritdoc/>

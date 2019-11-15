@@ -22,6 +22,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Logic", "CarRenta
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Logic.Tests", "CarRental.Logic.Tests\CarRental.Logic.Tests.csproj", "{C2370BE9-3ACC-4964-9DFD-9F6B03098D44}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2213D30C-1B63-4D96-B20D-574666A066EC} = {2213D30C-1B63-4D96-B20D-574666A066EC}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

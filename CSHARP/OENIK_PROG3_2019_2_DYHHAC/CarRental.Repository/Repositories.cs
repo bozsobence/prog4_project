@@ -22,42 +22,37 @@ namespace CarRental.Repository
         /// </summary>
         public Repositories()
         {
-            this.Db = new CarRentalDatabaseEntities();
-            this.AccountRepo = new AccountRepository(this.Db);
-            this.CarRepo = new CarRepository(this.Db);
-            this.LicenseRepo = new LicenseRepository(this.Db);
-            this.RentRepo = new RentRepository(this.Db);
-            this.ComplaintRepo = new ComplaintRepository(this.Db);
+            CarRentalDatabaseEntities db = new CarRentalDatabaseEntities();
+            this.AccountRepo = new AccountRepository(db);
+            this.CarRepo = new CarRepository(db);
+            this.LicenseRepo = new LicenseRepository(db);
+            this.RentRepo = new RentRepository(db);
+            this.ComplaintRepo = new ComplaintRepository(db);
         }
 
         /// <summary>
-        /// Gets the <see cref="AccountRepository"/>.
+        /// Gets or sets the <see cref="AccountRepository"/>.
         /// </summary>
-        public IAccountRepository<Account> AccountRepo { get; }
+        public virtual IAccountRepository<Account> AccountRepo { get; set; }
 
         /// <summary>
-        /// Gets database.
+        /// Gets or sets the <see cref="CarRepository"/>.
         /// </summary>
-        public CarRentalDatabaseEntities Db { get; }
+        public virtual ICarRepository<Car> CarRepo { get; set; }
 
         /// <summary>
-        /// Gets the <see cref="CarRepository"/>.
+        /// Gets or sets the <see cref="LicenseRepository"/>.
         /// </summary>
-        public ICarRepository<Car> CarRepo { get; }
+        public virtual ILicenseRepository<License> LicenseRepo { get; set; }
 
         /// <summary>
-        /// Gets the <see cref="LicenseRepository"/>.
+        /// Gets or sets the <see cref="RentRepository"/>.
         /// </summary>
-        public ILicenseRepository<License> LicenseRepo { get; }
+        public virtual IRentRepository<Rent> RentRepo { get; set; }
 
         /// <summary>
-        /// Gets the <see cref="RentRepository"/>.
+        /// Gets or sets the <see cref="ComplaintRepository"/>.
         /// </summary>
-        public IRentRepository<Rent> RentRepo { get; }
-
-        /// <summary>
-        /// Gets the <see cref="ComplaintRepository"/>.
-        /// </summary>
-        public IComplaintRepository<Complaint> ComplaintRepo { get; }
+        public virtual IComplaintRepository<Complaint> ComplaintRepo { get; set; }
     }
 }

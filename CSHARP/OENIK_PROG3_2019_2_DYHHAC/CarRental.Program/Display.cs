@@ -25,7 +25,7 @@ namespace CarRental.Program
         /// </summary>
         public Display()
         {
-            this.logic = new Logic();
+            this.logic = Logic.CreateLogic();
         }
 
         /// <summary>

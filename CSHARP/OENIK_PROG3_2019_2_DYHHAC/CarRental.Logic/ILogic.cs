@@ -24,6 +24,13 @@ namespace CarRental.Logic
         IQueryable<Account> GetAccountData();
 
         /// <summary>
+        /// Gets the selected account from the database.
+        /// </summary>
+        /// <param name="id">The ID of the account we want to get.</param>
+        /// <returns>Returns the selected <see cref="Account"/>.</returns>
+        Account GetAccountById(int id);
+
+        /// <summary>
         /// Gets all data from the Car table.
         /// </summary>
         /// <returns>Returns the data from the Car table in a formatted string.</returns>
