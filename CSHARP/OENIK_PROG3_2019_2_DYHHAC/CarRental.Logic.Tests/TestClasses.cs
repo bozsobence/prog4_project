@@ -178,15 +178,16 @@ namespace CarRental.Logic.Tests
         {
             Account acc = this.mockedLogic.GetAccountById(5);
             this.repo.Verify(x => x.AccountRepo.GetOne(5), Times.Once);
-            Assert.That(acc, Is.EqualTo(this.accounts[5]));
         }
 
+        /// <summary>
+        /// Tests if the <see cref="ILogic.GetAccountById(int)"/> returns null when given non existent ID.
+        /// </summary>
         [Test]
         public void GetAccountByIdFails()
         {
             Account acc = this.mockedLogic.GetAccountById(65);
             this.repo.Verify(x => x.AccountRepo.GetOne(65), Times.Once);
-            Assert.Throws<DatabaseException>(() => mockedLogic.GetAccountById(65));
             Assert.IsNull(acc);
         }
     }
