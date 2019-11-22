@@ -29,4 +29,4 @@ Jelen projekthez is ezt az adatbázist használtam fel, némileg átalakítva.
        * Jogosítvány hozzáadása, törlése
     * Autók hozzáadása, módosítása, törlése
     * Bérlések adatainak hozzáadása, módosítása, törlése
-* A Java projekttel a felhasználó megkapja a korábbi bérléseinek az adatait. 
+* A Java projekttel a felhasználó a várható használati adatok megadása után  megkapja a számára legoptimálisabb előfizetési konstrukciót.

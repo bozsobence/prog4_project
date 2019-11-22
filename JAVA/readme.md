@@ -3,4 +3,4 @@
 ## Autóbérlő app Java végpont
 
 **Funkció:**  
-Fogad egy felhasználót, majd XML formátumban visszaadja a hozzá tartozó rendelések adatait.  
+Bekéri a felhasználótól hogy várhatóan mennyit fog autózni, és ez alapján javasol neki egy előfizetési konstrukciót.  
