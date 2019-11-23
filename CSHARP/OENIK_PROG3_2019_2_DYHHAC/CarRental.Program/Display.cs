@@ -502,7 +502,7 @@ namespace CarRental.Program
             Console.WriteLine("6. Összes bevétel kiírása, napi átlagos bevétel megjelenítése");
             Console.WriteLine("7. Legtöbb bérlést indító felhasználó listázása");
             Console.WriteLine("8. Megtett távolság (kilométeróra állása) autónként csoportosítva");
-            Console.WriteLine("9. Felhasználónkénti bérlések száma");
+            Console.WriteLine("9. Várható használat alaján előfizetési konstrukció ajánlása (Java)");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Választani az adott szám beküldésével lehetséges!");
             Console.ResetColor();
