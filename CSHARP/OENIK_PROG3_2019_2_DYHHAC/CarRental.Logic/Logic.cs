@@ -19,15 +19,27 @@ namespace CarRental.Logic
     /// </summary>
     public class Logic : ILogic
     {
-        private Repositories repository;
+        private IRepository<Account, int> accountRepo;
+        private IRepository<Car, string> carRepo;
+        private IRepository<License, string> licenseRepo;
+        private IRepository<Rent, int> rentRepo;
+        private IRepository<Complaint, int> complaintRepo;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Logic"/> class.
         /// </summary>
-        /// <param name="repo">The repository that the logic handles.</param>
-        public Logic(Repositories repo)
+        /// <param name="accounts">The account repository.</param>
+        /// <param name="cars">The car repository.</param>
+        /// <param name="licenses">The license repository.</param>
+        /// <param name="rents">The rent repository.</param>
+        /// <param name="complaints">The complaint repository.</param>
+        public Logic(IRepository<Account, int> accounts, IRepository<Car, string> cars, IRepository<License, string> licenses, IRepository<Rent, int> rents, IRepository<Complaint, int> complaints)
         {
-            this.repository = repo;
+            this.accountRepo = accounts;
+            this.carRepo = cars;
+            this.licenseRepo = licenses;
+            this.rentRepo = rents;
+            this.complaintRepo = complaints;
         }
 
         /// <summary>
@@ -36,8 +48,9 @@ namespace CarRental.Logic
         /// <returns>Returns a <see cref="Logic"/> object.</returns>
         public static ILogic CreateLogic()
         {
-            Repositories repo = new Repositories();
-            return new Logic(repo);
+            CarRentalDatabaseEntities db = new CarRentalDatabaseEntities();
+
+            return new Logic(new AccountRepository(db), new CarRepository(db), new LicenseRepository(db), new RentRepository(db), new ComplaintRepository(db));
         }
 
         /// <inheritdoc/>
@@ -54,7 +67,7 @@ namespace CarRental.Logic
             };
             try
             {
-                this.repository.AccountRepo.Add(acc);
+                this.accountRepo.Add(acc);
                 return true;
             }
             catch (Exception)
@@ -74,9 +87,15 @@ namespace CarRental.Logic
                 Battery = battery,
                 ExtraPrice = extraPrice,
             };
+
+            if (car.Battery < 0 || car.Battery > 100)
+            {
+                throw new FormatException("Battery level must be between 0 and 100.");
+            }
+
             try
             {
-                this.repository.CarRepo.Add(car);
+                this.carRepo.Add(car);
                 return true;
             }
             catch (Exception)
@@ -97,7 +116,7 @@ namespace CarRental.Logic
             };
             try
             {
-                this.repository.ComplaintRepo.Add(comp);
+                this.complaintRepo.Add(comp);
                 return true;
             }
             catch (Exception)
@@ -120,7 +139,7 @@ namespace CarRental.Logic
             };
             try
             {
-                this.repository.LicenseRepo.Add(lic);
+                this.licenseRepo.Add(lic);
                 return true;
             }
             catch (Exception)
@@ -143,7 +162,7 @@ namespace CarRental.Logic
             };
             try
             {
-                this.repository.RentRepo.Add(r);
+                this.rentRepo.Add(r);
                 return true;
             }
             catch (Exception)
@@ -157,7 +176,7 @@ namespace CarRental.Logic
         {
             try
             {
-                this.repository.AccountRepo.Delete(accountId);
+                this.accountRepo.Delete(accountId);
                 return true;
             }
             catch (Exception)
@@ -171,7 +190,7 @@ namespace CarRental.Logic
         {
             try
             {
-                this.repository.CarRepo.Delete(plate);
+                this.carRepo.Delete(plate);
                 return true;
             }
             catch (Exception)
@@ -185,7 +204,7 @@ namespace CarRental.Logic
         {
             try
             {
-                this.repository.ComplaintRepo.Delete(id);
+                this.complaintRepo.Delete(id);
                 return true;
             }
             catch (Exception)
@@ -199,7 +218,7 @@ namespace CarRental.Logic
         {
             try
             {
-                this.repository.LicenseRepo.Delete(licenseId);
+                this.licenseRepo.Delete(licenseId);
                 return true;
             }
             catch (Exception)
@@ -213,7 +232,7 @@ namespace CarRental.Logic
         {
             try
             {
-                this.repository.RentRepo.Delete(id);
+                this.rentRepo.Delete(id);
                 return true;
             }
             catch (Exception)
@@ -225,37 +244,31 @@ namespace CarRental.Logic
         /// <inheritdoc/>
         public IQueryable<Account> GetAccountData()
         {
-            return this.repository.AccountRepo.GetAll();
-        }
-
-        /// <inheritdoc/>
-        public Account GetAccountById(int id)
-        {
-            return this.repository.AccountRepo.GetOne(id);
+            return this.accountRepo.GetAll();
         }
 
         /// <inheritdoc/>
         public IQueryable<Car> GetCarData()
         {
-            return this.repository.CarRepo.GetAll();
+            return this.carRepo.GetAll();
         }
 
         /// <inheritdoc/>
         public IQueryable<Complaint> GetComplaintData()
         {
-            return this.repository.ComplaintRepo.GetAll();
+            return this.complaintRepo.GetAll();
         }
 
         /// <inheritdoc/>
         public IQueryable<License> GetLicenseData()
         {
-            return this.repository.LicenseRepo.GetAll();
+            return this.licenseRepo.GetAll();
         }
 
         /// <inheritdoc/>
         public IQueryable<Rent> GetRentData()
         {
-            return this.repository.RentRepo.GetAll();
+            return this.rentRepo.GetAll();
         }
 
         /// <inheritdoc/>
@@ -263,7 +276,7 @@ namespace CarRental.Logic
         {
             try
             {
-                this.repository.AccountRepo.GetOne(id);
+                this.accountRepo.GetOne(id);
                 return true;
             }
             catch (Exception)
@@ -277,7 +290,7 @@ namespace CarRental.Logic
         {
             try
             {
-                this.repository.CarRepo.GetOne(plate);
+                this.carRepo.GetOne(plate);
                 return true;
             }
             catch (Exception)
@@ -291,7 +304,7 @@ namespace CarRental.Logic
         {
             try
             {
-                this.repository.ComplaintRepo.GetOne(id);
+                this.complaintRepo.GetOne(id);
                 return true;
             }
             catch (Exception)
@@ -305,7 +318,7 @@ namespace CarRental.Logic
         {
             try
             {
-                this.repository.LicenseRepo.GetOne(licenseId);
+                this.licenseRepo.GetOne(licenseId);
                 return true;
             }
             catch (Exception)
@@ -319,7 +332,7 @@ namespace CarRental.Logic
         {
             try
             {
-                this.repository.RentRepo.GetOne(id);
+                this.rentRepo.GetOne(id);
                 return true;
             }
             catch (Exception)
@@ -344,7 +357,7 @@ namespace CarRental.Logic
                         Minute = minute,
                         Monthly = monthly,
                     };
-                    this.repository.AccountRepo.Update(id, acc);
+                    this.accountRepo.Update(id, acc);
                     return true;
                 }
                 catch (Exception)
@@ -373,7 +386,7 @@ namespace CarRental.Logic
                         Battery = battery,
                         ExtraPrice = extraPrice,
                     };
-                    this.repository.CarRepo.Update(carID, car);
+                    this.carRepo.Update(carID, car);
                     return true;
                 }
                 catch (Exception)
@@ -401,7 +414,7 @@ namespace CarRental.Logic
                         Time = time,
                         Chk = chk,
                     };
-                    this.repository.ComplaintRepo.Update(id, c);
+                    this.complaintRepo.Update(id, c);
                     return true;
                 }
                 catch (Exception)
@@ -430,7 +443,7 @@ namespace CarRental.Logic
                         ExpiryDate = expiryDate,
                         PenaltyPoints = penaltyPoints,
                     };
-                    this.repository.LicenseRepo.Update(id, l);
+                    this.licenseRepo.Update(id, l);
                     return true;
                 }
                 catch (Exception)
@@ -460,7 +473,7 @@ namespace CarRental.Logic
                         Distance = distance,
                         Price = price,
                     };
-                    this.repository.RentRepo.Update(id, r);
+                    this.rentRepo.Update(id, r);
                     return true;
                 }
                 catch (Exception)
@@ -480,7 +493,7 @@ namespace CarRental.Logic
             List<ResultClasses.DailyIncomeResult> results = new List<ResultClasses.DailyIncomeResult>();
             for (int i = 1; i <= 12; i++)
             {
-                var daily = from x in this.repository.RentRepo.GetAll()
+                var daily = from x in this.rentRepo.GetAll()
                             where x.StartTime.Month == i
                             group x by x.StartTime.Day into g
                             select new ResultClasses.DailyIncomeResult
@@ -504,7 +517,7 @@ namespace CarRental.Logic
         /// <inheritdoc/>
         public ResultClasses.OverallIncomeResult GetOverallIncome()
         {
-            var rentData = this.repository.RentRepo.GetAll();
+            var rentData = this.rentRepo.GetAll();
             var income = rentData.Sum(x => x.Price);
             var avgDaily = from x in rentData
                            group x by x.StartTime.Day into g
@@ -519,8 +532,8 @@ namespace CarRental.Logic
         /// <inheritdoc/>
         public ResultClasses.RentsByUserResult GetUserWithMostRents()
         {
-            var rentData = this.repository.RentRepo.GetAll();
-            var accData = this.repository.AccountRepo.GetAll();
+            var rentData = this.rentRepo.GetAll();
+            var accData = this.accountRepo.GetAll();
             var rents = (from rent in rentData
                          join account in accData
                          on rent.AccountID equals account.AccountID
@@ -538,8 +551,8 @@ namespace CarRental.Logic
         /// <inheritdoc/>
         public IEnumerable<ResultClasses.DistancesByCarResult> GetDistanceByCar()
         {
-            var rentData = this.repository.RentRepo.GetAll();
-            var carData = this.repository.CarRepo.GetAll();
+            var rentData = this.rentRepo.GetAll();
+            var carData = this.carRepo.GetAll();
             var result = (from rent in rentData
                             join car in carData
                             on rent.CarID equals car.CarID
@@ -555,8 +568,8 @@ namespace CarRental.Logic
         /// <inheritdoc/>
         public IEnumerable<ResultClasses.RentsByUserResult> GetRentsByUser()
         {
-            var rentData = this.repository.RentRepo.GetAll();
-            var accData = this.repository.AccountRepo.GetAll();
+            var rentData = this.rentRepo.GetAll();
+            var accData = this.accountRepo.GetAll();
             var rents = (from rent in rentData
                          join account in accData
                          on rent.AccountID equals account.AccountID
