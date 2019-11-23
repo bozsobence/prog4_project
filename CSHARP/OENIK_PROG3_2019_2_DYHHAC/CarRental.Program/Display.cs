@@ -137,7 +137,7 @@ namespace CarRental.Program
                     var accData = this.logic.GetAccountData();
                     foreach (var acc in accData)
                     {
-                        Console.WriteLine(string.Format($"> ID: {acc.accountID} | NAME: {acc.name} | EMAIL: {acc.email} | ADDRESS: {acc.address} | BIRTHDATE: {acc.birthdate.Date.ToString()} | MINUTE: {acc.minute} | MONTHLY: {acc.monthly}"));
+                        Console.WriteLine(string.Format($"> ID: {acc.AccountID} | NAME: {acc.Name} | EMAIL: {acc.Email} | ADDRESS: {acc.Address} | BIRTHDATE: {acc.BirthDate.Date.ToString()} | MINUTE: {acc.Minute} | MONTHLY: {acc.Monthly}"));
                     }
 
                     success = true;
@@ -148,7 +148,7 @@ namespace CarRental.Program
                     var carData = this.logic.GetCarData();
                     foreach (var car in carData)
                     {
-                        Console.WriteLine(string.Format($"> NUMBERPLATE: {car.plate} | BRAND: {car.brand} | MODEL: {car.model} | BATTERY: {car.battery}% | EXTRA PRICE: {car.extraPrice}"));
+                        Console.WriteLine(string.Format($"> NUMBERPLATE: {car.CarID} | BRAND: {car.Brand} | MODEL: {car.Model} | BATTERY: {car.Battery}% | EXTRA PRICE: {car.ExtraPrice}"));
                     }
 
                     success = true;
@@ -159,7 +159,7 @@ namespace CarRental.Program
                     var licenseData = this.logic.GetLicenseData();
                     foreach (var lic in licenseData)
                     {
-                        Console.WriteLine(string.Format($"> ID: {lic.licenseID} | ACCOUNT: {lic.accountID} | CATEGORY: {lic.category} | START: {lic.startDate.ToString()} | EXPIRES: {lic.expiryDate} | PENALTY POINTS: {lic.penaltyPoints}"));
+                        Console.WriteLine(string.Format($"> ID: {lic.LicenseID} | ACCOUNT: {lic.AccountID} | CATEGORY: {lic.Category} | START: {lic.StartDate.ToString()} | EXPIRES: {lic.ExpiryDate} | PENALTY POINTS: {lic.PenaltyPoints}"));
                     }
 
                     success = true;
@@ -170,7 +170,7 @@ namespace CarRental.Program
                     var rentData = this.logic.GetRentData();
                     foreach (var rent in rentData)
                     {
-                        Console.WriteLine(string.Format($"> ID: {rent.rentID} | ACCOUNT: {rent.accountID} | CAR: {rent.carID} | START: {rent.starttime.ToString()} | END: {rent.endtime.ToString()} | DISTANCE: {rent.distance} | PRICE: {rent.price}"));
+                        Console.WriteLine(string.Format($"> ID: {rent.RentID} | ACCOUNT: {rent.AccountID} | CAR: {rent.CarID} | START: {rent.StartTime.ToString()} | END: {rent.EndTime.ToString()} | DISTANCE: {rent.Distance} | PRICE: {rent.Price}"));
                     }
 
                     success = true;
@@ -181,7 +181,7 @@ namespace CarRental.Program
                     var complaintData = this.logic.GetComplaintData();
                     foreach (var comp in complaintData)
                     {
-                        Console.WriteLine(string.Format($"> ID: {comp.complaintID} | RENT: {comp.rentID} | DESCRIPTION: {comp.description} | TIME: {comp.time.ToString()} | CHECKED: {comp.@checked}"));
+                        Console.WriteLine(string.Format($"> ID: {comp.ComplaintID} | RENT: {comp.RentID} | DESCRIPTION: {comp.Description} | TIME: {comp.Time.ToString()} | CHECKED: {comp.Chk}"));
                     }
 
                     success = true;
