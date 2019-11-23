@@ -14,7 +14,7 @@ namespace CarRental.Repository
     /// <summary>
     /// This is the repository that handles the Complaint table in the database.
     /// </summary>
-    public class ComplaintRepository : IComplaintRepository<Complaint>
+    public class ComplaintRepository : IRepository<Complaint, int>
     {
         private CarRentalDatabaseEntities db;
 
@@ -28,53 +28,54 @@ namespace CarRental.Repository
         }
 
         /// <inheritdoc/>
-        public void AddComplaint(Complaint complaint)
+        public void Add(Complaint complaint)
         {
-            this.db.Complaint.Add(complaint);
+            this.db.Complaints.Add(complaint);
             this.db.SaveChanges();
         }
 
         /// <inheritdoc/>
-        public void DeleteComplaint(int id)
+        public void Delete(int id)
         {
-            this.db.Complaint.Remove(this.GetOne(id));
+            Complaint c = this.GetOne(id);
+            this.db.Complaints.Remove(c);
             this.db.SaveChanges();
         }
 
         /// <inheritdoc/>
         public IQueryable<Complaint> GetAll()
         {
-            return this.db.Complaint;
+            return this.db.Complaints;
         }
 
         /// <inheritdoc/>
         public Complaint GetOne(int id)
         {
-            return this.db.Complaint.Where(x => x.complaintID == id).SingleOrDefault();
+            return this.db.Complaints.Where(x => x.ComplaintID == id).SingleOrDefault();
         }
 
         /// <inheritdoc/>
-        public void UpdateComplaint(int id, int rentId, string desc, DateTime time, int chk)
+        public void Update(int id, Complaint newData)
         {
             Complaint c = this.GetOne(id);
-            if (rentId != -1)
+            if (newData.RentID != -1)
             {
-                c.rentID = rentId;
+                c.RentID = newData.RentID;
             }
 
-            if (desc != string.Empty)
+            if (newData.Description != string.Empty)
             {
-                c.description = desc;
+                c.Description = newData.Description;
             }
 
-            if (time != DateTime.MinValue)
+            if (newData.Time != DateTime.MinValue)
             {
-                c.time = time;
+                c.Time = newData.Time;
             }
 
-            if (chk != -1)
+            if (newData.Chk != -1)
             {
-                c.@checked = chk;
+                c.Chk = newData.Chk;
             }
 
             this.db.SaveChanges();

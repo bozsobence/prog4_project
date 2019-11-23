@@ -14,7 +14,7 @@ namespace CarRental.Repository
     /// <summary>
     /// The repository that handles the Accounts table in the database.
     /// </summary>
-    public class AccountRepository : IAccountRepository<Account>
+    public class AccountRepository : IRepository<Account, int>
     {
         private CarRentalDatabaseEntities db;
 
@@ -28,64 +28,64 @@ namespace CarRental.Repository
         }
 
         /// <inheritdoc/>
-        public void AddAccount(Account account)
+        public void Add(Account account)
         {
-            this.db.Account.Add(account);
+            this.db.Accounts.Add(account);
             this.db.SaveChanges();
         }
 
         /// <inheritdoc/>
-        public void DeleteAccount(int id)
+        public void Delete(int id)
         {
             Account acc = this.GetOne(id);
-            this.db.Account.Remove(acc);
+            this.db.Accounts.Remove(acc);
             this.db.SaveChanges();
         }
 
         /// <inheritdoc/>
         public IQueryable<Account> GetAll()
         {
-            return this.db.Account;
+            return this.db.Accounts;
         }
 
         /// <inheritdoc/>
         public Account GetOne(int id)
         {
-            return this.db.Account.Where(x => x.accountID == id).SingleOrDefault();
+            return this.db.Accounts.Where(x => x.AccountID == id).SingleOrDefault();
         }
 
         /// <inheritdoc/>
-        public void UpdateAccount(int id, string name, string email, string address, DateTime bdate, int minute, int monthly)
+        public void Update(int id, Account newData)
         {
             Account a = this.GetOne(id);
-            if (name != string.Empty)
+            if (newData.Name != string.Empty)
             {
-                a.name = name;
+                a.Name = newData.Name;
             }
 
-            if (email != string.Empty)
+            if (newData.Email != string.Empty)
             {
-                a.email = email;
+                a.Email = newData.Email;
             }
 
-            if (address != string.Empty)
+            if (newData.Address != string.Empty)
             {
-                a.address = address;
+                a.Address = newData.Address;
             }
 
-            if (bdate != DateTime.MinValue)
+            if (newData.BirthDate != DateTime.MinValue)
             {
-                a.birthdate = bdate;
+                a.BirthDate = newData.BirthDate;
             }
 
-            if (minute != -1)
+            if (newData.Minute != -1)
             {
-                a.minute = minute;
+                a.Minute = newData.Minute;
             }
 
-            if (monthly != -1)
+            if (newData.Monthly != -1)
             {
-                a.monthly = monthly;
+                a.Monthly = newData.Monthly;
             }
 
             this.db.SaveChanges();

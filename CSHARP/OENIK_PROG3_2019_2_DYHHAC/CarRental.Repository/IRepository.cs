@@ -30,5 +30,25 @@ namespace CarRental.Repository
         /// </summary>
         /// <returns>All objects of the database (table).</returns>
         IQueryable<T> GetAll();
+
+        /// <summary>
+        /// Adds a new element to the database.
+        /// </summary>
+        /// <param name="element">The element to be added.</param>
+        void Add(T element);
+
+        /// <summary>
+        /// Updates the selected element.
+        /// </summary>
+        /// <param name="id">The element to be updated.</param>
+        /// <param name="newElement">The new element data.</param>
+        void Update(TK id, T newElement);
+
+        /// <summary>
+        /// Deletes an element from the database.
+        /// </summary>
+        /// <param name="id">The element to be deleted.</param>
+        void Delete(TK id);
+
     }
 }

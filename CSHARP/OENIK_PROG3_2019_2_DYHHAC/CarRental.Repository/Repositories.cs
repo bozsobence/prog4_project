@@ -33,26 +33,26 @@ namespace CarRental.Repository
         /// <summary>
         /// Gets or sets the <see cref="AccountRepository"/>.
         /// </summary>
-        public virtual IAccountRepository<Account> AccountRepo { get; set; }
+        public virtual IRepository<Account, int> AccountRepo { get; set; }
 
         /// <summary>
         /// Gets or sets the <see cref="CarRepository"/>.
         /// </summary>
-        public virtual ICarRepository<Car> CarRepo { get; set; }
+        public virtual IRepository<Car, string> CarRepo { get; set; }
 
         /// <summary>
         /// Gets or sets the <see cref="LicenseRepository"/>.
         /// </summary>
-        public virtual ILicenseRepository<License> LicenseRepo { get; set; }
+        public virtual IRepository<License, string> LicenseRepo { get; set; }
 
         /// <summary>
         /// Gets or sets the <see cref="RentRepository"/>.
         /// </summary>
-        public virtual IRentRepository<Rent> RentRepo { get; set; }
+        public virtual IRepository<Rent, int> RentRepo { get; set; }
 
         /// <summary>
         /// Gets or sets the <see cref="ComplaintRepository"/>.
         /// </summary>
-        public virtual IComplaintRepository<Complaint> ComplaintRepo { get; set; }
+        public virtual IRepository<Complaint, int> ComplaintRepo { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace CarRental.Repository
     /// <summary>
     /// This repository handles the License table in the database.
     /// </summary>
-    public class LicenseRepository : ILicenseRepository<License>
+    public class LicenseRepository : IRepository<License, string>
     {
         private CarRentalDatabaseEntities db;
 
@@ -28,59 +28,59 @@ namespace CarRental.Repository
         }
 
         /// <inheritdoc/>
-        public void AddLicense(License license)
+        public void Add(License license)
         {
-            this.db.License.Add(license);
+            this.db.Licenses.Add(license);
             this.db.SaveChanges();
         }
 
         /// <inheritdoc/>
-        public void DeleteLicense(string id)
+        public void Delete(string id)
         {
             License lic = this.GetOne(id);
-            this.db.License.Remove(lic);
+            this.db.Licenses.Remove(lic);
             this.db.SaveChanges();
         }
 
         /// <inheritdoc/>
         public IQueryable<License> GetAll()
         {
-            return this.db.License;
+            return this.db.Licenses;
         }
 
         /// <inheritdoc/>
         public License GetOne(string id)
         {
-            return this.db.License.Where(x => x.licenseID == id).SingleOrDefault();
+            return this.db.Licenses.Where(x => x.LicenseID == id).SingleOrDefault();
         }
 
         /// <inheritdoc/>
-        public void UpdateLicense(string id, int accId, string category, DateTime startDate, DateTime expiryDate, int penaltyPoints)
+        public void Update(string id, License newData)
         {
             License l = this.GetOne(id);
-            if (accId != -1)
+            if (newData.AccountID != -1)
             {
-                l.accountID = accId;
+                l.AccountID = newData.AccountID;
             }
 
-            if (category != string.Empty)
+            if (newData.Category != string.Empty)
             {
-                l.category = category;
+                l.Category = newData.Category;
             }
 
-            if (startDate != DateTime.MinValue)
+            if (newData.StartDate != DateTime.MinValue)
             {
-                l.startDate = startDate;
+                l.StartDate = newData.StartDate;
             }
 
-            if (expiryDate != DateTime.MinValue)
+            if (newData.ExpiryDate != DateTime.MinValue)
             {
-                l.expiryDate = expiryDate;
+                l.ExpiryDate = newData.ExpiryDate;
             }
 
-            if (penaltyPoints != -1)
+            if (newData.PenaltyPoints != -1)
             {
-                l.penaltyPoints = penaltyPoints;
+                l.PenaltyPoints = newData.PenaltyPoints;
             }
 
             this.db.SaveChanges();

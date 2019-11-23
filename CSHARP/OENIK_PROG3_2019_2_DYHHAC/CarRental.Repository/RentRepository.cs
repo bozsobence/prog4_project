@@ -14,7 +14,7 @@ namespace CarRental.Repository
     /// <summary>
     /// This is the repository that handles the Rent table in the database.
     /// </summary>
-    public class RentRepository : IRentRepository<Rent>
+    public class RentRepository : IRepository<Rent, int>
     {
         private CarRentalDatabaseEntities db;
 
@@ -28,63 +28,64 @@ namespace CarRental.Repository
         }
 
         /// <inheritdoc/>
-        public void AddRent(Rent rent)
+        public void Add(Rent rent)
         {
-            this.db.Rent.Add(rent);
+            this.db.Rents.Add(rent);
             this.db.SaveChanges();
         }
 
         /// <inheritdoc/>
-        public void DeleteRent(int id)
+        public void Delete(int id)
         {
-            this.db.Rent.Remove(this.GetOne(id));
+            Rent r = this.GetOne(id);
+            this.db.Rents.Remove(r);
             this.db.SaveChanges();
         }
 
         /// <inheritdoc/>
         public IQueryable<Rent> GetAll()
         {
-            return this.db.Rent;
+            return this.db.Rents;
         }
 
         /// <inheritdoc/>
         public Rent GetOne(int id)
         {
-            return this.db.Rent.Where(x => x.rentID == id).SingleOrDefault();
+            return this.db.Rents.Where(x => x.RentID == id).SingleOrDefault();
         }
 
         /// <inheritdoc/>
-        public void UpdateRent(int id, int accId, string carId, DateTime startTime, DateTime endTime, int distance, int price)
+        public void Update(int id, Rent newData)
         {
             Rent r = this.GetOne(id);
-            if (accId != -1)
+            if (newData.AccountID != -1)
             {
-                r.accountID = accId;
+                r.AccountID = newData.AccountID;
             }
 
-            if (carId != string.Empty)
+            if (newData.CarID != string.Empty)
             {
-                r.carID = carId;
+                r.CarID = newData.CarID;
             }
 
-            if (startTime != DateTime.MinValue)
+            if (newData.StartTime != DateTime.MinValue)
             {
-                r.starttime = startTime;
+                r.StartTime = newData.StartTime;
             }
 
-            if (endTime != DateTime.MinValue)
+            if (newData.EndTime != DateTime.MinValue)
             {
-                r.endtime = endTime;
+                r.EndTime = newData.EndTime;
             }
 
-            if (distance != -1)
+            if (newData.Distance != -1)
             {
-                r.distance = distance;
+                r.Distance = newData.Distance;
             }
 
-            if (price != -1)
+            if (newData.Price != -1)
             {
-                r.price = price;
+                r.Price = newData.Price;
             }
 
             this.db.SaveChanges();

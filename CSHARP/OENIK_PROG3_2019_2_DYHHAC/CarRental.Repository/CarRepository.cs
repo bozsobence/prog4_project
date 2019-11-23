@@ -14,7 +14,7 @@ namespace CarRental.Repository
     /// <summary>
     /// This repository handles the Car table in the database.
     /// </summary>
-    public class CarRepository : ICarRepository<Car>
+    public class CarRepository : IRepository<Car, string>
     {
         private CarRentalDatabaseEntities db;
 
@@ -28,54 +28,54 @@ namespace CarRental.Repository
         }
 
         /// <inheritdoc/>
-        public void AddCar(Car car)
+        public void Add(Car car)
         {
-            this.db.Car.Add(car);
+            this.db.Cars.Add(car);
             this.db.SaveChanges();
         }
 
         /// <inheritdoc/>
-        public void DeleteCar(string plate)
+        public void Delete(string plate)
         {
             Car c = this.GetOne(plate);
-            this.db.Car.Remove(c);
+            this.db.Cars.Remove(c);
             this.db.SaveChanges();
         }
 
         /// <inheritdoc/>
         public IQueryable<Car> GetAll()
         {
-            return this.db.Car;
+            return this.db.Cars;
         }
 
         /// <inheritdoc/>
         public Car GetOne(string id)
         {
-            return this.db.Car.Where(x => x.plate == id).SingleOrDefault();
+            return this.db.Cars.Where(x => x.CarID == id).SingleOrDefault();
         }
 
         /// <inheritdoc/>
-        public void UpdateCar(string plate, string brand, string model, int battery, int extraPrice)
+        public void Update(string carID, Car newData)
         {
-            Car c = this.GetOne(plate);
-            if (brand != string.Empty)
+            Car c = this.GetOne(carID);
+            if (newData.Brand != string.Empty)
             {
-                c.brand = brand;
+                c.Brand = newData.Brand;
             }
 
-            if (model != string.Empty)
+            if (newData.Model != string.Empty)
             {
-                c.model = model;
+                c.Model = newData.Model;
             }
 
-            if (battery != -1)
+            if (newData.Battery != -1)
             {
-                c.battery = battery;
+                c.Battery = newData.Battery;
             }
 
-            if (extraPrice != -1)
+            if (newData.ExtraPrice != -1)
             {
-                c.extraPrice = extraPrice;
+                c.ExtraPrice = newData.ExtraPrice;
             }
 
             this.db.SaveChanges();
