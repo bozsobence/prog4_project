@@ -308,5 +308,114 @@ namespace CarRental.Logic.Tests
             this.complaintRepo.Verify(x => x.GetAll(), Times.Once);
             Assert.That(c, Is.EqualTo(this.complaints));
         }
+
+        /// <summary>
+        /// Tests if the <see cref="ILogic.UpdateAccountData(int, string, string, string, DateTime, int, int)"/> calls the <see cref="IRepository{T, TK}.Update(TK, T)"/> method.
+        /// </summary>
+        [Test]
+        public void WhenUpdateAccountData_ItGetsUpdatedInRepository()
+        {
+            bool success = this.mockedLogic.UpdateAccountData(2, "Teszt Lajos", "teszt.lajos@gmail.com", "New York", DateTime.Now, 50, 1000);
+            this.accountRepo.Verify(x => x.Update(2, It.IsAny<Account>()), Times.Once);
+            Assert.IsTrue(success);
+        }
+
+        /// <summary>
+        /// Tests if the <see cref="ILogic.UpdateCarData(string, string, string, int, int)"/> calls the <see cref="IRepository{T, TK}.Update(TK, T)"/> method.
+        /// </summary>
+        [Test]
+        public void WhenUpdateCarData_ItGetsUpdatedInRepository()
+        {
+            bool success = this.mockedLogic.UpdateCarData("REM-990", "Teszt", "Teszt", 50, 1500);
+            this.carRepo.Verify(x => x.Update("REM-990", It.IsAny<Car>()), Times.Once);
+            Assert.IsTrue(success);
+        }
+
+        /// <summary>
+        /// Tests if the <see cref="ILogic.UpdateLicenseData(string, int, string, DateTime, DateTime, int)"/> calls the <see cref="IRepository{T, TK}.Update(TK, T)"/> method.
+        /// </summary>
+        [Test]
+        public void WhenUpdateLicenseData_ItGetsUpdatedInRepository()
+        {
+            bool success = this.mockedLogic.UpdateLicenseData("HX211743", 1, "B", DateTime.Now, DateTime.Now.AddYears(4), 0);
+            this.licenseRepo.Verify(x => x.Update("HX211743", It.IsAny<License>()), Times.Once);
+            Assert.IsTrue(success);
+        }
+
+        /// <summary>
+        /// Tests if the <see cref="ILogic.UpdateRentData(int, int, string, DateTime, DateTime, int, int)"/> calls the <see cref="IRepository{T, TK}.Update(TK, T)"/> method.
+        /// </summary>
+        [Test]
+        public void WhenUpdateRentData_ItGetsUpdatedInRepository()
+        {
+            bool success = this.mockedLogic.UpdateRentData(5, 1, "REM-990", DateTime.Now, DateTime.Now.AddMinutes(32), 15, 2500);
+            this.rentRepo.Verify(x => x.Update(5, It.IsAny<Rent>()), Times.Once);
+            Assert.IsTrue(success);
+        }
+
+        /// <summary>
+        /// Tests if the <see cref="ILogic.UpdateComplaintData(int, int, string, DateTime, int)"/> calls the <see cref="IRepository{T, TK}.Update(TK, T)"/> method.
+        /// </summary>
+        [Test]
+        public void WhenUpdateComplaintData_ItGetsUpdatedInRepository()
+        {
+            bool success = this.mockedLogic.UpdateComplaintData(1, 5, "Nem indul az autó.", DateTime.Now, 1);
+            this.complaintRepo.Verify(x => x.Update(1, It.IsAny<Complaint>()), Times.Once);
+            Assert.IsTrue(success);
+        }
+
+        /// <summary>
+        /// Tests if the <see cref="ILogic.DeleteAccountData(int)"/> calls the <see cref="IRepository{T, TK}.Delete(TK)"/> method.
+        /// </summary>
+        [Test]
+        public void WhenDeleteAccountData_ItGetsDeletedInRepository()
+        {
+            bool success = this.mockedLogic.DeleteAccountData(1);
+            this.accountRepo.Verify(x => x.Delete(1), Times.Once);
+            Assert.IsTrue(success);
+        }
+
+        /// <summary>
+        /// Tests if the <see cref="ILogic.DeleteCarData(string)"/> calls the <see cref="IRepository{T, TK}.Delete(TK)"/> method.
+        /// </summary>
+        [Test]
+        public void WhenDeleteCarData_ItGetsDeletedInRepository()
+        {
+            bool success = this.mockedLogic.DeleteCarData("REM-990");
+            this.carRepo.Verify(x => x.Delete("REM-990"), Times.Once);
+            Assert.IsTrue(success);
+        }
+
+        /// <summary>
+        /// Tests if the <see cref="ILogic.DeleteLicenseData(string)"/> calls the <see cref="IRepository{T, TK}.Delete(TK)"/> method.
+        /// </summary>
+        [Test]
+        public void WhenDeleteLicenseData_ItGetsDeletedInRepository()
+        {
+            bool success = this.mockedLogic.DeleteLicenseData("HX211743");
+            this.licenseRepo.Verify(x => x.Delete("HX211743"), Times.Once);
+            Assert.IsTrue(success);
+        }
+
+        /// <summary>
+        /// Tests if the <see cref="ILogic.DeleteRentData(int)"/> calls the <see cref="IRepository{T, TK}.Delete(TK)"/> method.
+        /// </summary>
+        [Test]
+        public void WhenDeleteRentData_ItGetsDeletedInRepository()
+        {
+            bool success = this.mockedLogic.DeleteRentData(1);
+            this.rentRepo.Verify(x => x.Delete(1), Times.Once);
+            Assert.IsTrue(success);
+        }
+        /// <summary>
+        /// Tests if the <see cref="ILogic.DeleteComplaintData(int)"/> calls the <see cref="IRepository{T, TK}.Delete(TK)"/> method.
+        /// </summary>
+        [Test]
+        public void WhenDeleteComplaintData_ItGetsDeletedInRepository()
+        {
+            bool success = this.mockedLogic.DeleteComplaintData(1);
+            this.complaintRepo.Verify(x => x.Delete(1), Times.Once);
+            Assert.IsTrue(success);
+        }
     }
 }
