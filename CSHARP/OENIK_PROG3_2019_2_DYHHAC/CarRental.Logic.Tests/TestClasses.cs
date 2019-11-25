@@ -104,6 +104,7 @@ namespace CarRental.Logic.Tests
                 new Rent() { RentID = 17, AccountID = 11, CarID = "RFW-482", StartTime = DateTime.Parse("2019-10-02 12:38:00"), EndTime = DateTime.Parse("2019-10-02 13:50:00"), Distance = 18, Price = 1800 },
                 new Rent() { RentID = 18, AccountID = 3, CarID = "RFP-990", StartTime = DateTime.Parse("2019-10-02 10:34:00"), EndTime = DateTime.Parse("2019-10-02 12:03:00"), Distance = 37, Price = 3700 },
                 new Rent() { RentID = 19, AccountID = 9, CarID = "RFW-482", StartTime = DateTime.Parse("2019-10-02 04:47:00"), EndTime = DateTime.Parse("2019-10-02 04:55:00"), Distance = 3, Price = 300 },
+                new Rent() { RentID = 20, AccountID = 5, CarID = "RFW-482", StartTime = DateTime.Parse("2019-10-01 04:47:00"), EndTime = DateTime.Parse("2019-10-01 04:55:00"), Distance = 3, Price = 1300 },
             };
             this.licenses = new List<License>()
             {
@@ -416,6 +417,14 @@ namespace CarRental.Logic.Tests
             bool success = this.mockedLogic.DeleteComplaintData(1);
             this.complaintRepo.Verify(x => x.Delete(1), Times.Once);
             Assert.IsTrue(success);
+        }
+
+        [Test]
+        public void WhenGetDailyIncome_ItReturnsCorrectData()
+        {
+            IEnumerable<ResultClasses.DailyIncomeResult> results = this.mockedLogic.GetDailyIncome();
+            Assert.AreEqual(52000, results.Where(x => x.Month == 10 && x.Day == 2).First().Income);
+            Assert.AreEqual(1300, results.Where(x => x.Month == 10 && x.Day == 10).First().Income);
         }
     }
 }
