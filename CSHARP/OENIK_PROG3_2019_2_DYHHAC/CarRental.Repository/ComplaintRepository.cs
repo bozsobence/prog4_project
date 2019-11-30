@@ -51,7 +51,7 @@ namespace CarRental.Repository
         /// <inheritdoc/>
         public Complaint GetOne(int id)
         {
-            return this.db.Complaints.Where(x => x.ComplaintID == id).SingleOrDefault();
+            return this.GetAll().Where(x => x.ComplaintID == id).Single();
         }
 
         /// <inheritdoc/>

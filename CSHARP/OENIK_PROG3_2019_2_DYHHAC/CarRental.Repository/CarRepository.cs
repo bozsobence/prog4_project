@@ -51,7 +51,7 @@ namespace CarRental.Repository
         /// <inheritdoc/>
         public Car GetOne(string id)
         {
-            return this.db.Cars.Where(x => x.CarID == id).SingleOrDefault();
+            return this.GetAll().Where(x => x.CarID == id).Single();
         }
 
         /// <inheritdoc/>
