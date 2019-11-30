@@ -38,7 +38,7 @@ namespace CarRental.Logic
             /// <inheritdoc/>
             public override string ToString()
             {
-                return string.Format($"> DAY: {this.Day}\tINCOME: {this.Income} Ft");
+                return string.Format($"> NAP: {this.Day}.\tBEVÉTEL: {this.Income} Ft");
             }
         }
 
@@ -60,7 +60,7 @@ namespace CarRental.Logic
             /// <inheritdoc/>
             public override string ToString()
             {
-                return string.Format($"> OVERALL INCOME: {this.OverallIncome}\tAVERAGE DAILY INCOME: {this.Average}");
+                return string.Format($"> ÖSSZESÍTETT BEVÉTEL: {this.OverallIncome}\tÁTLAGOS NAPI BEVÉTEL: {this.Average}");
             }
         }
 
@@ -82,7 +82,7 @@ namespace CarRental.Logic
             /// <inheritdoc/>
             public override string ToString()
             {
-                return string.Format($"> NAME: {this.AccountName}\tCOUNT OF RENTS: {this.Count}");
+                return string.Format($"> NÉV: {this.AccountName}\tBÉRLÉSEK SZÁMA: {this.Count}");
             }
         }
 
@@ -104,24 +104,7 @@ namespace CarRental.Logic
             /// <inheritdoc/>
             public override string ToString()
             {
-                return string.Format($"> CAR: {this.Car}\tDISTANCE: {this.Distance} KM");
-            }
-        }
-
-        /// <summary>
-        /// This class contains the result of <see cref="ILogic.GetExcludedUsers"/>.
-        /// </summary>
-        public class ExcludedUsersResult
-        {
-            /// <summary>
-            /// Gets or sets the name.
-            /// </summary>
-            public string Name { get; set; }
-
-            /// <inheritdoc/>
-            public override string ToString()
-            {
-                return string.Format($">NAME: {this.Name}");
+                return string.Format($"> AUTÓ: {this.Car}\t\tMEGTETT TÁVOLSÁG: {this.Distance} KM");
             }
         }
     }
