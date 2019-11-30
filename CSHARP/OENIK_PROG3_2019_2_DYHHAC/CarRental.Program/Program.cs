@@ -12,15 +12,12 @@ namespace CarRental.Program
     /// <summary>
     /// It is the main class of the application.
     /// </summary>
-    public class Program
+    public static class Program
     {
         /// <summary>
         /// This is the main method of the program.
         /// </summary>
-        /// <param name="args">
-        /// The arguments of the Main method.
-        /// </param>
-        public static void Main(string[] args)
+        public static void Main()
         {
             Display menu = new Display();
             menu.Run();
