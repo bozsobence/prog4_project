@@ -70,7 +70,11 @@ namespace CarRental.Logic
                 this.accountRepo.Add(acc);
                 return true;
             }
-            catch (Exception)
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
+            catch (InvalidOperationException)
             {
                 return false;
             }
@@ -98,7 +102,11 @@ namespace CarRental.Logic
                 this.carRepo.Add(car);
                 return true;
             }
-            catch (Exception)
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
+            catch (InvalidOperationException)
             {
                 return false;
             }
@@ -119,7 +127,11 @@ namespace CarRental.Logic
                 this.complaintRepo.Add(comp);
                 return true;
             }
-            catch (Exception)
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
+            catch (InvalidOperationException)
             {
                 return false;
             }
@@ -137,12 +149,17 @@ namespace CarRental.Logic
                 ExpiryDate = expiryDate,
                 PenaltyPoints = penaltyPoints,
             };
+
             try
             {
                 this.licenseRepo.Add(lic);
                 return true;
             }
-            catch (Exception)
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
+            catch (InvalidOperationException)
             {
                 return false;
             }
@@ -165,7 +182,11 @@ namespace CarRental.Logic
                 this.rentRepo.Add(r);
                 return true;
             }
-            catch (Exception)
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
+            catch (InvalidOperationException)
             {
                 return false;
             }
@@ -179,7 +200,11 @@ namespace CarRental.Logic
                 this.accountRepo.Delete(accountId);
                 return true;
             }
-            catch (Exception)
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
+            catch (InvalidOperationException)
             {
                 return false;
             }
@@ -193,7 +218,11 @@ namespace CarRental.Logic
                 this.carRepo.Delete(plate);
                 return true;
             }
-            catch (Exception)
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
+            catch (InvalidOperationException)
             {
                 return false;
             }
@@ -207,7 +236,11 @@ namespace CarRental.Logic
                 this.complaintRepo.Delete(id);
                 return true;
             }
-            catch (Exception)
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
+            catch (InvalidOperationException)
             {
                 return false;
             }
@@ -221,7 +254,11 @@ namespace CarRental.Logic
                 this.licenseRepo.Delete(licenseId);
                 return true;
             }
-            catch (Exception)
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
+            catch (InvalidOperationException)
             {
                 return false;
             }
@@ -235,7 +272,11 @@ namespace CarRental.Logic
                 this.rentRepo.Delete(id);
                 return true;
             }
-            catch (Exception)
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
+            catch (InvalidOperationException)
             {
                 return false;
             }
@@ -279,7 +320,15 @@ namespace CarRental.Logic
                 this.accountRepo.GetOne(id);
                 return true;
             }
-            catch (Exception)
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
+            catch (InvalidOperationException)
+            {
+                return false;
+            }
+            catch (SystemException)
             {
                 return false;
             }
@@ -293,7 +342,15 @@ namespace CarRental.Logic
                 this.carRepo.GetOne(plate);
                 return true;
             }
-            catch (Exception)
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
+            catch (InvalidOperationException)
+            {
+                return false;
+            }
+            catch (SystemException)
             {
                 return false;
             }
@@ -307,7 +364,15 @@ namespace CarRental.Logic
                 this.complaintRepo.GetOne(id);
                 return true;
             }
-            catch (Exception)
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
+            catch (InvalidOperationException)
+            {
+                return false;
+            }
+            catch (SystemException)
             {
                 return false;
             }
@@ -321,7 +386,15 @@ namespace CarRental.Logic
                 this.licenseRepo.GetOne(licenseId);
                 return true;
             }
-            catch (Exception)
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
+            catch (InvalidOperationException)
+            {
+                return false;
+            }
+            catch (SystemException)
             {
                 return false;
             }
@@ -335,7 +408,15 @@ namespace CarRental.Logic
                 this.rentRepo.GetOne(id);
                 return true;
             }
-            catch (Exception)
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
+            catch (InvalidOperationException)
+            {
+                return false;
+            }
+            catch (SystemException)
             {
                 return false;
             }
@@ -346,24 +427,17 @@ namespace CarRental.Logic
         {
             if (this.IsValidAccount(id))
             {
-                try
+                Account acc = new Account()
                 {
-                    Account acc = new Account()
-                    {
-                        Name = name,
-                        Email = email,
-                        Address = address,
-                        BirthDate = bdate,
-                        Minute = minute,
-                        Monthly = monthly,
-                    };
-                    this.accountRepo.Update(id, acc);
-                    return true;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
+                    Name = name,
+                    Email = email,
+                    Address = address,
+                    BirthDate = bdate,
+                    Minute = minute,
+                    Monthly = monthly,
+                };
+                this.accountRepo.Update(id, acc);
+                return true;
             }
             else
             {
@@ -376,23 +450,16 @@ namespace CarRental.Logic
         {
             if (this.IsValidCar(carID))
             {
-                try
+                Car car = new Car()
                 {
-                    Car car = new Car()
-                    {
-                        CarID = carID,
-                        Brand = brand,
-                        Model = model,
-                        Battery = battery,
-                        ExtraPrice = extraPrice,
-                    };
-                    this.carRepo.Update(carID, car);
-                    return true;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
+                    CarID = carID,
+                    Brand = brand,
+                    Model = model,
+                    Battery = battery,
+                    ExtraPrice = extraPrice,
+                };
+                this.carRepo.Update(carID, car);
+                return true;
             }
             else
             {
@@ -405,8 +472,6 @@ namespace CarRental.Logic
         {
             if (this.IsValidComplaint(id))
             {
-                try
-                {
                     Complaint c = new Complaint()
                     {
                         RentID = rentId,
@@ -416,11 +481,6 @@ namespace CarRental.Logic
                     };
                     this.complaintRepo.Update(id, c);
                     return true;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
             }
             else
             {
@@ -433,23 +493,16 @@ namespace CarRental.Logic
         {
             if (this.IsValidLicense(id))
             {
-                try
+                License l = new License()
                 {
-                    License l = new License()
-                    {
-                        AccountID = accId,
-                        Category = category,
-                        StartDate = startDate,
-                        ExpiryDate = expiryDate,
-                        PenaltyPoints = penaltyPoints,
-                    };
-                    this.licenseRepo.Update(id, l);
-                    return true;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
+                    AccountID = accId,
+                    Category = category,
+                    StartDate = startDate,
+                    ExpiryDate = expiryDate,
+                    PenaltyPoints = penaltyPoints,
+                };
+                this.licenseRepo.Update(id, l);
+                return true;
             }
             else
             {
@@ -462,24 +515,17 @@ namespace CarRental.Logic
         {
             if (this.IsValidRent(id))
             {
-                try
+                Rent r = new Rent()
                 {
-                    Rent r = new Rent()
-                    {
-                        AccountID = accId,
-                        CarID = carId,
-                        StartTime = startTime,
-                        EndTime = endTime,
-                        Distance = distance,
-                        Price = price,
-                    };
-                    this.rentRepo.Update(id, r);
-                    return true;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
+                    AccountID = accId,
+                    CarID = carId,
+                    StartTime = startTime,
+                    EndTime = endTime,
+                    Distance = distance,
+                    Price = price,
+                };
+                this.rentRepo.Update(id, r);
+                return true;
             }
             else
             {
