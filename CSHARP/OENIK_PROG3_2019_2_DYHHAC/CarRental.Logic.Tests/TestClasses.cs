@@ -408,6 +408,7 @@ namespace CarRental.Logic.Tests
             this.rentRepo.Verify(x => x.Delete(1), Times.Once);
             Assert.IsTrue(success);
         }
+
         /// <summary>
         /// Tests if the <see cref="ILogic.DeleteComplaintData(int)"/> calls the <see cref="IRepository{T, TK}.Delete(TK)"/> method.
         /// </summary>
@@ -419,12 +420,71 @@ namespace CarRental.Logic.Tests
             Assert.IsTrue(success);
         }
 
+        /// <summary>
+        /// Tests if the <see cref="ILogic.GetDailyIncome"/> method returns the expected result.
+        /// </summary>
         [Test]
-        public void WhenGetDailyIncome_ItReturnsCorrectData()
+        public void WhenGetDailyIncome_ItReturnsExpectedResult()
         {
-            IEnumerable<ResultClasses.DailyIncomeResult> results = this.mockedLogic.GetDailyIncome();
-            Assert.AreEqual(52000, results.Where(x => x.Month == 10 && x.Day == 2).First().Income);
-            Assert.AreEqual(1300, results.Where(x => x.Month == 10 && x.Day == 10).First().Income);
+            IEnumerable<ResultClasses.DailyIncomeResult> result = this.mockedLogic.GetDailyIncome();
+            Assert.That(result.Where(x => x.Month == 10 && x.Day == 2).First().Income == 52000);
+            Assert.That(result.Where(x => x.Month == 10 && x.Day == 1).First().Income == 1300);
+        }
+
+        /// <summary>
+        /// Tests if the <see cref="ILogic.GetOverallIncome"/> method returns the expected result.
+        /// </summary>
+        [Test]
+        public void WhenGetOverallIncome_ItReturnsExpectedResult()
+        {
+            ResultClasses.OverallIncomeResult result = this.mockedLogic.GetOverallIncome();
+            Assert.That(result.OverallIncome == 53300);
+            Assert.That(result.Average == 26650);
+        }
+
+        /// <summary>
+        /// Tests if the <see cref="ILogic.GetUserWithMostRents"/> method returns the expected result.
+        /// </summary>
+        [Test]
+        public void WhenGetUserWithMostRents_ItReturnsExpectedResult()
+        {
+            ResultClasses.RentsByUserResult result = this.mockedLogic.GetUserWithMostRents();
+            Assert.That(result.AccountName == "Vincze Kata");
+            Assert.That(result.Count == 5);
+        }
+
+        /// <summary>
+        /// Tests if the <see cref="ILogic.GetDistanceByCar"/> method returns the expected result.
+        /// </summary>
+        [Test]
+        public void WhenGetDistanceByCar_ItReturnsExpectedResult()
+        {
+            IEnumerable<ResultClasses.DistancesByCarResult> result = this.mockedLogic.GetDistanceByCar();
+            Assert.That(result.Where(x => x.Car == "REM-990").First().Distance == 18);
+            Assert.That(result.Where(x => x.Car == "RZF-406").First().Distance == 92);
+            Assert.That(result.Where(x => x.Car == "RMB-898").First().Distance == 3);
+            Assert.That(result.Where(x => x.Car == "RBT-178").First().Distance == 20);
+            Assert.That(result.Where(x => x.Car == "REF-473").First().Distance == 18);
+            Assert.That(result.Where(x => x.Car == "RHO-859").First().Distance == 37);
+            Assert.That(result.Where(x => x.Car == "RHC-386").First().Distance == 55);
+            Assert.That(result.Where(x => x.Car == "RVN-153").First().Distance == 18);
+            Assert.That(result.Where(x => x.Car == "RCS-709").First().Distance == 18);
+            Assert.That(result.Where(x => x.Car == "RZT-841").First().Distance == 110);
+            Assert.IsNull(result.Where(x => x.Car == "RNX-941").FirstOrDefault());
+        }
+
+        /// <summary>
+        /// Tests if the <see cref="ILogic.GetRentsByUser"/> method returns the expected result by testing the corner cases (user with most and least rents).
+        /// </summary>
+        [Test]
+        public void WhenGetRentsByUser_ItReturnsExpectedResult()
+        {
+            IEnumerable<ResultClasses.RentsByUserResult> result = this.mockedLogic.GetRentsByUser();
+
+            Assert.That(result.OrderByDescending(x => x.Count).First().AccountName == "Vincze Kata");
+            Assert.That(result.OrderByDescending(x => x.Count).First().Count == 5);
+            Assert.That(result.OrderByDescending(x => x.Count).Last().Count == 1);
+            Assert.That(result.Where(x => x.AccountName == "Vincze Béla").First().Count == 2);
         }
     }
 }
