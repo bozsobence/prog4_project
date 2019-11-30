@@ -319,7 +319,8 @@ namespace CarRental.Program
                     Console.WriteLine("Add meg a lakhelyet! (város)");
                     string address = Console.ReadLine();
                     Console.WriteLine("Add meg a születési időpontját! (YYYY-MM-DD)");
-                    DateTime birthdate = DateTime.Parse(Console.ReadLine());
+                    string b = Console.ReadLine();
+                    DateTime birthdate = b != string.Empty ? DateTime.Parse(b) : DateTime.MinValue;
                     Console.WriteLine("Add meg a percdíjat! (csak szám lehet)");
                     string cr = Console.ReadLine();
                     int minute = cr != string.Empty ? int.Parse(cr) : -1;
@@ -399,7 +400,16 @@ namespace CarRental.Program
                     cr = Console.ReadLine();
                     int price = cr != string.Empty ? int.Parse(cr) : -1;
 
-                    bool success = this.logic.UpdateRentData(rentId, accountId, carId, start, end, distance, price);
+                    bool success = false;
+                    try
+                    {
+                        success = this.logic.UpdateRentData(rentId, accountId, carId, start, end, distance, price);
+                    }
+                    catch (DatabaseException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
                     string msg = success ? "Sikeres módosítás." : "Hiba történt a módosítás során.";
                     Console.WriteLine(msg);
                 }
