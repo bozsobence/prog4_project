@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CarRentalDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CarRentalDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Accounts">
           <Key>
-            <PropertyRef Name="AccountID" />
+            <PropertyRef Name="AccountId" />
           </Key>
-          <Property Name="AccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Address" Type="varchar" MaxLength="30" Nullable="false" />
@@ -42,7 +42,7 @@
             <PropertyRef Name="LicenseID" />
           </Key>
           <Property Name="LicenseID" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="AccountId" Type="int" Nullable="false" />
           <Property Name="Category" Type="varchar" MaxLength="3" Nullable="false" />
           <Property Name="StartDate" Type="datetime" Nullable="false" />
           <Property Name="ExpiryDate" Type="datetime" Nullable="false" />
@@ -53,7 +53,7 @@
             <PropertyRef Name="RentID" />
           </Key>
           <Property Name="RentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="AccountId" Type="int" Nullable="false" />
           <Property Name="CarID" Type="varchar" MaxLength="7" Nullable="false" />
           <Property Name="StartTime" Type="datetime2" Precision="0" Nullable="false" />
           <Property Name="EndTime" Type="datetime2" Precision="0" />
@@ -72,27 +72,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="license_accountid">
+        <Association Name="license_AccountId">
           <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
           <End Role="Licenses" Type="Self.Licenses" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Accounts">
-              <PropertyRef Name="AccountID" />
+              <PropertyRef Name="AccountId" />
             </Principal>
             <Dependent Role="Licenses">
-              <PropertyRef Name="AccountID" />
+              <PropertyRef Name="AccountId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="rents_accountid">
+        <Association Name="rents_AccountId">
           <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
           <End Role="Rents" Type="Self.Rents" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Accounts">
-              <PropertyRef Name="AccountID" />
+              <PropertyRef Name="AccountId" />
             </Principal>
             <Dependent Role="Rents">
-              <PropertyRef Name="AccountID" />
+              <PropertyRef Name="AccountId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -118,11 +118,11 @@
             <End Role="Rents" EntitySet="Rents" />
             <End Role="Complaints" EntitySet="Complaints" />
           </AssociationSet>
-          <AssociationSet Name="license_accountid" Association="Self.license_accountid">
+          <AssociationSet Name="license_AccountId" Association="Self.license_AccountId">
             <End Role="Accounts" EntitySet="Accounts" />
             <End Role="Licenses" EntitySet="Licenses" />
           </AssociationSet>
-          <AssociationSet Name="rents_accountid" Association="Self.rents_accountid">
+          <AssociationSet Name="rents_AccountId" Association="Self.rents_AccountId">
             <End Role="Accounts" EntitySet="Accounts" />
             <End Role="Rents" EntitySet="Rents" />
           </AssociationSet>
@@ -131,30 +131,29 @@
             <End Role="Rents" EntitySet="Rents" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CarRentalDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Account">
           <Key>
-            <PropertyRef Name="AccountID" />
+            <PropertyRef Name="AccountId" />
           </Key>
-          <Property Name="AccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Minute" Type="Int32" />
           <Property Name="Monthly" Type="Int32" />
-          <NavigationProperty Name="Licenses" Relationship="Self.license_accountid" FromRole="Accounts" ToRole="Licenses" />
-          <NavigationProperty Name="Rents" Relationship="Self.rents_accountid" FromRole="Accounts" ToRole="Rents" />
+          <NavigationProperty Name="Licenses" Relationship="Self.license_AccountId" FromRole="Accounts" ToRole="Licenses" />
+          <NavigationProperty Name="Rents" Relationship="Self.rents_AccountId" FromRole="Accounts" ToRole="Rents" />
         </EntityType>
         <EntityType Name="Car">
           <Key>
-            <PropertyRef Name="CarID" />
+            <PropertyRef Name="CarId" />
           </Key>
-          <Property Name="CarID" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CarId" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Brand" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Model" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Battery" Type="Int32" Nullable="false" />
@@ -163,10 +162,10 @@
         </EntityType>
         <EntityType Name="Complaint">
           <Key>
-            <PropertyRef Name="ComplaintID" />
+            <PropertyRef Name="ComplaintId" />
           </Key>
-          <Property Name="ComplaintID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RentID" Type="Int32" Nullable="false" />
+          <Property Name="ComplaintId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RentId" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Chk" Type="Int32" Nullable="false" />
@@ -174,52 +173,52 @@
         </EntityType>
         <EntityType Name="License">
           <Key>
-            <PropertyRef Name="LicenseID" />
+            <PropertyRef Name="LicenseId" />
           </Key>
-          <Property Name="LicenseID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <Property Name="LicenseId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AccountId" Type="Int32" Nullable="false" />
           <Property Name="Category" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="PenaltyPoints" Type="Int32" />
-          <NavigationProperty Name="Account" Relationship="Self.license_accountid" FromRole="Licenses" ToRole="Accounts" />
+          <NavigationProperty Name="Account" Relationship="Self.license_AccountId" FromRole="Licenses" ToRole="Accounts" />
         </EntityType>
         <EntityType Name="Rent">
           <Key>
-            <PropertyRef Name="RentID" />
+            <PropertyRef Name="RentId" />
           </Key>
-          <Property Name="RentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AccountID" Type="Int32" Nullable="false" />
-          <Property Name="CarID" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="Int32" Nullable="false" />
+          <Property Name="CarId" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EndTime" Type="DateTime" Precision="0" />
           <Property Name="Distance" Type="Int32" />
           <Property Name="Price" Type="Int32" />
-          <NavigationProperty Name="Account" Relationship="Self.rents_accountid" FromRole="Rents" ToRole="Accounts" />
+          <NavigationProperty Name="Account" Relationship="Self.rents_AccountId" FromRole="Rents" ToRole="Accounts" />
           <NavigationProperty Name="Car" Relationship="Self.rents_carid" FromRole="Rents" ToRole="Cars" />
           <NavigationProperty Name="Complaints" Relationship="Self.complaints_rentid" FromRole="Rents" ToRole="Complaints" />
         </EntityType>
-        <Association Name="license_accountid">
+        <Association Name="license_AccountId">
           <End Role="Accounts" Type="Self.Account" Multiplicity="1" />
           <End Role="Licenses" Type="Self.License" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Accounts">
-              <PropertyRef Name="AccountID" />
+              <PropertyRef Name="AccountId" />
             </Principal>
             <Dependent Role="Licenses">
-              <PropertyRef Name="AccountID" />
+              <PropertyRef Name="AccountId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="rents_accountid">
+        <Association Name="rents_AccountId">
           <End Role="Accounts" Type="Self.Account" Multiplicity="1" />
           <End Role="Rents" Type="Self.Rent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Accounts">
-              <PropertyRef Name="AccountID" />
+              <PropertyRef Name="AccountId" />
             </Principal>
             <Dependent Role="Rents">
-              <PropertyRef Name="AccountID" />
+              <PropertyRef Name="AccountId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -228,10 +227,10 @@
           <End Role="Rents" Type="Self.Rent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cars">
-              <PropertyRef Name="CarID" />
+              <PropertyRef Name="CarId" />
             </Principal>
             <Dependent Role="Rents">
-              <PropertyRef Name="CarID" />
+              <PropertyRef Name="CarId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -240,10 +239,10 @@
           <End Role="Complaints" Type="Self.Complaint" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Rents">
-              <PropertyRef Name="RentID" />
+              <PropertyRef Name="RentId" />
             </Principal>
             <Dependent Role="Complaints">
-              <PropertyRef Name="RentID" />
+              <PropertyRef Name="RentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -253,11 +252,11 @@
           <EntitySet Name="Complaints" EntityType="Self.Complaint" />
           <EntitySet Name="Licenses" EntityType="Self.License" />
           <EntitySet Name="Rents" EntityType="Self.Rent" />
-          <AssociationSet Name="license_accountid" Association="Self.license_accountid">
+          <AssociationSet Name="license_AccountId" Association="Self.license_AccountId">
             <End Role="Accounts" EntitySet="Accounts" />
             <End Role="Licenses" EntitySet="Licenses" />
           </AssociationSet>
-          <AssociationSet Name="rents_accountid" Association="Self.rents_accountid">
+          <AssociationSet Name="rents_AccountId" Association="Self.rents_AccountId">
             <End Role="Accounts" EntitySet="Accounts" />
             <End Role="Rents" EntitySet="Rents" />
           </AssociationSet>
@@ -279,7 +278,7 @@
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="CarRentalDatabaseModel.Account">
               <MappingFragment StoreEntitySet="Accounts">
-                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -292,7 +291,7 @@
           <EntitySetMapping Name="Cars">
             <EntityTypeMapping TypeName="CarRentalDatabaseModel.Car">
               <MappingFragment StoreEntitySet="Cars">
-                <ScalarProperty Name="CarID" ColumnName="CarID" />
+                <ScalarProperty Name="CarId" ColumnName="CarID" />
                 <ScalarProperty Name="Brand" ColumnName="Brand" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
                 <ScalarProperty Name="Battery" ColumnName="Battery" />
@@ -303,8 +302,8 @@
           <EntitySetMapping Name="Complaints">
             <EntityTypeMapping TypeName="CarRentalDatabaseModel.Complaint">
               <MappingFragment StoreEntitySet="Complaints">
-                <ScalarProperty Name="ComplaintID" ColumnName="ComplaintID" />
-                <ScalarProperty Name="RentID" ColumnName="RentID" />
+                <ScalarProperty Name="ComplaintId" ColumnName="ComplaintID" />
+                <ScalarProperty Name="RentId" ColumnName="RentID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="Chk" ColumnName="Chk" />
@@ -314,8 +313,8 @@
           <EntitySetMapping Name="Licenses">
             <EntityTypeMapping TypeName="CarRentalDatabaseModel.License">
               <MappingFragment StoreEntitySet="Licenses">
-                <ScalarProperty Name="LicenseID" ColumnName="LicenseID" />
-                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="LicenseId" ColumnName="LicenseID" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
@@ -326,9 +325,9 @@
           <EntitySetMapping Name="Rents">
             <EntityTypeMapping TypeName="CarRentalDatabaseModel.Rent">
               <MappingFragment StoreEntitySet="Rents">
-                <ScalarProperty Name="RentID" ColumnName="RentID" />
-                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
-                <ScalarProperty Name="CarID" ColumnName="CarID" />
+                <ScalarProperty Name="RentId" ColumnName="RentID" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="CarId" ColumnName="CarID" />
                 <ScalarProperty Name="StartTime" ColumnName="StartTime" />
                 <ScalarProperty Name="EndTime" ColumnName="EndTime" />
                 <ScalarProperty Name="Distance" ColumnName="Distance" />

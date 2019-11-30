@@ -28,9 +28,9 @@ namespace CarRental.Repository
         }
 
         /// <inheritdoc/>
-        public void Add(Complaint complaint)
+        public void Add(Complaint element)
         {
-            this.db.Complaints.Add(complaint);
+            this.db.Complaints.Add(element);
             this.db.SaveChanges();
         }
 
@@ -51,16 +51,16 @@ namespace CarRental.Repository
         /// <inheritdoc/>
         public Complaint GetOne(int id)
         {
-            return this.GetAll().Where(x => x.ComplaintID == id).Single();
+            return this.GetAll().Where(x => x.ComplaintId == id).Single();
         }
 
         /// <inheritdoc/>
         public void Update(int id, Complaint newData)
         {
             Complaint c = this.GetOne(id);
-            if (newData.RentID != -1)
+            if (newData.RentId != -1)
             {
-                c.RentID = newData.RentID;
+                c.RentId = newData.RentId;
             }
 
             if (newData.Description != string.Empty)

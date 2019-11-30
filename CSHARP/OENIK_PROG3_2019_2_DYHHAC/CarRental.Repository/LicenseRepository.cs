@@ -28,9 +28,9 @@ namespace CarRental.Repository
         }
 
         /// <inheritdoc/>
-        public void Add(License license)
+        public void Add(License element)
         {
-            this.db.Licenses.Add(license);
+            this.db.Licenses.Add(element);
             this.db.SaveChanges();
         }
 
@@ -51,16 +51,16 @@ namespace CarRental.Repository
         /// <inheritdoc/>
         public License GetOne(string id)
         {
-            return this.GetAll().Where(x => x.LicenseID == id).Single();
+            return this.GetAll().Where(x => x.LicenseId == id).Single();
         }
 
         /// <inheritdoc/>
         public void Update(string id, License newData)
         {
             License l = this.GetOne(id);
-            if (newData.AccountID != -1)
+            if (newData.AccountId != -1)
             {
-                l.AccountID = newData.AccountID;
+                l.AccountId = newData.AccountId;
             }
 
             if (newData.Category != string.Empty)

@@ -65,6 +65,12 @@ namespace CarRental.Logic
                 Minute = minute,
                 Monthly = monthly,
             };
+
+            if (bdate == DateTime.MinValue)
+            {
+                return false;
+            }
+
             try
             {
                 this.accountRepo.Add(acc);
@@ -85,7 +91,7 @@ namespace CarRental.Logic
         {
             Car car = new Car()
             {
-                CarID = plate,
+                CarId = plate,
                 Brand = brand,
                 Model = model,
                 Battery = battery,
@@ -117,11 +123,17 @@ namespace CarRental.Logic
         {
             Complaint comp = new Complaint()
             {
-                RentID = rentId,
+                RentId = rentId,
                 Description = desc,
                 Time = time,
                 Chk = chk,
             };
+
+            if (time == DateTime.MinValue)
+            {
+                return false;
+            }
+
             try
             {
                 this.complaintRepo.Add(comp);
@@ -142,13 +154,18 @@ namespace CarRental.Logic
         {
             License lic = new License()
             {
-                LicenseID = licenseId,
-                AccountID = accountId,
+                LicenseId = licenseId,
+                AccountId = accountId,
                 Category = category,
                 StartDate = startDate,
                 ExpiryDate = expiryDate,
                 PenaltyPoints = penaltyPoints,
             };
+
+            if (startDate == DateTime.MinValue || expiryDate == DateTime.MinValue)
+            {
+                return false;
+            }
 
             try
             {
@@ -170,13 +187,19 @@ namespace CarRental.Logic
         {
             Rent r = new Rent()
             {
-                AccountID = accountId,
-                CarID = carId,
+                AccountId = accountId,
+                CarId = carId,
                 StartTime = startTime,
                 EndTime = endTime,
                 Distance = distance,
                 Price = price,
             };
+
+            if (startTime == DateTime.MinValue || endTime == DateTime.MinValue)
+            {
+                return false;
+            }
+
             try
             {
                 this.rentRepo.Add(r);
@@ -328,10 +351,6 @@ namespace CarRental.Logic
             {
                 return false;
             }
-            catch (SystemException)
-            {
-                return false;
-            }
         }
 
         /// <inheritdoc/>
@@ -347,10 +366,6 @@ namespace CarRental.Logic
                 return false;
             }
             catch (InvalidOperationException)
-            {
-                return false;
-            }
-            catch (SystemException)
             {
                 return false;
             }
@@ -372,10 +387,6 @@ namespace CarRental.Logic
             {
                 return false;
             }
-            catch (SystemException)
-            {
-                return false;
-            }
         }
 
         /// <inheritdoc/>
@@ -394,10 +405,6 @@ namespace CarRental.Logic
             {
                 return false;
             }
-            catch (SystemException)
-            {
-                return false;
-            }
         }
 
         /// <inheritdoc/>
@@ -413,10 +420,6 @@ namespace CarRental.Logic
                 return false;
             }
             catch (InvalidOperationException)
-            {
-                return false;
-            }
-            catch (SystemException)
             {
                 return false;
             }
@@ -452,7 +455,7 @@ namespace CarRental.Logic
             {
                 Car car = new Car()
                 {
-                    CarID = carID,
+                    CarId = carID,
                     Brand = brand,
                     Model = model,
                     Battery = battery,
@@ -474,7 +477,7 @@ namespace CarRental.Logic
             {
                     Complaint c = new Complaint()
                     {
-                        RentID = rentId,
+                        RentId = rentId,
                         Description = desc,
                         Time = time,
                         Chk = chk,
@@ -495,7 +498,7 @@ namespace CarRental.Logic
             {
                 License l = new License()
                 {
-                    AccountID = accId,
+                    AccountId = accId,
                     Category = category,
                     StartDate = startDate,
                     ExpiryDate = expiryDate,
@@ -517,8 +520,8 @@ namespace CarRental.Logic
             {
                 Rent r = new Rent()
                 {
-                    AccountID = accId,
-                    CarID = carId,
+                    AccountId = accId,
+                    CarId = carId,
                     StartTime = startTime,
                     EndTime = endTime,
                     Distance = distance,
@@ -582,14 +585,14 @@ namespace CarRental.Logic
             var accData = this.accountRepo.GetAll();
             var rents = (from rent in rentData
                          join account in accData
-                         on rent.AccountID equals account.AccountID
-                         group rent by rent.AccountID into g
+                         on rent.AccountId equals account.AccountId
+                         group rent by rent.AccountId into g
                          select new
                          {
                              ID = g.Key,
                              RENTS = g.Count(),
                          }).OrderByDescending(x => x.RENTS).FirstOrDefault();
-            var mostRents = accData.Where(x => x.AccountID == rents.ID).FirstOrDefault().Name;
+            var mostRents = accData.Where(x => x.AccountId == rents.ID).FirstOrDefault().Name;
             var count = rents.RENTS;
             return new ResultClasses.RentsByUserResult() { AccountName = mostRents, Count = count };
         }
@@ -601,11 +604,11 @@ namespace CarRental.Logic
             var carData = this.carRepo.GetAll();
             var result = (from rent in rentData
                             join car in carData
-                            on rent.CarID equals car.CarID
+                            on rent.CarId equals car.CarId
                             group rent by car into g
                             select new ResultClasses.DistancesByCarResult()
                             {
-                                Car = g.Key.CarID,
+                                Car = g.Key.CarId,
                                 Distance = (int)g.Sum(x => x.Distance),
                             }).OrderByDescending(x => x.Distance);
             return result;
@@ -618,11 +621,11 @@ namespace CarRental.Logic
             var accData = this.accountRepo.GetAll();
             var rents = (from rent in rentData
                          join account in accData
-                         on rent.AccountID equals account.AccountID
-                         group rent by rent.AccountID into g
+                         on rent.AccountId equals account.AccountId
+                         group rent by rent.AccountId into g
                          select new ResultClasses.RentsByUserResult
                          {
-                             AccountName = accData.Where(x => x.AccountID == g.Key).FirstOrDefault().Name,
+                             AccountName = accData.Where(x => x.AccountId == g.Key).FirstOrDefault().Name,
                              Count = g.Count(),
                          }).OrderByDescending(x => x.Count);
             return rents;

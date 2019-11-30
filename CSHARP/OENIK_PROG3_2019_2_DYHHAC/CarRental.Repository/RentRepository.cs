@@ -28,9 +28,9 @@ namespace CarRental.Repository
         }
 
         /// <inheritdoc/>
-        public void Add(Rent rent)
+        public void Add(Rent element)
         {
-            this.db.Rents.Add(rent);
+            this.db.Rents.Add(element);
             this.db.SaveChanges();
         }
 
@@ -51,21 +51,21 @@ namespace CarRental.Repository
         /// <inheritdoc/>
         public Rent GetOne(int id)
         {
-            return this.GetAll().Where(x => x.RentID == id).Single();
+            return this.GetAll().Where(x => x.RentId == id).Single();
         }
 
         /// <inheritdoc/>
         public void Update(int id, Rent newData)
         {
             Rent r = this.GetOne(id);
-            if (newData.AccountID != -1)
+            if (newData.AccountId != -1)
             {
-                r.AccountID = newData.AccountID;
+                r.AccountId = newData.AccountId;
             }
 
-            if (newData.CarID != string.Empty)
+            if (newData.CarId != string.Empty)
             {
-                r.CarID = newData.CarID;
+                r.CarId = newData.CarId;
             }
 
             if (newData.StartTime != DateTime.MinValue)

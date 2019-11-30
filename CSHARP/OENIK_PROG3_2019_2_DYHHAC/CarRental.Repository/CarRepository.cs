@@ -28,16 +28,16 @@ namespace CarRental.Repository
         }
 
         /// <inheritdoc/>
-        public void Add(Car car)
+        public void Add(Car element)
         {
-            this.db.Cars.Add(car);
+            this.db.Cars.Add(element);
             this.db.SaveChanges();
         }
 
         /// <inheritdoc/>
-        public void Delete(string plate)
+        public void Delete(string id)
         {
-            Car c = this.GetOne(plate);
+            Car c = this.GetOne(id);
             this.db.Cars.Remove(c);
             this.db.SaveChanges();
         }
@@ -51,13 +51,13 @@ namespace CarRental.Repository
         /// <inheritdoc/>
         public Car GetOne(string id)
         {
-            return this.GetAll().Where(x => x.CarID == id).Single();
+            return this.GetAll().Where(x => x.CarId == id).Single();
         }
 
         /// <inheritdoc/>
-        public void Update(string carID, Car newData)
+        public void Update(string id, Car newData)
         {
-            Car c = this.GetOne(carID);
+            Car c = this.GetOne(id);
             if (newData.Brand != string.Empty)
             {
                 c.Brand = newData.Brand;

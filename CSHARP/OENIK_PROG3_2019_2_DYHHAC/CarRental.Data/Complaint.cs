@@ -14,8 +14,8 @@ namespace CarRental.Data
     
     public partial class Complaint
     {
-        public int ComplaintID { get; set; }
-        public int RentID { get; set; }
+        public int ComplaintId { get; set; }
+        public int RentId { get; set; }
         public string Description { get; set; }
         public System.DateTime Time { get; set; }
         public int Chk { get; set; }

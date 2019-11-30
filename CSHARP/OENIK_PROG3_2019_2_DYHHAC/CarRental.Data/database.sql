@@ -354,14 +354,10 @@ SET IDENTITY_INSERT [dbo].[Complaint] OFF
 
 
 --számolt mezők értékének beállítása:
-update Invoice
-set total = (DATEDIFF(minute, Rent.starttime, Rent.endtime) * minute + DATEDIFF(minute, Rent.starttime, Rent.endtime) * ISNULL(Car.extraPrice, 0))
-from Invoice
-inner join Rent on(Invoice.rentID = Rent.rentID)
-inner join Car on (Rent.carID = Car.plate)
-inner join Account on (Rent.accountID = Account.accountID)
-inner join Subscription on(Account.accountID = Subscription.accountID)
-where total IS NULL;
-
+update Rents
+set Price = (DATEDIFF(minute, Rents.StartTime, Rents.EndTime) * minute + DATEDIFF(minute, Rents.StartTime, Rents.EndTime) * ISNULL(Cars.extraPrice, 0))
+from Rents
+inner join Cars on (Rents.CarID = Cars.CarID)
+inner join Accounts on (Rents.accountId = Accounts.accountID);
 
 

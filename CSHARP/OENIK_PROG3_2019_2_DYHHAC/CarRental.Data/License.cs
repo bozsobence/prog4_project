@@ -14,8 +14,8 @@ namespace CarRental.Data
     
     public partial class License
     {
-        public string LicenseID { get; set; }
-        public int AccountID { get; set; }
+        public string LicenseId { get; set; }
+        public int AccountId { get; set; }
         public string Category { get; set; }
         public System.DateTime StartDate { get; set; }
         public System.DateTime ExpiryDate { get; set; }

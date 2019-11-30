@@ -28,9 +28,9 @@ namespace CarRental.Repository
         }
 
         /// <inheritdoc/>
-        public void Add(Account account)
+        public void Add(Account element)
         {
-            this.db.Accounts.Add(account);
+            this.db.Accounts.Add(element);
             this.db.SaveChanges();
         }
 
@@ -51,7 +51,7 @@ namespace CarRental.Repository
         /// <inheritdoc/>
         public Account GetOne(int id)
         {
-            return this.GetAll().Where(x => x.AccountID == id).Single();
+            return this.GetAll().Where(x => x.AccountId == id).Single();
         }
 
         /// <inheritdoc/>

@@ -57,9 +57,9 @@ namespace CarRental.Logic
         /// <summary>
         /// Checks if the given car exists in the database.
         /// </summary>
-        /// <param name="plate">The numberplate of the car.</param>
+        /// <param name="id">The numberplate of the car.</param>
         /// <returns>True or false.</returns>
-        bool IsValidCar(string plate);
+        bool IsValidCar(string id);
 
         /// <summary>
         /// Checks if the given license exists in the database.
@@ -97,13 +97,13 @@ namespace CarRental.Logic
         /// <summary>
         /// Adds a new car to the database.
         /// </summary>
-        /// <param name="plate">The numberplate of the car. This is the primary key.</param>
+        /// <param name="id">The numberplate of the car. This is the primary key.</param>
         /// <param name="brand">The brand of the car.</param>
         /// <param name="model">The model of the car.</param>
         /// <param name="battery">The battery level of the car.</param>
         /// <param name="extraPrice">The additional per minute fee paid by the user when using this car.</param>
         /// <returns>True or false whether the insertion was successful or not.</returns>
-        bool AddNewCar(string plate, string brand, string model, int battery, int extraPrice);
+        bool AddNewCar(string id, string brand, string model, int battery, int extraPrice);
 
         /// <summary>
         /// Adds a new license to the database.
@@ -155,13 +155,13 @@ namespace CarRental.Logic
         /// <summary>
         /// Updates the selected car data.
         /// </summary>
-        /// <param name="plate">The numberplate of the car we want to update.</param>
+        /// <param name="id">The numberplate of the car we want to update.</param>
         /// <param name="brand">The new brand to be set.</param>
         /// <param name="model">The new model to be set.</param>
         /// <param name="battery">The new battery level to be set.</param>
         /// <param name="extraPrice">The new extra price to be set.</param>
         /// <returns>True or false whether the update was successful or not.</returns>
-        bool UpdateCarData(string plate, string brand, string model, int battery, int extraPrice);
+        bool UpdateCarData(string id, string brand, string model, int battery, int extraPrice);
 
         /// <summary>
         /// Updates the selected license data.

@@ -20,7 +20,7 @@ namespace CarRental.Data
             this.Rents = new HashSet<Rent>();
         }
     
-        public string CarID { get; set; }
+        public string CarId { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }
         public int Battery { get; set; }

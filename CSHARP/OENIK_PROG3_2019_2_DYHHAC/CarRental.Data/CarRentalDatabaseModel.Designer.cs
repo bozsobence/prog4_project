@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\PROG3 PROJECT\CSHARP\OENIK_PROG3_2019_2_DYHHAC\CarRental.Data\CarRentalDatabaseModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Bence\Documents\oenik_prog3_2019_2_dyhhac\CSHARP\OENIK_PROG3_2019_2_DYHHAC\CarRental.Data\CarRentalDatabaseModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

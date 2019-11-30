@@ -20,9 +20,9 @@ namespace CarRental.Data
             this.Complaints = new HashSet<Complaint>();
         }
     
-        public int RentID { get; set; }
-        public int AccountID { get; set; }
-        public string CarID { get; set; }
+        public int RentId { get; set; }
+        public int AccountId { get; set; }
+        public string CarId { get; set; }
         public System.DateTime StartTime { get; set; }
         public Nullable<System.DateTime> EndTime { get; set; }
         public Nullable<int> Distance { get; set; }

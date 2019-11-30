@@ -41,14 +41,13 @@ namespace CarRental.Repository
         /// Updates the selected element.
         /// </summary>
         /// <param name="id">The element to be updated.</param>
-        /// <param name="newElement">The new element data.</param>
-        void Update(TK id, T newElement);
+        /// <param name="newData">The new element data.</param>
+        void Update(TK id, T newData);
 
         /// <summary>
         /// Deletes an element from the database.
         /// </summary>
         /// <param name="id">The element to be deleted.</param>
         void Delete(TK id);
-
     }
 }

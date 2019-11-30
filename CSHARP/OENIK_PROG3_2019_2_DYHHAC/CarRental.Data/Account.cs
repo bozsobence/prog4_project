@@ -21,7 +21,7 @@ namespace CarRental.Data
             this.Rents = new HashSet<Rent>();
         }
     
-        public int AccountID { get; set; }
+        public int AccountId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
