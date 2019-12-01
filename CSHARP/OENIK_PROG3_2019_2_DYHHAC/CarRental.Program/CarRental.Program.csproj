@@ -69,7 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Display.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Application.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -265,6 +265,13 @@ namespace CarRental.Logic
         IEnumerable<ResultClasses.RentsByUserResult> GetRentsByUser();
 
         /// <summary>
+        /// Gets the statistics of the selected car.
+        /// </summary>
+        /// <param name="id">The numberplate of the car.</param>
+        /// <returns>Returns <see cref="ResultClasses.CarStats"/>.</returns>
+        ResultClasses.CarStats GetCarStats(string id);
+
+        /// <summary>
         /// Gets the recommended subscription and cars from the Java servlet based on the input data.
         /// </summary>
         /// <param name="minutes">The minutes the user plans to drive per month.</param>

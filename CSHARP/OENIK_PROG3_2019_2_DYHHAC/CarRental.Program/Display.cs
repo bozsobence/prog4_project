@@ -25,7 +25,7 @@ namespace CarRental.Program
         /// </summary>
         public Display()
         {
-            this.logic = Logic.CreateLogic();
+            this.logic = BusinessLogic.CreateLogic();
         }
 
         /// <summary>
@@ -88,6 +88,12 @@ namespace CarRental.Program
                             this.GetRecommendation();
                             break;
                         case 11:
+                            this.GetCarStatsById();
+                            break;
+                        case 12:
+                            this.GetAllCarStats();
+                            break;
+                        case 13:
                             end = true;
                             Console.WriteLine("Kilépés...");
                             break;
@@ -104,6 +110,10 @@ namespace CarRental.Program
                 catch (System.Net.WebException)
                 {
                     Console.WriteLine("Nem sikerült a kommunikáció a Java végponttal, ellenőrizd hogy fut-e a Glassfish szerver.");
+                }
+                catch (InvalidOperationException)
+                {
+                    Console.WriteLine("A keresett elem nem létezik az adatbázisban, ellenőrizd hogy nem történt-e elírás.");
                 }
             }
             while (!end);
@@ -552,11 +562,35 @@ namespace CarRental.Program
             Console.WriteLine(xml);
         }
 
+        private void GetCarStatsById()
+        {
+            bool success = false;
+            do
+            {
+                Console.WriteLine("Add meg az autó rendszámát, aminek a statisztikáit meg akarod jeleníteni!");
+                string id = Console.ReadLine();
+                Console.WriteLine(">> MEGADOTT AUTÓ STATISZTIKÁI <<");
+                Console.WriteLine(this.logic.GetCarStats(id));
+                success = true;
+            }
+            while (!success);
+        }
+
+        private void GetAllCarStats()
+        {
+            var cars = this.logic.GetCarData();
+            Console.WriteLine(">> AUTÓK STATISZTIKÁI <<\n");
+            foreach (var car in cars)
+            {
+                Console.WriteLine(this.logic.GetCarStats(car.CarId));
+            }
+        }
+
         private void ShowOptions()
         {
             Console.WriteLine();
             Console.WriteLine("Válassz egyet az alábbiak közül:");
-            Console.WriteLine("0. Eddig megjelenített adatok törlése a képernyőről.");
+            Console.WriteLine("0. Eddig megjelenített adatok törlése a képernyőről");
             Console.WriteLine("1. Megadott tábla tartalmának listázása");
             Console.WriteLine("2. Új rekord beszúrása megadott táblába");
             Console.WriteLine("3. Megadott tábla adott elemének módosítása");
@@ -567,7 +601,9 @@ namespace CarRental.Program
             Console.WriteLine("8. Megtett távolság (kilométeróra állása) autónként csoportosítva");
             Console.WriteLine("9. Felhasználók és az általuk indított bérlések száma");
             Console.WriteLine("10. Várható használat alapján előfizetési konstrukció ajánlása (Java)");
-            Console.WriteLine("11. Kilépés");
+            Console.WriteLine("11. Megadott autó statisztikáinak megjelenítése");
+            Console.WriteLine("12. Összes autó statisztikáinak megjelenítése");
+            Console.WriteLine("13. Kilépés");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Választani az adott szám beküldésével lehetséges!");
             Console.ResetColor();

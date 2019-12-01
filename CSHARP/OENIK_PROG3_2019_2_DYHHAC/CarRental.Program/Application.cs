@@ -1,4 +1,4 @@
-﻿// <copyright file="Program.cs" company="PlaceholderCompany">
+﻿// <copyright file="Application.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 namespace CarRental.Program
@@ -12,7 +12,7 @@ namespace CarRental.Program
     /// <summary>
     /// It is the main class of the application.
     /// </summary>
-    public static class Program
+    public static class Application
     {
         /// <summary>
         /// This is the main method of the program.

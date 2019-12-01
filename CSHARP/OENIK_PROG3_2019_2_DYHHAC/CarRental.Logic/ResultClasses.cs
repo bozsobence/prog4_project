@@ -107,5 +107,32 @@ namespace CarRental.Logic
                 return string.Format($"> AUTÓ: {this.Car}\t\tMEGTETT TÁVOLSÁG: {this.Distance} KM");
             }
         }
+
+        /// <summary>
+        /// This class contains the result of the <see cref="ILogic.GetCarStats(string)"/> method.
+        /// </summary>
+        public class CarStats
+        {
+            /// <summary>
+            /// Gets or sets the car.
+            /// </summary>
+            public string Car { get; set; }
+
+            /// <summary>
+            /// Gets or sets the count of rents.
+            /// </summary>
+            public int CountOfRents { get; set; }
+
+            /// <summary>
+            /// Gets or sets the sum of price.
+            /// </summary>
+            public int SumOfPrice { get; set; }
+
+            /// <inheritdoc/>
+            public override string ToString()
+            {
+                return string.Format($"> AUTÓ: {this.Car}\t\tBÉRLÉSEK SZÁMA: {this.CountOfRents}\t\tBEVÉTEL: {this.SumOfPrice} FT");
+            }
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿// <copyright file="Logic.cs" company="PlaceholderCompany">
+﻿// <copyright file="BusinessLogic.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
@@ -18,7 +18,7 @@ namespace CarRental.Logic
     /// <summary>
     /// This class is responsible for the functions of the business logic.
     /// </summary>
-    public class Logic : ILogic
+    public class BusinessLogic : ILogic
     {
         private IRepository<Account, int> accountRepo;
         private IRepository<Car, string> carRepo;
@@ -27,14 +27,14 @@ namespace CarRental.Logic
         private IRepository<Complaint, int> complaintRepo;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Logic"/> class.
+        /// Initializes a new instance of the <see cref="BusinessLogic"/> class.
         /// </summary>
         /// <param name="accounts">The account repository.</param>
         /// <param name="cars">The car repository.</param>
         /// <param name="licenses">The license repository.</param>
         /// <param name="rents">The rent repository.</param>
         /// <param name="complaints">The complaint repository.</param>
-        public Logic(IRepository<Account, int> accounts, IRepository<Car, string> cars, IRepository<License, string> licenses, IRepository<Rent, int> rents, IRepository<Complaint, int> complaints)
+        public BusinessLogic(IRepository<Account, int> accounts, IRepository<Car, string> cars, IRepository<License, string> licenses, IRepository<Rent, int> rents, IRepository<Complaint, int> complaints)
         {
             this.accountRepo = accounts;
             this.carRepo = cars;
@@ -46,12 +46,12 @@ namespace CarRental.Logic
         /// <summary>
         /// Creates a new Logic instance.
         /// </summary>
-        /// <returns>Returns a <see cref="Logic"/> object.</returns>
+        /// <returns>Returns a <see cref="BusinessLogic"/> object.</returns>
         public static ILogic CreateLogic()
         {
             CarRentalDatabaseEntities db = new CarRentalDatabaseEntities();
 
-            return new Logic(new AccountRepository(db), new CarRepository(db), new LicenseRepository(db), new RentRepository(db), new ComplaintRepository(db));
+            return new BusinessLogic(new AccountRepository(db), new CarRepository(db), new LicenseRepository(db), new RentRepository(db), new ComplaintRepository(db));
         }
 
         /// <inheritdoc/>
@@ -88,11 +88,11 @@ namespace CarRental.Logic
         }
 
         /// <inheritdoc/>
-        public bool AddNewCar(string plate, string brand, string model, int battery, int extraPrice)
+        public bool AddNewCar(string id, string brand, string model, int battery, int extraPrice)
         {
             Car car = new Car()
             {
-                CarId = plate,
+                CarId = id,
                 Brand = brand,
                 Model = model,
                 Battery = battery,
@@ -355,11 +355,11 @@ namespace CarRental.Logic
         }
 
         /// <inheritdoc/>
-        public bool IsValidCar(string plate)
+        public bool IsValidCar(string id)
         {
             try
             {
-                this.carRepo.GetOne(plate);
+                this.carRepo.GetOne(id);
                 return true;
             }
             catch (ArgumentNullException)
@@ -450,19 +450,19 @@ namespace CarRental.Logic
         }
 
         /// <inheritdoc/>
-        public bool UpdateCarData(string carID, string brand, string model, int battery, int extraPrice)
+        public bool UpdateCarData(string id, string brand, string model, int battery, int extraPrice)
         {
-            if (this.IsValidCar(carID))
+            if (this.IsValidCar(id))
             {
                 Car car = new Car()
                 {
-                    CarId = carID,
+                    CarId = id,
                     Brand = brand,
                     Model = model,
                     Battery = battery,
                     ExtraPrice = extraPrice,
                 };
-                this.carRepo.Update(carID, car);
+                this.carRepo.Update(id, car);
                 return true;
             }
             else
@@ -630,6 +630,20 @@ namespace CarRental.Logic
                              Count = g.Count(),
                          }).OrderByDescending(x => x.Count);
             return rents;
+        }
+
+        /// <inheritdoc/>
+        public ResultClasses.CarStats GetCarStats(string id)
+        {
+            var car = this.carRepo.GetOne(id);
+            int countOfRents = car.Rents.Count;
+            int sumOfPrice = car.Rents.Sum(x => x.Price ?? 0);
+            return new ResultClasses.CarStats()
+            {
+                Car = id,
+                CountOfRents = countOfRents,
+                SumOfPrice = sumOfPrice,
+            };
         }
 
         /// <inheritdoc/>

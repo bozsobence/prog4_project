@@ -1,4 +1,4 @@
-﻿// <copyright file="TestClasses.cs" company="PlaceholderCompany">
+﻿// <copyright file="LogicTests.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
@@ -20,7 +20,7 @@ namespace CarRental.Logic.Tests
     /// This is the container class of the tests.
     /// </summary>
     [TestFixture]
-    public class TestClasses
+    public class LogicTests
     {
         private Mock<IRepository<Account, int>> accountRepo;
         private Mock<IRepository<Car, string>> carRepo;
@@ -145,7 +145,7 @@ namespace CarRental.Logic.Tests
             this.rentRepo.Setup(x => x.GetAll()).Returns(this.rents.AsQueryable());
             this.licenseRepo.Setup(x => x.GetAll()).Returns(this.licenses.AsQueryable());
             this.complaintRepo.Setup(x => x.GetAll()).Returns(this.complaints.AsQueryable());
-            this.mockedLogic = new Logic(this.accountRepo.Object, this.carRepo.Object, this.licenseRepo.Object, this.rentRepo.Object, this.complaintRepo.Object);
+            this.mockedLogic = new BusinessLogic(this.accountRepo.Object, this.carRepo.Object, this.licenseRepo.Object, this.rentRepo.Object, this.complaintRepo.Object);
         }
 
         /// <summary>

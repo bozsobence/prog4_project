@@ -10,4 +10,4 @@
 [x] Legtöbb bérlést indító felhasználó listázása  
 [x] Megtett távolság (kilométeróra állása) autónként csoportosítva  
 [x] Felhasználónkénti bérlések számának listázása
-[]  Autónként az azzal indított bérlések száma, az általa termelt összes bevétel
+[x] Autónként az azzal indított bérlések száma, az általa termelt összes bevétel
