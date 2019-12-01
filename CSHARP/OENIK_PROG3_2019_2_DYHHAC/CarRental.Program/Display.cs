@@ -101,6 +101,10 @@ namespace CarRental.Program
                 {
                     Console.WriteLine("Valamely adat hibás formátumban került bevitelre. Próbáld újra az egyes menüpontoknál kért formátumban!");
                 }
+                catch (System.Net.WebException)
+                {
+                    Console.WriteLine("Nem sikerült a kommunikáció a Java végponttal, ellenőrizd hogy fut-e a Glassfish szerver.");
+                }
             }
             while (!end);
         }
@@ -532,23 +536,20 @@ namespace CarRental.Program
 
         private void GetRecommendation()
         {
-            bool success = false;
             int minute = 0;
             int size = 0;
             int category = 0;
-            do
-            {
-                Console.WriteLine(">> AJÁNLOTT ELŐFIZETÉSI KONSTRUKCIÓ KÉRÉSE JAVA VÉGPONTTÓL <<");
-                Console.WriteLine("Add meg havonta hány percet tervezel utazni!");
-                minute = int.Parse(Console.ReadLine());
-                Console.WriteLine("Válaszd ki milyen méretű autó lenne ideális:");
-                Console.WriteLine("1 - kicsi\n2 - közepes\n3 - nagy\n");
-                size = int.Parse(Console.ReadLine());
-                Console.WriteLine("Válaszd ki milyen kategóriájú autót vezetnél szívesen:");
-                Console.WriteLine("1 - olcsó\n2 - normál\n3 - prémium\n");
-                category = int.Parse(Console.ReadLine());
-
-            } while (!success);
+            Console.WriteLine(">> AJÁNLOTT ELŐFIZETÉSI KONSTRUKCIÓ KÉRÉSE JAVA VÉGPONTTÓL <<");
+            Console.WriteLine("Add meg havonta hány percet tervezel utazni!");
+            minute = int.Parse(Console.ReadLine());
+            Console.WriteLine("Válaszd ki milyen méretű autó lenne ideális:");
+            Console.WriteLine("1 - kicsi\n2 - közepes\n3 - nagy\n");
+            size = int.Parse(Console.ReadLine());
+            Console.WriteLine("Válaszd ki milyen kategóriájú autót vezetnél szívesen:");
+            Console.WriteLine("1 - olcsó\n2 - normál\n3 - prémium\n");
+            category = int.Parse(Console.ReadLine());
+            string xml = this.logic.GetRecommendationFromJava(minute, size, category);
+            Console.WriteLine(xml);
         }
 
         private void ShowOptions()

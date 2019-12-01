@@ -64,6 +64,8 @@
     <Compile Include="ILogic.cs" />
     <Compile Include="Logic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecommendedCar.cs" />
+    <Compile Include="RecommendedSubscription.cs" />
     <Compile Include="ResultClasses.cs" />
   </ItemGroup>
   <ItemGroup>

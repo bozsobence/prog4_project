@@ -11,6 +11,7 @@ namespace CarRental.Logic
     using System.Reflection;
     using System.Text;
     using System.Threading.Tasks;
+    using System.Xml.Linq;
     using CarRental.Data;
     using CarRental.Repository;
 
@@ -634,7 +635,68 @@ namespace CarRental.Logic
         /// <inheritdoc/>
         public string GetRecommendationFromJava(int minutes, int size, int category)
         {
-            return string.Empty;
+            string url = $"http://localhost:8080/CarRental.JavaWeb/RecommendationService?minutes={minutes}&size={size}&category={category}";
+            XDocument xdoc = XDocument.Load(url);
+            List<RecommendedCar> cars = new List<RecommendedCar>();
+
+            foreach (var item in xdoc.Root.Descendants("car"))
+            {
+                string brand = item.Element("brand").Value;
+                string model = item.Element("model").Value;
+                int extraPrice = int.Parse(item.Element("extraPrice").Value);
+                string carSize;
+
+                if (int.Parse(item.Element("size").Value) == 1)
+                {
+                    carSize = "kicsi";
+                }
+                else if (int.Parse(item.Element("size").Value) == 2)
+                {
+                    carSize = "közepes";
+                }
+                else
+                {
+                    carSize = "nagy";
+                }
+
+                string carCategory;
+
+                if (int.Parse(item.Element("category").Value) == 1)
+                {
+                    carCategory = "olcsó";
+                }
+                else if (int.Parse(item.Element("category").Value) == 2)
+                {
+                    carCategory = "normál";
+                }
+                else
+                {
+                    carCategory = "prémium";
+                }
+
+                cars.Add(new RecommendedCar(brand, model, extraPrice, carSize, carCategory));
+            }
+
+            int minutePrice = int.Parse(xdoc.Root.Descendants("subscription").Single().Element("minutePrice").Value);
+            int monthlyPrice = int.Parse(xdoc.Root.Descendants("subscription").Single().Element("monthlyPrice").Value);
+            string name = xdoc.Root.Descendants("subscription").Single().Element("name").Value;
+            int fullPrice = int.Parse(xdoc.Root.Descendants("subscription").Single().Element("fullPrice").Value);
+
+            RecommendedSubscription subscription = new RecommendedSubscription(minutePrice, monthlyPrice, name, fullPrice);
+            string returnFormatted = subscription.ToString();
+
+            if (xdoc.Root.Descendants("msg").Single().Value != null)
+            {
+                returnFormatted += xdoc.Root.Descendants("msg").Single().Value;
+            }
+
+            returnFormatted += ">> AJÁNLOTT AUTÓK <<\n";
+            foreach (var car in cars)
+            {
+                returnFormatted += car.ToString() + "\n";
+            }
+
+            return returnFormatted;
         }
     }
 }
