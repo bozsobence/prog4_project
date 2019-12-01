@@ -5,6 +5,7 @@
  */
 package Models;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -17,15 +18,21 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement(name = "recommendedPackage")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class RecommendedPackage {
-    @XmlElement
+public class RecommendedPackage implements Serializable{
+    @XmlElement(name = "subscription")
     Subscription subscription;
-    @XmlElement
+    @XmlElement(name = "car")
     List<Car> recommendedCars;
+    @XmlElement(name = "msg")
+    String message;
 
-    public RecommendedPackage(Subscription subscription, List<Car> recommendedCars) {
+    public RecommendedPackage() {
+    }
+    
+    public RecommendedPackage(Subscription subscription, List<Car> recommendedCars, String msg) {
         this.subscription = subscription;
         this.recommendedCars = recommendedCars;
+        this.message = msg;
     }
 
     public Subscription getSubscription() {

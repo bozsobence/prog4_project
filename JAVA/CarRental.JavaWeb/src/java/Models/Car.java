@@ -5,6 +5,7 @@
  */
 package Models;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -16,8 +17,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement(name = "car")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Car {
-    @XmlElement
+public class Car implements Serializable {
+    @XmlElement(name = "brand")
     String brand;
     @XmlElement
     String model;
@@ -28,6 +29,9 @@ public class Car {
     @XmlElement
     int category;
 
+    public Car() {
+    }
+    
     public Car(String brand, String model, int extraPrice, int size, int category) {
         this.brand = brand;
         this.model = model;

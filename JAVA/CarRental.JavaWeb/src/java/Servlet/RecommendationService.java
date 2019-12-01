@@ -10,10 +10,7 @@ import Models.Car;
 import Models.RecommendedPackage;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,8 +22,7 @@ import javax.xml.bind.Marshaller;
  *
  * @author Bence
  */
-@WebServlet(name = "Recommendation", urlPatterns = {"/Recommendation"})
-public class Recommendation extends HttpServlet {
+public class RecommendationService extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,23 +33,9 @@ public class Recommendation extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+        protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/xml;charset=UTF-8");
-        JAXBContext context;
-        RecommendationLogic logic = RecommendationLogic.getInstance();
-        RecommendedPackage p = new RecommendedPackage(logic.getSubscriptions().get(0), logic.getCars());
-        Car c = new Car("teszt", "teszt", 10, 1, 1);
-        try {
-            context = JAXBContext.newInstance(Car.class);
-            Marshaller m = context.createMarshaller();
-            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            m.marshal(c, response.getOutputStream());
-            
-        } catch (JAXBException ex) {
-            System.out.println(ex.getMessage());
-        }
-        
         
     }
 
@@ -70,6 +52,22 @@ public class Recommendation extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        int minutes = Integer.parseInt(request.getParameter("minutes"));
+        int size = Integer.parseInt(request.getParameter("size"));
+        int category = Integer.parseInt(request.getParameter("category"));
+        JAXBContext context;
+        RecommendationLogic logic = RecommendationLogic.getInstance();
+        RecommendedPackage p = logic.getRecommendation(minutes, size, category);
+        try {
+            context = JAXBContext.newInstance(RecommendedPackage.class);
+            Marshaller m = context.createMarshaller();
+            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            m.marshal(p, response.getOutputStream());
+            
+        } catch (JAXBException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
     }
 
     /**

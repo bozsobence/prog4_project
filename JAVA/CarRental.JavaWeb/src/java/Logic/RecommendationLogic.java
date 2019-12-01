@@ -8,6 +8,7 @@ package Logic;
 import Models.Car;
 import Models.RecommendedPackage;
 import Models.Subscription;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
  *
  * @author Bence
  */
-public class RecommendationLogic {
+public class RecommendationLogic implements Serializable {
     
     List<Subscription> subscriptions;
     List<Car> cars;
@@ -44,18 +45,27 @@ public class RecommendationLogic {
         
         Subscription recommendedSubscription = null;
         List<Car> recommendedCars = new ArrayList<Car>();
+        String msg = "";
         int minPrice = Integer.MAX_VALUE;
         for (Subscription s : subscriptions) {
-            if((s.getMinutePrice() * minutes) + s.getMonthlyPrice() < minPrice){
+            int actualPrice = (s.getMinutePrice() * minutes) + s.getMonthlyPrice();
+            if( actualPrice < minPrice){
                 recommendedSubscription = s;
+                minPrice = actualPrice;
             }
         }
         for (Car c : cars) {
             if(c.getSize() == size && c.getCategory() == category){
                 recommendedCars.add(c);
-            }}
-        
-        return new RecommendedPackage(recommendedSubscription, recommendedCars);
+            }
+        }
+        if(recommendedCars.isEmpty()){
+                msg = "Nem sikerült az igényeinek minden tekintetben megfelelő autót találni, ezért listázzuk az összes lehetőséget.";
+                recommendedCars = cars;
+        }
+        RecommendedPackage r = new RecommendedPackage(recommendedSubscription, recommendedCars, msg);
+        r.getSubscription().setFullPrice(minPrice);
+        return r;
     } 
 
     public List<Subscription> getSubscriptions() {
