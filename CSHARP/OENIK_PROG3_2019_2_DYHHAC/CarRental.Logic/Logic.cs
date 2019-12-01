@@ -630,5 +630,11 @@ namespace CarRental.Logic
                          }).OrderByDescending(x => x.Count);
             return rents;
         }
+
+        /// <inheritdoc/>
+        public string GetRecommendationFromJava(int minutes, int size, int category)
+        {
+            return string.Empty;
+        }
     }
 }

@@ -84,6 +84,9 @@ namespace CarRental.Program
                         case 9:
                             this.GetRentsByUser();
                             break;
+                        case 10:
+                            this.GetRecommendation();
+                            break;
                         case 11:
                             end = true;
                             Console.WriteLine("Kilépés...");
@@ -525,6 +528,27 @@ namespace CarRental.Program
                 }
             }
             while (!correctTable);
+        }
+
+        private void GetRecommendation()
+        {
+            bool success = false;
+            int minute = 0;
+            int size = 0;
+            int category = 0;
+            do
+            {
+                Console.WriteLine(">> AJÁNLOTT ELŐFIZETÉSI KONSTRUKCIÓ KÉRÉSE JAVA VÉGPONTTÓL <<");
+                Console.WriteLine("Add meg havonta hány percet tervezel utazni!");
+                minute = int.Parse(Console.ReadLine());
+                Console.WriteLine("Válaszd ki milyen méretű autó lenne ideális:");
+                Console.WriteLine("1 - kicsi\n2 - közepes\n3 - nagy\n");
+                size = int.Parse(Console.ReadLine());
+                Console.WriteLine("Válaszd ki milyen kategóriájú autót vezetnél szívesen:");
+                Console.WriteLine("1 - olcsó\n2 - normál\n3 - prémium\n");
+                category = int.Parse(Console.ReadLine());
+
+            } while (!success);
         }
 
         private void ShowOptions()
