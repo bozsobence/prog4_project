@@ -1,14 +1,19 @@
 var searchData=
 [
-  ['dailyincomeresult_24',['DailyIncomeResult',['../class_car_rental_1_1_logic_1_1_result_classes_1_1_daily_income_result.html',1,'CarRental::Logic::ResultClasses']]],
-  ['day_25',['Day',['../class_car_rental_1_1_logic_1_1_result_classes_1_1_daily_income_result.html#a4c45d6213105af6cd849c7bd27e7a06d',1,'CarRental::Logic::ResultClasses::DailyIncomeResult']]],
-  ['delete_26',['Delete',['../class_car_rental_1_1_repository_1_1_account_repository.html#a1e03812dfd5c0044c4b9502669c5203f',1,'CarRental.Repository.AccountRepository.Delete()'],['../class_car_rental_1_1_repository_1_1_car_repository.html#a3fb194259c11c89ffa6adb955a63c244',1,'CarRental.Repository.CarRepository.Delete()'],['../class_car_rental_1_1_repository_1_1_complaint_repository.html#a8b1030094462cc5a122d05c92e90ac30',1,'CarRental.Repository.ComplaintRepository.Delete()'],['../interface_car_rental_1_1_repository_1_1_i_repository.html#afb5e2223bc7609894e89c43e10c4b022',1,'CarRental.Repository.IRepository.Delete()'],['../class_car_rental_1_1_repository_1_1_license_repository.html#a912767be86a8e4eb992591ae125ad89d',1,'CarRental.Repository.LicenseRepository.Delete()'],['../class_car_rental_1_1_repository_1_1_rent_repository.html#ad259e077ba888bc741f1d2b96d6f6a32',1,'CarRental.Repository.RentRepository.Delete()']]],
-  ['deleteaccountdata_27',['DeleteAccountData',['../interface_car_rental_1_1_logic_1_1_i_logic.html#a2982074f5c2c05eb2f1466180225e1ba',1,'CarRental.Logic.ILogic.DeleteAccountData()'],['../class_car_rental_1_1_logic_1_1_logic.html#adef90c0c0b41b95c70c49b387442b6ea',1,'CarRental.Logic.Logic.DeleteAccountData()']]],
-  ['deletecardata_28',['DeleteCarData',['../interface_car_rental_1_1_logic_1_1_i_logic.html#a1bc5a8cadd23e534536af68b9cff55f6',1,'CarRental.Logic.ILogic.DeleteCarData()'],['../class_car_rental_1_1_logic_1_1_logic.html#a4ea62db4526438848416183ce1d85b70',1,'CarRental.Logic.Logic.DeleteCarData()']]],
-  ['deletecomplaintdata_29',['DeleteComplaintData',['../interface_car_rental_1_1_logic_1_1_i_logic.html#a1b3e05eaab368c82245d738368572b70',1,'CarRental.Logic.ILogic.DeleteComplaintData()'],['../class_car_rental_1_1_logic_1_1_logic.html#aba849ef0d076be755094ccea2ad3a928',1,'CarRental.Logic.Logic.DeleteComplaintData()']]],
-  ['deletelicensedata_30',['DeleteLicenseData',['../interface_car_rental_1_1_logic_1_1_i_logic.html#a0731744f81f1864a57ff9552cccad3cd',1,'CarRental.Logic.ILogic.DeleteLicenseData()'],['../class_car_rental_1_1_logic_1_1_logic.html#a7cea4e27efbf206b1d969b4ab3a4235d',1,'CarRental.Logic.Logic.DeleteLicenseData()']]],
-  ['deleterentdata_31',['DeleteRentData',['../interface_car_rental_1_1_logic_1_1_i_logic.html#a1c63d513455f43a9e93f34e055774615',1,'CarRental.Logic.ILogic.DeleteRentData()'],['../class_car_rental_1_1_logic_1_1_logic.html#aafe0aad438bf50392246fc57d94432ac',1,'CarRental.Logic.Logic.DeleteRentData()']]],
-  ['display_32',['Display',['../class_car_rental_1_1_program_1_1_display.html',1,'CarRental.Program.Display'],['../class_car_rental_1_1_program_1_1_display.html#a05b2df644bfe5b4a7caeb9d1de67123c',1,'CarRental.Program.Display.Display()']]],
-  ['distance_33',['Distance',['../class_car_rental_1_1_logic_1_1_result_classes_1_1_distances_by_car_result.html#aada758fe2f280f57d05306ed8a987548',1,'CarRental::Logic::ResultClasses::DistancesByCarResult']]],
-  ['distancesbycarresult_34',['DistancesByCarResult',['../class_car_rental_1_1_logic_1_1_result_classes_1_1_distances_by_car_result.html',1,'CarRental::Logic::ResultClasses']]]
+  ['car_11',['Car',['../class_car_rental_1_1_data_1_1_car.html',1,'CarRental.Data.Car'],['../class_car_rental_1_1_logic_1_1_car_stats.html#a44ad85d7b0e9e5c2492e977445945b63',1,'CarRental.Logic.CarStats.Car()'],['../class_car_rental_1_1_logic_1_1_distances_by_car_result.html#a422b9f8788938de8ceb06ec0ad330d3e',1,'CarRental.Logic.DistancesByCarResult.Car()']]],
+  ['carrental_12',['CarRental',['../namespace_car_rental.html',1,'']]],
+  ['carrentaldatabaseentities_13',['CarRentalDatabaseEntities',['../class_car_rental_1_1_data_1_1_car_rental_database_entities.html',1,'CarRental::Data']]],
+  ['carrepository_14',['CarRepository',['../class_car_rental_1_1_repository_1_1_car_repository.html',1,'CarRental.Repository.CarRepository'],['../class_car_rental_1_1_repository_1_1_car_repository.html#a91a27f1d6836190cf437576e1c979b54',1,'CarRental.Repository.CarRepository.CarRepository()']]],
+  ['carstats_15',['CarStats',['../class_car_rental_1_1_logic_1_1_car_stats.html',1,'CarRental::Logic']]],
+  ['complaint_16',['Complaint',['../class_car_rental_1_1_data_1_1_complaint.html',1,'CarRental::Data']]],
+  ['complaintrepository_17',['ComplaintRepository',['../class_car_rental_1_1_repository_1_1_complaint_repository.html',1,'CarRental.Repository.ComplaintRepository'],['../class_car_rental_1_1_repository_1_1_complaint_repository.html#a4d430d4d6be34719d651a4134a430559',1,'CarRental.Repository.ComplaintRepository.ComplaintRepository()']]],
+  ['count_18',['Count',['../class_car_rental_1_1_logic_1_1_rents_by_user_result.html#a58f7b7fa465d3f42af9e91a70bf04edd',1,'CarRental::Logic::RentsByUserResult']]],
+  ['countofrents_19',['CountOfRents',['../class_car_rental_1_1_logic_1_1_car_stats.html#aea52a4e5b2d9133cb56ffcad94e48a2a',1,'CarRental::Logic::CarStats']]],
+  ['createlogic_20',['CreateLogic',['../class_car_rental_1_1_logic_1_1_business_logic.html#ade9b06103f3055d5a920d0cb2e5a88f8',1,'CarRental::Logic::BusinessLogic']]],
+  ['data_21',['Data',['../namespace_car_rental_1_1_data.html',1,'CarRental']]],
+  ['logic_22',['Logic',['../namespace_car_rental_1_1_logic.html',1,'CarRental']]],
+  ['castle_20core_20changelog_23',['Castle Core Changelog',['../md__c_1__users__bence__documents_oenik_prog3_2019_2_dyhhac__c_s_h_a_r_p__o_e_n_i_k__p_r_o_g3_201c31d2c34e325e4592cb3bcdbe480da04.html',1,'']]],
+  ['program_24',['Program',['../namespace_car_rental_1_1_program.html',1,'CarRental']]],
+  ['repository_25',['Repository',['../namespace_car_rental_1_1_repository.html',1,'CarRental']]],
+  ['tests_26',['Tests',['../namespace_car_rental_1_1_logic_1_1_tests.html',1,'CarRental::Logic']]]
 ];

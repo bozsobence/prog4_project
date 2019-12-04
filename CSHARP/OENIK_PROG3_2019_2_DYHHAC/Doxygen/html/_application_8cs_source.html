@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.16"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CarRental App: C:/Users/Bence/Documents/oenik_prog3_2019_2_dyhhac/CSHARP/OENIK_PROG3_2019_2_DYHHAC/CarRental.Program/Program.cs Source File</title>
+<title>Car Rental App: C:/Users/Bence/Documents/oenik_prog3_2019_2_dyhhac/CSHARP/OENIK_PROG3_2019_2_DYHHAC/CarRental.Program/Application.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,7 +29,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">CarRental App
+   <div id="projectname">Car Rental App
+   &#160;<span id="projectnumber">v1.0</span>
    </div>
   </td>
  </tr>
@@ -66,7 +67,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_program_8cs_source.html','');});
+$(document).ready(function(){initNavTree('_application_8cs_source.html','');});
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -86,13 +87,13 @@ $(document).ready(function(){initNavTree('_program_8cs_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Program.cs</div>  </div>
+<div class="title">Application.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// &lt;copyright file=&quot;Program.cs&quot; company=&quot;PlaceholderCompany&quot;&gt;</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// &lt;copyright file=&quot;Application.cs&quot; company=&quot;PlaceholderCompany&quot;&gt;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Copyright (c) PlaceholderCompany. All rights reserved.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// &lt;/copyright&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_car_rental_1_1_program.html">CarRental.Program</a></div>
+<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="namespace_car_rental_1_1_program.html">    4</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_car_rental_1_1_program.html">CarRental.Program</a></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keyword">using</span> System;</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keyword">using</span> System.Collections.<a class="code" href="namespace_system_1_1_collections_1_1_generic.html">Generic</a>;</div>
@@ -100,23 +101,25 @@ $(document).ready(function(){initNavTree('_program_8cs_source.html','');});
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keyword">using</span> System.Text;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">using</span> System.Threading.Tasks;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class </span>Program</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class </span>Application</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    {</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> Main()</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            Display menu = <span class="keyword">new</span> Display();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            menu.Run();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <a class="code" href="class_car_rental_1_1_program_1_1_display.html">Display</a> menu = <span class="keyword">new</span> <a class="code" href="class_car_rental_1_1_program_1_1_display.html">Display</a>();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            menu.<a class="code" href="class_car_rental_1_1_program_1_1_display.html#a1445b7b28d456d2e636b8423d9a2d146">Run</a>();</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        }</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="anamespace_system_1_1_collections_1_1_generic_html"><div class="ttname"><a href="namespace_system_1_1_collections_1_1_generic.html">Generic</a></div></div>
-<div class="ttc" id="anamespace_car_rental_1_1_program_html"><div class="ttname"><a href="namespace_car_rental_1_1_program.html">CarRental.Program</a></div><div class="ttdef"><b>Definition:</b> <a href="_display_8cs_source.html#l00005">Display.cs:5</a></div></div>
+<div class="ttc" id="aclass_car_rental_1_1_program_1_1_display_html_a1445b7b28d456d2e636b8423d9a2d146"><div class="ttname"><a href="class_car_rental_1_1_program_1_1_display.html#a1445b7b28d456d2e636b8423d9a2d146">CarRental.Program.Display.Run</a></div><div class="ttdeci">void Run()</div><div class="ttdoc">Shows the menu for the user.</div><div class="ttdef"><b>Definition:</b> <a href="_display_8cs_source.html#l00034">Display.cs:34</a></div></div>
+<div class="ttc" id="anamespace_car_rental_1_1_program_html"><div class="ttname"><a href="namespace_car_rental_1_1_program.html">CarRental.Program</a></div><div class="ttdef"><b>Definition:</b> <a href="_application_8cs_source.html#l00004">Application.cs:4</a></div></div>
+<div class="ttc" id="aclass_car_rental_1_1_program_1_1_display_html"><div class="ttname"><a href="class_car_rental_1_1_program_1_1_display.html">CarRental.Program.Display</a></div><div class="ttdoc">This is the main application which the user interacts with.</div><div class="ttdef"><b>Definition:</b> <a href="_display_8cs_source.html#l00019">Display.cs:19</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d522931ffa1371640980b621734a4381.html">Users</a></li><li class="navelem"><a class="el" href="dir_2431301d7d3d48e6e7700c29481779c5.html">Bence</a></li><li class="navelem"><a class="el" href="dir_41dbeffe6a199134ee6f32e1133f258b.html">Documents</a></li><li class="navelem"><a class="el" href="dir_3b9c67b56e8a8828be063dba5bb0c1b7.html">oenik_prog3_2019_2_dyhhac</a></li><li class="navelem"><a class="el" href="dir_b7ede1010308c4acb709732cf172a285.html">CSHARP</a></li><li class="navelem"><a class="el" href="dir_a49fff13f48b51199bde55ba1fd5b107.html">OENIK_PROG3_2019_2_DYHHAC</a></li><li class="navelem"><a class="el" href="dir_2a27389dcfc683aacbe96eddb585bae2.html">CarRental.Program</a></li><li class="navelem"><b>Program.cs</b></li>
+    <li class="navelem"><a class="el" href="dir_d522931ffa1371640980b621734a4381.html">Users</a></li><li class="navelem"><a class="el" href="dir_2431301d7d3d48e6e7700c29481779c5.html">Bence</a></li><li class="navelem"><a class="el" href="dir_41dbeffe6a199134ee6f32e1133f258b.html">Documents</a></li><li class="navelem"><a class="el" href="dir_3b9c67b56e8a8828be063dba5bb0c1b7.html">oenik_prog3_2019_2_dyhhac</a></li><li class="navelem"><a class="el" href="dir_b7ede1010308c4acb709732cf172a285.html">CSHARP</a></li><li class="navelem"><a class="el" href="dir_a49fff13f48b51199bde55ba1fd5b107.html">OENIK_PROG3_2019_2_DYHHAC</a></li><li class="navelem"><a class="el" href="dir_2a27389dcfc683aacbe96eddb585bae2.html">CarRental.Program</a></li><li class="navelem"><b>Application.cs</b></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.16 </li>

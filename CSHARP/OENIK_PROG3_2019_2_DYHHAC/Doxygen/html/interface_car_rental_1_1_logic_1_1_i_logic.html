@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.16"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CarRental App: CarRental.Logic.ILogic Interface Reference</title>
+<title>Car Rental App: CarRental.Logic.ILogic Interface Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,7 +29,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">CarRental App
+   <div id="projectname">Car Rental App
+   &#160;<span id="projectnumber">v1.0</span>
    </div>
   </td>
  </tr>
@@ -101,7 +102,7 @@ Inheritance diagram for CarRental.Logic.ILogic:</div>
  <div class="center">
   <img src="interface_car_rental_1_1_logic_1_1_i_logic.png" usemap="#CarRental.Logic.ILogic_map" alt=""/>
   <map id="CarRental.Logic.ILogic_map" name="CarRental.Logic.ILogic_map">
-<area href="class_car_rental_1_1_logic_1_1_logic.html" title="This class is responsible for the functions of the business logic." alt="CarRental.Logic.Logic" shape="rect" coords="0,56,141,80"/>
+<area href="class_car_rental_1_1_logic_1_1_business_logic.html" title="This class is responsible for the functions of the business logic." alt="CarRental.Logic.BusinessLogic" shape="rect" coords="0,56,188,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -182,21 +183,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1b3e05eaab368c82245d738368572b70"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_car_rental_1_1_logic_1_1_i_logic.html#a1b3e05eaab368c82245d738368572b70">DeleteComplaintData</a> (int id)</td></tr>
 <tr class="memdesc:a1b3e05eaab368c82245d738368572b70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the selected complaint from the database.  <a href="interface_car_rental_1_1_logic_1_1_i_logic.html#a1b3e05eaab368c82245d738368572b70">More...</a><br /></td></tr>
 <tr class="separator:a1b3e05eaab368c82245d738368572b70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc0f9463075bbe6ef178e6423d0fdcf2"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="class_car_rental_1_1_logic_1_1_result_classes_1_1_daily_income_result.html">ResultClasses.DailyIncomeResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_car_rental_1_1_logic_1_1_i_logic.html#afc0f9463075bbe6ef178e6423d0fdcf2">GetDailyIncome</a> ()</td></tr>
-<tr class="memdesc:afc0f9463075bbe6ef178e6423d0fdcf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the daily income of each month.  <a href="interface_car_rental_1_1_logic_1_1_i_logic.html#afc0f9463075bbe6ef178e6423d0fdcf2">More...</a><br /></td></tr>
-<tr class="separator:afc0f9463075bbe6ef178e6423d0fdcf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeeaefbee6e0931bb96a4613b64044662"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_car_rental_1_1_logic_1_1_result_classes_1_1_overall_income_result.html">ResultClasses.OverallIncomeResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_car_rental_1_1_logic_1_1_i_logic.html#aeeaefbee6e0931bb96a4613b64044662">GetOverallIncome</a> ()</td></tr>
-<tr class="memdesc:aeeaefbee6e0931bb96a4613b64044662"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the overall income and the daily average price of the rents.  <a href="interface_car_rental_1_1_logic_1_1_i_logic.html#aeeaefbee6e0931bb96a4613b64044662">More...</a><br /></td></tr>
-<tr class="separator:aeeaefbee6e0931bb96a4613b64044662"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a389f6e910b724936a8e202df8f46d7d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_car_rental_1_1_logic_1_1_result_classes_1_1_rents_by_user_result.html">ResultClasses.RentsByUserResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_car_rental_1_1_logic_1_1_i_logic.html#a389f6e910b724936a8e202df8f46d7d0">GetUserWithMostRents</a> ()</td></tr>
-<tr class="memdesc:a389f6e910b724936a8e202df8f46d7d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the people who started the most rents.  <a href="interface_car_rental_1_1_logic_1_1_i_logic.html#a389f6e910b724936a8e202df8f46d7d0">More...</a><br /></td></tr>
-<tr class="separator:a389f6e910b724936a8e202df8f46d7d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad94d9ab46e2ba5ce7378c6e78cfc2ec1"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="class_car_rental_1_1_logic_1_1_result_classes_1_1_distances_by_car_result.html">ResultClasses.DistancesByCarResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_car_rental_1_1_logic_1_1_i_logic.html#ad94d9ab46e2ba5ce7378c6e78cfc2ec1">GetDistanceByCar</a> ()</td></tr>
-<tr class="memdesc:ad94d9ab46e2ba5ce7378c6e78cfc2ec1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the distance driven with each car.  <a href="interface_car_rental_1_1_logic_1_1_i_logic.html#ad94d9ab46e2ba5ce7378c6e78cfc2ec1">More...</a><br /></td></tr>
-<tr class="separator:ad94d9ab46e2ba5ce7378c6e78cfc2ec1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13cded6caeb9dc72c12e7416c8d909c7"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="class_car_rental_1_1_logic_1_1_result_classes_1_1_rents_by_user_result.html">ResultClasses.RentsByUserResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_car_rental_1_1_logic_1_1_i_logic.html#a13cded6caeb9dc72c12e7416c8d909c7">GetRentsByUser</a> ()</td></tr>
-<tr class="memdesc:a13cded6caeb9dc72c12e7416c8d909c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the users who are excluded from starting rents.  <a href="interface_car_rental_1_1_logic_1_1_i_logic.html#a13cded6caeb9dc72c12e7416c8d909c7">More...</a><br /></td></tr>
-<tr class="separator:a13cded6caeb9dc72c12e7416c8d909c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ea8129fc53e2abdbe1fdaf2824b5289"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="class_car_rental_1_1_logic_1_1_daily_income_result.html">DailyIncomeResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_car_rental_1_1_logic_1_1_i_logic.html#a0ea8129fc53e2abdbe1fdaf2824b5289">GetDailyIncome</a> ()</td></tr>
+<tr class="memdesc:a0ea8129fc53e2abdbe1fdaf2824b5289"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the daily income of each month.  <a href="interface_car_rental_1_1_logic_1_1_i_logic.html#a0ea8129fc53e2abdbe1fdaf2824b5289">More...</a><br /></td></tr>
+<tr class="separator:a0ea8129fc53e2abdbe1fdaf2824b5289"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fc1ac46fa978a393ba8f9a023e3f60e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_car_rental_1_1_logic_1_1_overall_income_result.html">OverallIncomeResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_car_rental_1_1_logic_1_1_i_logic.html#a3fc1ac46fa978a393ba8f9a023e3f60e">GetOverallIncome</a> ()</td></tr>
+<tr class="memdesc:a3fc1ac46fa978a393ba8f9a023e3f60e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the overall income and the daily average price of the rents.  <a href="interface_car_rental_1_1_logic_1_1_i_logic.html#a3fc1ac46fa978a393ba8f9a023e3f60e">More...</a><br /></td></tr>
+<tr class="separator:a3fc1ac46fa978a393ba8f9a023e3f60e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e0403f6ab68116dfd60ca80d9c8acb2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_car_rental_1_1_logic_1_1_rents_by_user_result.html">RentsByUserResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_car_rental_1_1_logic_1_1_i_logic.html#a7e0403f6ab68116dfd60ca80d9c8acb2">GetUserWithMostRents</a> ()</td></tr>
+<tr class="memdesc:a7e0403f6ab68116dfd60ca80d9c8acb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the people who started the most rents.  <a href="interface_car_rental_1_1_logic_1_1_i_logic.html#a7e0403f6ab68116dfd60ca80d9c8acb2">More...</a><br /></td></tr>
+<tr class="separator:a7e0403f6ab68116dfd60ca80d9c8acb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a498ff1690f72485b0635db34c51e5ea1"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="class_car_rental_1_1_logic_1_1_distances_by_car_result.html">DistancesByCarResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_car_rental_1_1_logic_1_1_i_logic.html#a498ff1690f72485b0635db34c51e5ea1">GetDistanceByCar</a> ()</td></tr>
+<tr class="memdesc:a498ff1690f72485b0635db34c51e5ea1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the distance driven with each car.  <a href="interface_car_rental_1_1_logic_1_1_i_logic.html#a498ff1690f72485b0635db34c51e5ea1">More...</a><br /></td></tr>
+<tr class="separator:a498ff1690f72485b0635db34c51e5ea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2003e8bb7d42764d17200e06cc2573bc"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="class_car_rental_1_1_logic_1_1_rents_by_user_result.html">RentsByUserResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_car_rental_1_1_logic_1_1_i_logic.html#a2003e8bb7d42764d17200e06cc2573bc">GetRentsByUser</a> ()</td></tr>
+<tr class="memdesc:a2003e8bb7d42764d17200e06cc2573bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the users who are excluded from starting rents.  <a href="interface_car_rental_1_1_logic_1_1_i_logic.html#a2003e8bb7d42764d17200e06cc2573bc">More...</a><br /></td></tr>
+<tr class="separator:a2003e8bb7d42764d17200e06cc2573bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6fcb617864fc33b58f0899ea4f41112"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_car_rental_1_1_logic_1_1_car_stats.html">CarStats</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_car_rental_1_1_logic_1_1_i_logic.html#af6fcb617864fc33b58f0899ea4f41112">GetCarStats</a> (string id)</td></tr>
+<tr class="memdesc:af6fcb617864fc33b58f0899ea4f41112"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the statistics of the selected car.  <a href="interface_car_rental_1_1_logic_1_1_i_logic.html#af6fcb617864fc33b58f0899ea4f41112">More...</a><br /></td></tr>
+<tr class="separator:af6fcb617864fc33b58f0899ea4f41112"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51e6b03027fa2027648cecb77de806d8"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_car_rental_1_1_logic_1_1_i_logic.html#a51e6b03027fa2027648cecb77de806d8">GetRecommendationFromJava</a> (int minutes, int size, int category)</td></tr>
 <tr class="memdesc:a51e6b03027fa2027648cecb77de806d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the recommended subscription and cars from the Java servlet based on the input data.  <a href="interface_car_rental_1_1_logic_1_1_i_logic.html#a51e6b03027fa2027648cecb77de806d8">More...</a><br /></td></tr>
 <tr class="separator:a51e6b03027fa2027648cecb77de806d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -270,7 +274,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True or false whether on the insertion was successful or not.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#a7745cafaa1a512b7a57a1cad4a8fa9e2">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#a30a66d9932bfc0210bf48169cae92d56">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -331,7 +335,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True or false whether the insertion was successful or not.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#addd71a4079b9e2974e16297039dcc431">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#a9b56eedcb15e17ffcba69a551e48f492">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -385,7 +389,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True or false whether the insertion was successful or not.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#a2a74e566cd97273724bc9535cc394aa1">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#acbb35476a00ee8febcf5c2ef8b2e96fa">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -453,7 +457,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True or false whether the insertion was successful or not.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#a6f4bbc4ce0a1bbe5be04a842fc573f3a">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#a2641778a3f9c5533174188e582754166">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -521,7 +525,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True or false whether the insertion was successful or not.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#a97f225584bd328dfbf0336aa2d1e8f92">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#a79f2f90570e94de6cedaa0bdfc6ffa03">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -550,7 +554,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True or false whether the deletion was successful or not.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#adef90c0c0b41b95c70c49b387442b6ea">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#ad298eb37dca6f49d5af0f9a041988dd5">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -579,7 +583,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True or false whether the deletion was successful or not.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#a4ea62db4526438848416183ce1d85b70">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#af3527d06ca5d2c260ffeeb66dafe22bd">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -608,7 +612,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True or false whether the deletion was successful or not.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#aba849ef0d076be755094ccea2ad3a928">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#af11ff8e264ed48fae0fa83233596a402">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -637,7 +641,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True or false whether the deletion was successful or not.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#a7cea4e27efbf206b1d969b4ab3a4235d">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#a7610d789cfe45243e12bcf91c609ecff">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -666,7 +670,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True or false whether the deletion was successful or not.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#aafe0aad438bf50392246fc57d94432ac">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#a4cb1d272229ce218dfba95232cc455f2">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -688,7 +692,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets all data from the Account table. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns the data from the Account table in a formatted string.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#a1577dd2ffca8a2fafa716b5f11805158">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#aa2953394f4f5a1c070d71826340597ed">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -710,7 +714,36 @@ Public Member Functions</h2></td></tr>
 <p>Gets all data from the Car table. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns the data from the Car table in a formatted string.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#ab10402b88302e912f9623a3b89c6c2e0">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#a1300ef898b25fc8211f8b89022a55173">CarRental.Logic.BusinessLogic</a>.</p>
+
+</div>
+</div>
+<a id="af6fcb617864fc33b58f0899ea4f41112"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6fcb617864fc33b58f0899ea4f41112">&#9670;&nbsp;</a></span>GetCarStats()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_car_rental_1_1_logic_1_1_car_stats.html">CarStats</a> CarRental.Logic.ILogic.GetCarStats </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the statistics of the selected car. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The numberplate of the car.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns <a class="el" href="class_car_rental_1_1_logic_1_1_car_stats.html" title="This class contains the result of the ILogic.GetCarStats(string) method.">CarStats</a>.</dd></dl>
+
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#a05f18139adbd542bf8243a245883b4ec">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -732,18 +765,18 @@ Public Member Functions</h2></td></tr>
 <p>Gets all data from the Complaint table. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns the data from the Account table in a formatted string.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#aa267753080e8c25bf4612b73da7330c3">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#a9d34389ba5767354aeba698ebecbb9ae">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
-<a id="afc0f9463075bbe6ef178e6423d0fdcf2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc0f9463075bbe6ef178e6423d0fdcf2">&#9670;&nbsp;</a></span>GetDailyIncome()</h2>
+<a id="a0ea8129fc53e2abdbe1fdaf2824b5289"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ea8129fc53e2abdbe1fdaf2824b5289">&#9670;&nbsp;</a></span>GetDailyIncome()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">IEnumerable&lt;<a class="el" href="class_car_rental_1_1_logic_1_1_result_classes_1_1_daily_income_result.html">ResultClasses.DailyIncomeResult</a>&gt; CarRental.Logic.ILogic.GetDailyIncome </td>
+          <td class="memname">IEnumerable&lt;<a class="el" href="class_car_rental_1_1_logic_1_1_daily_income_result.html">DailyIncomeResult</a>&gt; CarRental.Logic.ILogic.GetDailyIncome </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -754,18 +787,18 @@ Public Member Functions</h2></td></tr>
 <p>Gets the daily income of each month. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns IEnumerable&lt;DailyIncomeResult&gt;.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#a14c65b2c7ea573cff4d5607ec79391a1">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#a38901cc0db43f1aee20cf3209a504c20">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
-<a id="ad94d9ab46e2ba5ce7378c6e78cfc2ec1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad94d9ab46e2ba5ce7378c6e78cfc2ec1">&#9670;&nbsp;</a></span>GetDistanceByCar()</h2>
+<a id="a498ff1690f72485b0635db34c51e5ea1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a498ff1690f72485b0635db34c51e5ea1">&#9670;&nbsp;</a></span>GetDistanceByCar()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">IEnumerable&lt;<a class="el" href="class_car_rental_1_1_logic_1_1_result_classes_1_1_distances_by_car_result.html">ResultClasses.DistancesByCarResult</a>&gt; CarRental.Logic.ILogic.GetDistanceByCar </td>
+          <td class="memname">IEnumerable&lt;<a class="el" href="class_car_rental_1_1_logic_1_1_distances_by_car_result.html">DistancesByCarResult</a>&gt; CarRental.Logic.ILogic.GetDistanceByCar </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -776,7 +809,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets the distance driven with each car. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns IEnumerable&lt;DistancesByCarResult&gt;.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#ab7dfb47907d63cf57ff22dba8b82a3f7">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#ac73e3005ec85b385552fd44c9e285afe">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -798,18 +831,18 @@ Public Member Functions</h2></td></tr>
 <p>Gets all data from the License table. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns the data from the Account table in a formatted string.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#a376fc8bd2ecba1a0cdb160ea3fcdfd86">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#a73946c2268cfc4b030a341395eae8987">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
-<a id="aeeaefbee6e0931bb96a4613b64044662"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeeaefbee6e0931bb96a4613b64044662">&#9670;&nbsp;</a></span>GetOverallIncome()</h2>
+<a id="a3fc1ac46fa978a393ba8f9a023e3f60e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fc1ac46fa978a393ba8f9a023e3f60e">&#9670;&nbsp;</a></span>GetOverallIncome()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_car_rental_1_1_logic_1_1_result_classes_1_1_overall_income_result.html">ResultClasses.OverallIncomeResult</a> CarRental.Logic.ILogic.GetOverallIncome </td>
+          <td class="memname"><a class="el" href="class_car_rental_1_1_logic_1_1_overall_income_result.html">OverallIncomeResult</a> CarRental.Logic.ILogic.GetOverallIncome </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -818,9 +851,9 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the overall income and the daily average price of the rents. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns <a class="el" href="class_car_rental_1_1_logic_1_1_result_classes_1_1_overall_income_result.html" title="This class contains the result of ILogic.GetOverallIncome.">ResultClasses.OverallIncomeResult</a>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns <a class="el" href="class_car_rental_1_1_logic_1_1_overall_income_result.html" title="This class contains the result of ILogic.GetOverallIncome.">OverallIncomeResult</a>.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#ac90bc74fcff05cc64884bce0f7896dff">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#a6af8f8cab4a87474e6532772bfddccdc">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -867,7 +900,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a string with the result from the Java servlet.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#a0ad23b9dc0727d6fb3edc2ea3fb79f13">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#a9fea1c7fb671b1c9be5df312b05e108a">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -889,18 +922,18 @@ Public Member Functions</h2></td></tr>
 <p>Gets all data from the Rent table. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns the data from the Account table in a formatted string.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#a5d74158b1ad687e930abbd7644b2d28e">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#a9065f402e7f5cfcd5c72d1dc2a8234a3">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
-<a id="a13cded6caeb9dc72c12e7416c8d909c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a13cded6caeb9dc72c12e7416c8d909c7">&#9670;&nbsp;</a></span>GetRentsByUser()</h2>
+<a id="a2003e8bb7d42764d17200e06cc2573bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2003e8bb7d42764d17200e06cc2573bc">&#9670;&nbsp;</a></span>GetRentsByUser()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">IEnumerable&lt;<a class="el" href="class_car_rental_1_1_logic_1_1_result_classes_1_1_rents_by_user_result.html">ResultClasses.RentsByUserResult</a>&gt; CarRental.Logic.ILogic.GetRentsByUser </td>
+          <td class="memname">IEnumerable&lt;<a class="el" href="class_car_rental_1_1_logic_1_1_rents_by_user_result.html">RentsByUserResult</a>&gt; CarRental.Logic.ILogic.GetRentsByUser </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -911,18 +944,18 @@ Public Member Functions</h2></td></tr>
 <p>Gets the users who are excluded from starting rents. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns IEnumerable&lt;RentsByUserResult&gt;.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#a862aca6d55ebc8cd8e6dfef4a9466817">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#a697d1105d153d7bd25c32b415c7ebf7c">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
-<a id="a389f6e910b724936a8e202df8f46d7d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a389f6e910b724936a8e202df8f46d7d0">&#9670;&nbsp;</a></span>GetUserWithMostRents()</h2>
+<a id="a7e0403f6ab68116dfd60ca80d9c8acb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e0403f6ab68116dfd60ca80d9c8acb2">&#9670;&nbsp;</a></span>GetUserWithMostRents()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_car_rental_1_1_logic_1_1_result_classes_1_1_rents_by_user_result.html">ResultClasses.RentsByUserResult</a> CarRental.Logic.ILogic.GetUserWithMostRents </td>
+          <td class="memname"><a class="el" href="class_car_rental_1_1_logic_1_1_rents_by_user_result.html">RentsByUserResult</a> CarRental.Logic.ILogic.GetUserWithMostRents </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -933,7 +966,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets the people who started the most rents. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns IEnumerable&lt;RentsByUserResult&gt;.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#a5ea7f95094206ac7283f5872d3ebb237">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#aaf111695538b50d9143120a65de90046">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -962,7 +995,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True or false.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#a7d30d14d235219d77cf3620b732a5ac7">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#a95d3b32b4a6ae5433dd48aa375088bdf">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -991,7 +1024,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True or false.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#ad79bde3f384427a88a69b58be08df436">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#a7f70bd89d12fde53f288bf862467fd2d">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -1020,7 +1053,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True or false.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#a3ff178a2b384554e9f0d502dca7dcd6d">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#a7f2b984b9d175234584ff487144da2b2">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -1049,7 +1082,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True or false.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#a69763433612020adcaeb2d325055c1ff">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#a0f7008bec4ee5a0fc4098a620eb07745">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -1078,7 +1111,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True or false.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#a9efecba86db45692d796729b715f3c90">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#a324d604e97be696dd873c2ce9b5eb39f">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -1153,7 +1186,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True or false whether the update was successful or not.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#a899a64e687e485d9bac49463266f5baa">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#ac6737636497b82d1f9aade46eb5d830a">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -1214,7 +1247,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True or false whether the update was successful or not.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#a3cfd9cf48d5eebd9ab263dc8e287f43d">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#a33c683b1862e48e60d2167b2e2263446">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -1275,7 +1308,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True or false whether the update was successful or not.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#ae2b2aad72441cb5022936ab88e5bda4c">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#ae12d1bcb7d6c33d6c95c831485bedd61">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -1343,7 +1376,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True or false whether the update was successful or not.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#a78ac34f26ed9e16e54235e432378825b">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#ab678371c4bd48618a13c5267fe126083">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>
@@ -1418,7 +1451,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True or false whether the update was successful or not.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_logic.html#a59296c5ab65a7b381e83926adb9f365d">CarRental.Logic.Logic</a>.</p>
+<p>Implemented in <a class="el" href="class_car_rental_1_1_logic_1_1_business_logic.html#a13a782e898b65a5d195bb5786f7e7a2b">CarRental.Logic.BusinessLogic</a>.</p>
 
 </div>
 </div>

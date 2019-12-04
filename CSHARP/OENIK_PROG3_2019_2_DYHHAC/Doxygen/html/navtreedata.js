@@ -22,7 +22,7 @@ for the JavaScript code in this file
 */
 var NAVTREE =
 [
-  [ "CarRental App", "index.html", [
+  [ "Car Rental App", "index.html", [
     [ "Castle Core Changelog", "md__c_1__users__bence__documents_oenik_prog3_2019_2_dyhhac__c_s_h_a_r_p__o_e_n_i_k__p_r_o_g3_201c31d2c34e325e4592cb3bcdbe480da04.html", [
       [ "4.4.0 (2019-04-05)", "md__c_1__users__bence__documents_oenik_prog3_2019_2_dyhhac__c_s_h_a_r_p__o_e_n_i_k__p_r_o_g3_201c31d2c34e325e4592cb3bcdbe480da04.html#autotoc_md1", null ],
       [ "4.3.1 (2018-06-21)", "md__c_1__users__bence__documents_oenik_prog3_2019_2_dyhhac__c_s_h_a_r_p__o_e_n_i_k__p_r_o_g3_201c31d2c34e325e4592cb3bcdbe480da04.html#autotoc_md2", null ],
@@ -79,7 +79,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_account_8cs_source.html",
-"md__c_1__users__bence__documents_oenik_prog3_2019_2_dyhhac__c_s_h_a_r_p__o_e_n_i_k__p_r_o_g3_201ab0bd977438ca84fb4785c5c7f330aad.html#autotoc_md112"
+"interface_car_rental_1_1_logic_1_1_i_logic.html#a4f8f281dfb06032c7a3f5cf2510e6b1a"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

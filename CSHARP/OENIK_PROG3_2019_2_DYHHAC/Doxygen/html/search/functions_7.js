@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['tostring_192',['ToString',['../class_car_rental_1_1_logic_1_1_result_classes_1_1_daily_income_result.html#ac957271c259edf8d32f3465be03c26ba',1,'CarRental.Logic.ResultClasses.DailyIncomeResult.ToString()'],['../class_car_rental_1_1_logic_1_1_result_classes_1_1_overall_income_result.html#a5166a0951e4b70b9c292b59e179ab887',1,'CarRental.Logic.ResultClasses.OverallIncomeResult.ToString()'],['../class_car_rental_1_1_logic_1_1_result_classes_1_1_rents_by_user_result.html#adf5df3d51fcbd0c798b388f4fc0a8162',1,'CarRental.Logic.ResultClasses.RentsByUserResult.ToString()'],['../class_car_rental_1_1_logic_1_1_result_classes_1_1_distances_by_car_result.html#a904a287eec268864c58dd30198856f2f',1,'CarRental.Logic.ResultClasses.DistancesByCarResult.ToString()']]]
+  ['recommendedcar_200',['RecommendedCar',['../class_car_rental_1_1_logic_1_1_recommended_car.html#ae9a5797df1623a383f9235404fb6aebe',1,'CarRental::Logic::RecommendedCar']]],
+  ['recommendedsubscription_201',['RecommendedSubscription',['../class_car_rental_1_1_logic_1_1_recommended_subscription.html#ac43bddd0e2e3ce2ebf22e59dff44014c',1,'CarRental::Logic::RecommendedSubscription']]],
+  ['rentrepository_202',['RentRepository',['../class_car_rental_1_1_repository_1_1_rent_repository.html#a69cf599bbb0454769d8a333400181a0a',1,'CarRental::Repository::RentRepository']]],
+  ['run_203',['Run',['../class_car_rental_1_1_program_1_1_display.html#a1445b7b28d456d2e636b8423d9a2d146',1,'CarRental::Program::Display']]]
 ];
