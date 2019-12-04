@@ -424,7 +424,7 @@ namespace CarRental.Logic.Tests
         [Test]
         public void WhenGetDailyIncome_ItReturnsExpectedResult()
         {
-            IEnumerable<ResultClasses.DailyIncomeResult> result = this.mockedLogic.GetDailyIncome();
+            IEnumerable<DailyIncomeResult> result = this.mockedLogic.GetDailyIncome();
             Assert.That(result.Where(x => x.Month == 10 && x.Day == 2).First().Income == 52000);
             Assert.That(result.Where(x => x.Month == 10 && x.Day == 1).First().Income == 1300);
         }
@@ -435,7 +435,7 @@ namespace CarRental.Logic.Tests
         [Test]
         public void WhenGetOverallIncome_ItReturnsExpectedResult()
         {
-            ResultClasses.OverallIncomeResult result = this.mockedLogic.GetOverallIncome();
+            OverallIncomeResult result = this.mockedLogic.GetOverallIncome();
             Assert.That(result.OverallIncome == 53300);
             Assert.That(result.Average == 26650);
         }
@@ -446,7 +446,7 @@ namespace CarRental.Logic.Tests
         [Test]
         public void WhenGetUserWithMostRents_ItReturnsExpectedResult()
         {
-            ResultClasses.RentsByUserResult result = this.mockedLogic.GetUserWithMostRents();
+            RentsByUserResult result = this.mockedLogic.GetUserWithMostRents();
             Assert.That(result.AccountName == "Vincze Kata");
             Assert.That(result.Count == 5);
         }
@@ -457,7 +457,7 @@ namespace CarRental.Logic.Tests
         [Test]
         public void WhenGetDistanceByCar_ItReturnsExpectedResult()
         {
-            IEnumerable<ResultClasses.DistancesByCarResult> result = this.mockedLogic.GetDistanceByCar();
+            IEnumerable<DistancesByCarResult> result = this.mockedLogic.GetDistanceByCar();
             Assert.That(result.Where(x => x.Car == "REM-990").First().Distance == 18);
             Assert.That(result.Where(x => x.Car == "RZF-406").First().Distance == 92);
             Assert.That(result.Where(x => x.Car == "RMB-898").First().Distance == 3);
@@ -477,7 +477,7 @@ namespace CarRental.Logic.Tests
         [Test]
         public void WhenGetRentsByUser_ItReturnsExpectedResult()
         {
-            IEnumerable<ResultClasses.RentsByUserResult> result = this.mockedLogic.GetRentsByUser();
+            IEnumerable<RentsByUserResult> result = this.mockedLogic.GetRentsByUser();
 
             Assert.That(result.OrderByDescending(x => x.Count).First().AccountName == "Vincze Kata");
             Assert.That(result.OrderByDescending(x => x.Count).First().Count == 5);

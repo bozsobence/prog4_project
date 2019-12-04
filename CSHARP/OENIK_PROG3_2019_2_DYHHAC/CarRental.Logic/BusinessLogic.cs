@@ -538,15 +538,15 @@ namespace CarRental.Logic
         }
 
         /// <inheritdoc/>
-        public IEnumerable<ResultClasses.DailyIncomeResult> GetDailyIncome()
+        public IEnumerable<DailyIncomeResult> GetDailyIncome()
         {
-            List<ResultClasses.DailyIncomeResult> results = new List<ResultClasses.DailyIncomeResult>();
+            List<DailyIncomeResult> results = new List<DailyIncomeResult>();
             for (int i = 1; i <= 12; i++)
             {
                 var daily = from x in this.rentRepo.GetAll()
                             where x.StartTime.Month == i
                             group x by x.StartTime.Day into g
-                            select new ResultClasses.DailyIncomeResult
+                            select new DailyIncomeResult
                             {
                                 Month = i,
                                 Day = g.Key,
@@ -565,7 +565,7 @@ namespace CarRental.Logic
         }
 
         /// <inheritdoc/>
-        public ResultClasses.OverallIncomeResult GetOverallIncome()
+        public OverallIncomeResult GetOverallIncome()
         {
             var rentData = this.rentRepo.GetAll();
             var income = rentData.Sum(x => x.Price);
@@ -576,11 +576,11 @@ namespace CarRental.Logic
                                Avg = g.Sum(x => x.Price),
                            };
             var avg = avgDaily.Sum(x => x.Avg) / avgDaily.Count();
-            return new ResultClasses.OverallIncomeResult() { OverallIncome = (int)income, Average = (double)avg };
+            return new OverallIncomeResult() { OverallIncome = (int)income, Average = (double)avg };
         }
 
         /// <inheritdoc/>
-        public ResultClasses.RentsByUserResult GetUserWithMostRents()
+        public RentsByUserResult GetUserWithMostRents()
         {
             var rentData = this.rentRepo.GetAll();
             var accData = this.accountRepo.GetAll();
@@ -595,11 +595,11 @@ namespace CarRental.Logic
                          }).OrderByDescending(x => x.RENTS).FirstOrDefault();
             var mostRents = accData.Where(x => x.AccountId == rents.ID).FirstOrDefault().Name;
             var count = rents.RENTS;
-            return new ResultClasses.RentsByUserResult() { AccountName = mostRents, Count = count };
+            return new RentsByUserResult() { AccountName = mostRents, Count = count };
         }
 
         /// <inheritdoc/>
-        public IEnumerable<ResultClasses.DistancesByCarResult> GetDistanceByCar()
+        public IEnumerable<DistancesByCarResult> GetDistanceByCar()
         {
             var rentData = this.rentRepo.GetAll();
             var carData = this.carRepo.GetAll();
@@ -607,7 +607,7 @@ namespace CarRental.Logic
                             join car in carData
                             on rent.CarId equals car.CarId
                             group rent by car into g
-                            select new ResultClasses.DistancesByCarResult()
+                            select new DistancesByCarResult()
                             {
                                 Car = g.Key.CarId,
                                 Distance = (int)g.Sum(x => x.Distance),
@@ -616,7 +616,7 @@ namespace CarRental.Logic
         }
 
         /// <inheritdoc/>
-        public IEnumerable<ResultClasses.RentsByUserResult> GetRentsByUser()
+        public IEnumerable<RentsByUserResult> GetRentsByUser()
         {
             var rentData = this.rentRepo.GetAll();
             var accData = this.accountRepo.GetAll();
@@ -624,7 +624,7 @@ namespace CarRental.Logic
                          join account in accData
                          on rent.AccountId equals account.AccountId
                          group rent by rent.AccountId into g
-                         select new ResultClasses.RentsByUserResult
+                         select new RentsByUserResult
                          {
                              AccountName = accData.Where(x => x.AccountId == g.Key).FirstOrDefault().Name,
                              Count = g.Count(),
@@ -633,12 +633,12 @@ namespace CarRental.Logic
         }
 
         /// <inheritdoc/>
-        public ResultClasses.CarStats GetCarStats(string id)
+        public CarStats GetCarStats(string id)
         {
             var car = this.carRepo.GetOne(id);
             int countOfRents = car.Rents.Count;
             int sumOfPrice = car.Rents.Sum(x => x.Price ?? 0);
-            return new ResultClasses.CarStats()
+            return new CarStats()
             {
                 Car = id,
                 CountOfRents = countOfRents,

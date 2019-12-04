@@ -61,12 +61,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ResultClasses\CarStats.cs" />
+    <Compile Include="ResultClasses\DailyIncomeResult.cs" />
+    <Compile Include="ResultClasses\DistancesByCarResult.cs" />
     <Compile Include="ILogic.cs" />
     <Compile Include="BusinessLogic.cs" />
+    <Compile Include="ResultClasses\OverallIncomeResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RecommendedCar.cs" />
-    <Compile Include="RecommendedSubscription.cs" />
-    <Compile Include="ResultClasses.cs" />
+    <Compile Include="ResultClasses\RecommendedCar.cs" />
+    <Compile Include="ResultClasses\RecommendedSubscription.cs" />
+    <Compile Include="ResultClasses\RentsByUserResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

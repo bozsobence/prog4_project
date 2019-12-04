@@ -238,38 +238,38 @@ namespace CarRental.Logic
         /// Gets the daily income of each month.
         /// </summary>
         /// <returns>Returns <see cref="IEnumerable{DailyIncomeResult}"/>.</returns>
-        IEnumerable<ResultClasses.DailyIncomeResult> GetDailyIncome();
+        IEnumerable<DailyIncomeResult> GetDailyIncome();
 
         /// <summary>
         /// Gets the overall income and the daily average price of the rents.
         /// </summary>
-        /// <returns>Returns <see cref="ResultClasses.OverallIncomeResult"/>.</returns>
-        ResultClasses.OverallIncomeResult GetOverallIncome();
+        /// <returns>Returns <see cref="OverallIncomeResult"/>.</returns>
+        OverallIncomeResult GetOverallIncome();
 
         /// <summary>
         /// Gets the people who started the most rents.
         /// </summary>
         /// <returns>Returns <see cref="IEnumerable{RentsByUserResult}"/>.</returns>
-        ResultClasses.RentsByUserResult GetUserWithMostRents();
+        RentsByUserResult GetUserWithMostRents();
 
         /// <summary>
         /// Gets the distance driven with each car.
         /// </summary>
         /// <returns>Returns <see cref="IEnumerable{DistancesByCarResult}"/>.</returns>
-        IEnumerable<ResultClasses.DistancesByCarResult> GetDistanceByCar();
+        IEnumerable<DistancesByCarResult> GetDistanceByCar();
 
         /// <summary>
         /// Gets the users who are excluded from starting rents.
         /// </summary>
         /// <returns>Returns <see cref="IEnumerable{RentsByUserResult}"/>.</returns>
-        IEnumerable<ResultClasses.RentsByUserResult> GetRentsByUser();
+        IEnumerable<RentsByUserResult> GetRentsByUser();
 
         /// <summary>
         /// Gets the statistics of the selected car.
         /// </summary>
         /// <param name="id">The numberplate of the car.</param>
-        /// <returns>Returns <see cref="ResultClasses.CarStats"/>.</returns>
-        ResultClasses.CarStats GetCarStats(string id);
+        /// <returns>Returns <see cref="CarStats"/>.</returns>
+        CarStats GetCarStats(string id);
 
         /// <summary>
         /// Gets the recommended subscription and cars from the Java servlet based on the input data.

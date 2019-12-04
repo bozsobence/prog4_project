@@ -135,7 +135,7 @@ namespace CarRental.Program
                 var monthly = from x in incomes where x.Month == i select x;
                 foreach (var day in monthly)
                 {
-                    Console.WriteLine("\t" + day);
+                    Console.WriteLine("\t" + $"> NAP: {day.Day}.\tBEVÉTEL: {day.Income} Ft");
                 }
             }
         }
