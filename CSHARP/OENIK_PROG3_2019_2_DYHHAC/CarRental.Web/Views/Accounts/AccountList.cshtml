@@ -1,0 +1,35 @@
+﻿@model IEnumerable<CarRental.Web.Models.Account>
+
+@if (Model.Count() == 0)
+{
+   <div class="bg-danger">
+        The database is empty.
+   </div>
+}
+else
+{
+<br />
+<table class="table table-bordered table-hover" align="center">
+
+
+    <tr>
+        <th scope="col">@Html.DisplayNameFor(m => m.First().AccountId)</th>
+        <th scope="col">@Html.DisplayNameFor(m => m.First().Name)</th>
+        <th scope="col">Details</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td align="center">@Html.DisplayFor(m => item.AccountId)</td>
+            <td align="center">@Html.DisplayFor(M => item.Name)</td>
+            <td align="center">@Html.ActionLink("Details", "Details", new { id = item.AccountId }, new { @class = "btn btn-primary" })</td>
+            <td align="center">@Html.ActionLink("Edit", "Edit", new { id = item.AccountId }, new { @class = "btn btn-warning" })</td>
+            <td align="center">@Html.ActionLink("Delete", "Delete", new { id = item.AccountId }, new { @class = "btn btn-danger" })</td>
+        </tr>
+    }
+</table>
+}
