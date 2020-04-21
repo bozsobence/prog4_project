@@ -11,7 +11,6 @@ namespace CarRental.Program
     using System.Threading.Tasks;
     using CarRental.Data;
     using CarRental.Logic;
-    using CarRental.Repository;
 
     /// <summary>
     /// This is the main application which the user interacts with.
