@@ -9,7 +9,7 @@ namespace CarRental.Logic
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using CarRental.Data;
+    using CarRental.Logic.DTO;
 
     /// <summary>
     /// Defines the public methods of the class responsible for the CRUD operations of the Cars table.
@@ -20,7 +20,7 @@ namespace CarRental.Logic
         /// Gets all data from the Car table.
         /// </summary>
         /// <returns>Returns the data from the Car table in a formatted string.</returns>
-        IQueryable<Car> GetCarData();
+        IEnumerable<Car> GetCarData();
 
         /// <summary>
         /// Checks if the given car exists in the database.

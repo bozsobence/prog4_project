@@ -92,6 +92,5 @@ namespace CarRental.Logic
         {
             return new BusinessLogic(this.accountRepo, this.carRepo, this.licenseRepo, this.rentRepo, this.complaintRepo);
         }
-
     }
 }

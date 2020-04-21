@@ -9,12 +9,13 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>CarRental.Program</RootNamespace>
     <AssemblyName>CarRental.Program</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -71,10 +72,6 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CarRental.Data\CarRental.Data.csproj">
-      <Project>{5349df91-004b-4e03-be02-02622b6796c3}</Project>
-      <Name>CarRental.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CarRental.Logic\CarRental.Logic.csproj">
       <Project>{2213d30c-1b63-4d96-b20d-574666a066ec}</Project>
       <Name>CarRental.Logic</Name>

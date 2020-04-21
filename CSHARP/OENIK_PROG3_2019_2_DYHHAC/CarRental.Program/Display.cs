@@ -9,7 +9,6 @@ namespace CarRental.Program
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using CarRental.Data;
     using CarRental.Logic;
 
     /// <summary>

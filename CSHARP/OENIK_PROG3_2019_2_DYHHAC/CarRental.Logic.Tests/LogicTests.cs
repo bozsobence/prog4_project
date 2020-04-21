@@ -270,7 +270,7 @@ namespace CarRental.Logic.Tests
         [Test]
         public void WhenGetAccountData_ReturnsRepositoryData()
         {
-            IQueryable<Account> acc = this.accLogic.GetAccountData();
+            var acc = this.accLogic.GetAccountData();
             this.accountRepo.Verify(x => x.GetAll(), Times.Once);
             Assert.That(acc, Is.EqualTo(this.accounts));
         }
@@ -281,7 +281,7 @@ namespace CarRental.Logic.Tests
         [Test]
         public void WhenGetCarData_ReturnsRepositoryData()
         {
-            IQueryable<Car> car = this.carLogic.GetCarData();
+            var car = this.carLogic.GetCarData();
             this.carRepo.Verify(x => x.GetAll(), Times.Once);
             Assert.That(car, Is.EqualTo(this.cars));
         }
@@ -292,7 +292,7 @@ namespace CarRental.Logic.Tests
         [Test]
         public void WhenGetLicenseData_ReturnsRepositoryData()
         {
-            IQueryable<License> lic = this.licenseLogic.GetLicenseData();
+            var lic = this.licenseLogic.GetLicenseData();
             this.licenseRepo.Verify(x => x.GetAll(), Times.Once);
             Assert.That(lic, Is.EqualTo(this.licenses));
         }
@@ -303,7 +303,7 @@ namespace CarRental.Logic.Tests
         [Test]
         public void WhenGetRentData_ReturnsRepositoryData()
         {
-            IQueryable<Rent> r = this.rentLogic.GetRentData();
+            var r = this.rentLogic.GetRentData();
             this.rentRepo.Verify(x => x.GetAll(), Times.Once);
             Assert.That(r, Is.EqualTo(this.rents));
         }
@@ -314,7 +314,7 @@ namespace CarRental.Logic.Tests
         [Test]
         public void WhenGetComplaintData_ReturnsRepositoryData()
         {
-            IQueryable<Complaint> c = this.complaintLogic.GetComplaintData();
+            var c = this.complaintLogic.GetComplaintData();
             this.complaintRepo.Verify(x => x.GetAll(), Times.Once);
             Assert.That(c, Is.EqualTo(this.complaints));
         }

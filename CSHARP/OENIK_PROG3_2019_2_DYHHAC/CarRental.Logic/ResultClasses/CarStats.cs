@@ -11,7 +11,7 @@ namespace CarRental.Logic
     using System.Threading.Tasks;
 
     /// <summary>
-    /// This class contains the result of the <see cref="ILogic.GetCarStats(string)"/> method.
+    /// This class contains the result of the <see cref="IBusinessLogic.GetCarStats(string)"/> method.
     /// </summary>
     public class CarStats
     {
