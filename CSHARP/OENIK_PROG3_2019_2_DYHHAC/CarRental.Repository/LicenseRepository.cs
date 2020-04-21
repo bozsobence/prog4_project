@@ -43,7 +43,7 @@ namespace CarRental.Repository
         }
 
         /// <inheritdoc/>
-        public IQueryable<License> GetAll()
+        public IEnumerable<License> GetAll()
         {
             return this.db.Licenses;
         }
