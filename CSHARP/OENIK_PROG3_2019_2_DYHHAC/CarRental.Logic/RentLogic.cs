@@ -80,9 +80,9 @@ namespace CarRental.Logic
         }
 
         /// <inheritdoc/>
-        public IQueryable<Rent> GetRentData()
+        public IEnumerable<DTO.Rent> GetRentData()
         {
-            return this.rentRepo.GetAll();
+            return MapperFactory.CreateMapper().Map<IEnumerable<CarRental.Data.Rent>, IEnumerable<CarRental.Logic.DTO.Rent>>(this.rentRepo.GetAll());
         }
 
         /// <inheritdoc/>

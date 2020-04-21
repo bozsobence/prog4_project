@@ -9,6 +9,7 @@ namespace CarRental.Logic
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using AutoMapper;
     using CarRental.Data;
     using CarRental.Repository;
 
@@ -80,9 +81,9 @@ namespace CarRental.Logic
         }
 
         /// <inheritdoc/>
-        public IQueryable<Account> GetAccountData()
+        public IEnumerable<DTO.Account> GetAccountData()
         {
-            return this.accountRepo.GetAll();
+            return MapperFactory.CreateMapper().Map<IEnumerable<CarRental.Data.Account>, IEnumerable<CarRental.Logic.DTO.Account>>(this.accountRepo.GetAll());
         }
 
         /// <inheritdoc/>
