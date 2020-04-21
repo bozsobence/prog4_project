@@ -14,7 +14,7 @@ namespace CarRental.Logic
     /// <summary>
     /// Defines the public methods of the class responsible for the CRUD operations of the Accounts table.
     /// </summary>
-    public interface IAccountLogic : ILogic
+    public interface IAccountLogic
     {
         /// <summary>
         /// Gets all data from the Account table.
@@ -60,6 +60,5 @@ namespace CarRental.Logic
         /// <param name="accountId">The account to be deleted.</param>
         /// <returns>True or false whether the deletion was successful or not.</returns>
         bool DeleteAccountData(int accountId);
-
     }
 }

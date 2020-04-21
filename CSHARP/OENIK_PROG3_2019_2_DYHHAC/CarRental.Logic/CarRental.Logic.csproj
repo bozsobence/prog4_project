@@ -55,11 +55,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTOs\Car.cs" />
+    <Compile Include="AccountLogic.cs" />
+    <Compile Include="CarLogic.cs" />
+    <Compile Include="ComplaintLogic.cs" />
+    <Compile Include="IAccountLogic.cs" />
+    <Compile Include="ICarLogic.cs" />
+    <Compile Include="IComplaintLogic.cs" />
+    <Compile Include="ILicenseLogic.cs" />
+    <Compile Include="IRentLogic.cs" />
+    <Compile Include="LicenseLogic.cs" />
+    <Compile Include="LogicFactory.cs" />
+    <Compile Include="RentLogic.cs" />
     <Compile Include="ResultClasses\CarStats.cs" />
     <Compile Include="ResultClasses\DailyIncomeResult.cs" />
     <Compile Include="ResultClasses\DistancesByCarResult.cs" />
-    <Compile Include="ILogic.cs" />
+    <Compile Include="IBusinessLogic.cs" />
     <Compile Include="BusinessLogic.cs" />
     <Compile Include="ResultClasses\OverallIncomeResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
