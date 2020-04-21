@@ -3,87 +3,95 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using CarRental.Logic;
+using CarRental.Web.Models;
 
 namespace CarRental.Web.Controllers
 {
     public class AccountsController : Controller
     {
+        private IAccountLogic accLogic;
+        private IMapper mapper;
+        private AccountsViewModel vm;
+
+        public AccountsController()
+        {
+            LogicFactory lf = new LogicFactory();
+            this.accLogic = lf.GetAccountLogic();
+            this.mapper = Models.MapperFactory.CreateMapper();
+            this.vm = new AccountsViewModel();
+            vm.CurrentlyEdited = new Account();
+            vm.AccountsInDatabase = mapper.Map<IEnumerable<CarRental.Logic.DTO.Account>, IEnumerable<CarRental.Web.Models.Account>>(this.accLogic.GetAccountData());
+
+        }
+
+        public Account GetOne(int id)
+        {
+            var acc = this.accLogic.GetAccountData().Where(x => x.AccountId == id).Single();
+            return this.mapper.Map<CarRental.Logic.DTO.Account, CarRental.Web.Models.Account>(acc);
+        }
+
         // GET: Accounts
         public ActionResult Index()
         {
-            return View();
+            ViewData["editAction"] = "Add";
+            return View("AccountIndex", this.vm);
         }
 
         // GET: Accounts/Details/5
         public ActionResult Details(int id)
         {
-            return View();
-        }
-
-        // GET: Accounts/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Accounts/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View("AccountDetails", this.GetOne(id));
         }
 
         // GET: Accounts/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ViewData["editAction"] = "Edit";
+            vm.CurrentlyEdited = this.GetOne(id);
+            return View("AccountIndex", vm);
         }
 
         // POST: Accounts/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Account acc, string editAction)
         {
-            try
+            if (ModelState.IsValid && acc != null)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                TempData["editResult"] = "Successfully edited the selected account.";
+                if (editAction == "Add")
+                {
+                    this.accLogic.AddNewAccount(acc.Name, acc.Email, acc.Address, acc.BirthDate, acc.Minute ?? 0, acc.Monthly ?? 0);
+                }
+                else
+                {
+                    bool success = this.accLogic.UpdateAccountData(acc.AccountId, acc.Name, acc.Email, acc.Address, acc.BirthDate, acc.Minute ?? 0, acc.Monthly ?? 0);
+                    if (!success)
+                    {
+                        TempData["editResult"] = "Failed to edit the selected account.";
+                    }
+                }
+                return RedirectToAction(nameof(Index));
             }
-            catch
+            else
             {
-                return View();
+                ViewData["editAction"] = "Edit";
+                vm.CurrentlyEdited = acc;
+                return View("AccountIndex", vm);
             }
         }
 
         // GET: Accounts/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        // POST: Accounts/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
+            TempData["editResult"] = "delete failed";
+            if (this.accLogic.DeleteAccountData(id))
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                TempData["editResult"] = "Account successfully deleted.";
             }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction(nameof(Index));
         }
     }
 }
