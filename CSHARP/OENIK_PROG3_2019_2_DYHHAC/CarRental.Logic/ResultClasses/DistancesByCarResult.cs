@@ -11,7 +11,7 @@ namespace CarRental.Logic
     using System.Threading.Tasks;
 
     /// <summary>
-    /// This class contains the result of <see cref="ILogic.GetDistanceByCar"/>.
+    /// This class contains the result of <see cref="IBusinessLogic.GetDistanceByCar"/>.
     /// </summary>
     public class DistancesByCarResult
     {

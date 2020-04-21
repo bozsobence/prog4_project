@@ -11,7 +11,7 @@ namespace CarRental.Logic
     using System.Threading.Tasks;
 
     /// <summary>
-    /// This class contains the result of <see cref="ILogic.GetOverallIncome"/>.
+    /// This class contains the result of <see cref="IBusinessLogic.GetOverallIncome"/>.
     /// </summary>
     public class OverallIncomeResult
     {
