@@ -17,14 +17,27 @@ namespace CarRental.Program
     /// </summary>
     public class Display
     {
-        private ILogic logic;
+        private IBusinessLogic businessLogic;
+        private IAccountLogic accLogic;
+        private ICarLogic carLogic;
+        private ILicenseLogic licenseLogic;
+        private IRentLogic rentLogic;
+        private IComplaintLogic complaintLogic;
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Display"/> class.
         /// </summary>
         public Display()
         {
-            this.logic = BusinessLogic.CreateLogic();
+
+            LogicFactory lf = new LogicFactory();
+            this.accLogic = lf.GetAccountLogic();
+            this.carLogic = lf.GetCarLogic();
+            this.licenseLogic = lf.GetLicenseLogic();
+            this.rentLogic = lf.GetRentLogic();
+            this.complaintLogic = lf.GetComplaintLogic();
+            this.businessLogic = lf.GetBusinessLogic();
         }
 
         /// <summary>
@@ -121,13 +134,13 @@ namespace CarRental.Program
         private void GetOverallIncome()
         {
             Console.WriteLine(">> PÉNZÜGYI STATISZTIKÁK <<\n");
-            Console.WriteLine(this.logic.GetOverallIncome());
+            Console.WriteLine(this.businessLogic.GetOverallIncome());
         }
 
         private void GetDailyIncome()
         {
             Console.WriteLine(">> PÉNZÜGYI STATISZTIKÁK NAPI BONTÁSBAN <<\n");
-            var incomes = this.logic.GetDailyIncome();
+            var incomes = this.businessLogic.GetDailyIncome();
             for (int i = 1; i < 13; i++)
             {
                 Console.WriteLine($">> HÓNAP: {i}.");
@@ -142,13 +155,13 @@ namespace CarRental.Program
         private void GetUserWithMostRents()
         {
             Console.WriteLine(">> LEGTÖBB BÉRLÉST INDÍTÓ FELHASZNÁLÓ <<\n");
-            Console.WriteLine(this.logic.GetUserWithMostRents());
+            Console.WriteLine(this.businessLogic.GetUserWithMostRents());
         }
 
         private void GetDistanceByCar()
         {
             Console.WriteLine(">> KILOMÉTERÓRA ÁLLÁSA AUTÓNKÉNT LEBONTVA <<\n");
-            var res = this.logic.GetDistanceByCar();
+            var res = this.businessLogic.GetDistanceByCar();
 
             foreach (var car in res)
             {
@@ -159,7 +172,7 @@ namespace CarRental.Program
         private void GetRentsByUser()
         {
             Console.WriteLine(">> BÉRLÉSEK SZÁMA FELHASZNÁLÓNKÉNTI BONTÁSBAN <<\n");
-            var rents = this.logic.GetRentsByUser();
+            var rents = this.businessLogic.GetRentsByUser();
             foreach (var user in rents)
             {
                 Console.WriteLine(user);
@@ -176,7 +189,7 @@ namespace CarRental.Program
                 if (table.ToUpper().Contains("ACCOUNT"))
                 {
                     Console.WriteLine(">> 'ACCOUNTS' TÁBLA ADATAI <<\n");
-                    var accData = this.logic.GetAccountData();
+                    var accData = this.accLogic.GetAccountData();
                     foreach (var acc in accData)
                     {
                         Console.WriteLine(string.Format($"> ID: {acc.AccountId} | NÉV: {acc.Name} | EMAIL: {acc.Email} | LAKHELY: {acc.Address} |  SZÜLETÉSI IDŐ: {acc.BirthDate.Date.ToString()} | PERCDÍJ: {acc.Minute} | HAVIDÍJ: {acc.Monthly}"));
@@ -187,7 +200,7 @@ namespace CarRental.Program
                 else if (table.ToUpper().Contains("CAR"))
                 {
                     Console.WriteLine(">> 'CARS' TÁBLA ADATAI <<\n");
-                    var carData = this.logic.GetCarData();
+                    var carData = this.carLogic.GetCarData();
                     foreach (var car in carData)
                     {
                         Console.WriteLine(string.Format($"> RENDSZÁM: {car.CarId} | MÁRKA: {car.Brand} | MODELL: {car.Model} | AKKUMULÁTOR: {car.Battery}% | EXTRA ÁR: {car.ExtraPrice}"));
@@ -198,7 +211,7 @@ namespace CarRental.Program
                 else if (table.ToUpper().Contains("LICENSE"))
                 {
                     Console.WriteLine(">> 'LICENSES' TÁBLA ADATAI <<\n");
-                    var licenseData = this.logic.GetLicenseData();
+                    var licenseData = this.licenseLogic.GetLicenseData();
                     foreach (var lic in licenseData)
                     {
                         Console.WriteLine(string.Format($"> ID: {lic.LicenseId} | FELHASZNÁLÓ ID: {lic.AccountId} | KATEGÓRIA: {lic.Category} | ÉRVÉNYESSÉG KEZDETE: {lic.StartDate.ToString()} | ÉRVÉNYESSÉG VÉGE: {lic.ExpiryDate} | BÜNTETŐPONTOK: {lic.PenaltyPoints}"));
@@ -209,7 +222,7 @@ namespace CarRental.Program
                 else if (table.ToUpper().Contains("RENT"))
                 {
                     Console.WriteLine(">> 'RENTS' TÁBLA ADATAI <<\n");
-                    var rentData = this.logic.GetRentData();
+                    var rentData = this.rentLogic.GetRentData();
                     foreach (var rent in rentData)
                     {
                         Console.WriteLine(string.Format($"> ID: {rent.RentId} | FELHASZNÁLÓ ID: {rent.AccountId} | AUTÓ: {rent.CarId} | KEZDET: {rent.StartTime.ToString()} | VÉGE: {rent.EndTime.ToString()} | TÁVOLSÁG: {rent.Distance} | ÁR: {rent.Price}"));
@@ -220,7 +233,7 @@ namespace CarRental.Program
                 else if (table.ToUpper().Contains("COMPLAINT"))
                 {
                     Console.WriteLine(">> 'COMPLAINT' TÁBLA ADATAI <<\n");
-                    var complaintData = this.logic.GetComplaintData();
+                    var complaintData = this.complaintLogic.GetComplaintData();
                     foreach (var comp in complaintData)
                     {
                         Console.WriteLine(string.Format($"> ID: {comp.ComplaintId} | BÉRLÉS ID: {comp.RentId} | LEÍRÁS: {comp.Description} | IDŐPONT: {comp.Time.ToString()} | STÁTUSZ: {comp.Chk}"));
@@ -258,7 +271,7 @@ namespace CarRental.Program
                     int minute = int.Parse(Console.ReadLine());
                     Console.WriteLine("Add meg a havidíjat! (csak szám lehet)");
                     int monthly = int.Parse(Console.ReadLine());
-                    bool success = this.logic.AddNewAccount(name, email, address, birthdate, minute, monthly);
+                    bool success = this.accLogic.AddNewAccount(name, email, address, birthdate, minute, monthly);
                     string msg = success ? "Sikeres hozzáadás." : "Hiba történt a hozzáadás során.";
                     Console.WriteLine(msg);
                 }
@@ -275,7 +288,7 @@ namespace CarRental.Program
                     Console.WriteLine("Add meg a felár értékét! (0 ha nincs)");
                     int extra = int.Parse(Console.ReadLine());
 
-                    bool success = this.logic.AddNewCar(plate, brand, model, battery, extra);
+                    bool success = this.carLogic.AddNewCar(plate, brand, model, battery, extra);
                     string msg = success ? "Sikeres hozzáadás." : "Hiba történt a hozzáadás során.";
                     Console.WriteLine(msg);
                 }
@@ -294,7 +307,7 @@ namespace CarRental.Program
                     Console.WriteLine("Add meg a büntetőpontok számát!");
                     int penalty = int.Parse(Console.ReadLine());
 
-                    bool success = this.logic.AddNewLicense(licenseId, accId, category, start, expiry, penalty);
+                    bool success = this.licenseLogic.AddNewLicense(licenseId, accId, category, start, expiry, penalty);
                     string msg = success ? "Sikeres hozzáadás." : "Hiba történt a hozzáadás során.";
                     Console.WriteLine(msg);
                 }
@@ -313,7 +326,7 @@ namespace CarRental.Program
                     Console.WriteLine("Add meg a bérlés árát!");
                     int price = int.Parse(Console.ReadLine());
 
-                    bool success = this.logic.AddNewRent(accountId, carId, start, end, distance, price);
+                    bool success = this.rentLogic.AddNewRent(accountId, carId, start, end, distance, price);
                     string msg = success ? "Sikeres hozzáadás." : "Hiba történt a hozzáadás során.";
                     Console.WriteLine(msg);
                 }
@@ -328,7 +341,7 @@ namespace CarRental.Program
                     Console.WriteLine("Add meg hogy ellenőrizve lett-e a bejelentés! (0 vagy 1 lehet)");
                     int chk = int.Parse(Console.ReadLine());
 
-                    bool success = this.logic.AddNewComplaint(rentId, description, time, chk);
+                    bool success = this.complaintLogic.AddNewComplaint(rentId, description, time, chk);
                     string msg = success ? "Sikeres hozzáadás." : "Hiba történt a hozzáadás során.";
                     Console.WriteLine(msg);
                 }
@@ -369,7 +382,7 @@ namespace CarRental.Program
                     cr = Console.ReadLine();
                     int monthly = cr != string.Empty ? int.Parse(cr) : -1;
 
-                    bool success = this.logic.UpdateAccountData(id, name, email, address, birthdate, minute, monthly);
+                    bool success = this.accLogic.UpdateAccountData(id, name, email, address, birthdate, minute, monthly);
                     string msg = success ? "Sikeres módosítás." : "Hiba történt a módosítás során.";
                     Console.WriteLine(msg);
                 }
@@ -388,7 +401,7 @@ namespace CarRental.Program
                     cr = Console.ReadLine();
                     int extra = cr != string.Empty ? int.Parse(cr) : -1;
 
-                    bool success = this.logic.UpdateCarData(plate, brand, model, battery, extra);
+                    bool success = this.carLogic.UpdateCarData(plate, brand, model, battery, extra);
                     string msg = success ? "Sikeres módosítás." : "Hiba történt a módosítás során.";
                     Console.WriteLine(msg);
                 }
@@ -413,7 +426,7 @@ namespace CarRental.Program
                     cr = Console.ReadLine();
                     int penalty = cr != string.Empty ? int.Parse(cr) : -1;
 
-                    bool success = this.logic.UpdateLicenseData(licenseId, accId, category, start, expiry, penalty);
+                    bool success = this.licenseLogic.UpdateLicenseData(licenseId, accId, category, start, expiry, penalty);
                     string msg = success ? "Sikeres módosítás." : "Hiba történt a módosítás során.";
                     Console.WriteLine(msg);
                     if (!expiryParse || !startParse)
@@ -444,7 +457,7 @@ namespace CarRental.Program
                     Console.WriteLine("Add meg a bérlés árát!");
                     cr = Console.ReadLine();
                     int price = cr != string.Empty ? int.Parse(cr) : -1;
-                    bool success = this.logic.UpdateRentData(rentId, accountId, carId, start, end, distance, price);
+                    bool success = this.rentLogic.UpdateRentData(rentId, accountId, carId, start, end, distance, price);
                     string msg = success ? "Sikeres módosítás." : "Hiba történt a módosítás során.";
                     Console.WriteLine(msg);
                     if (!endParse || !startParse)
@@ -469,7 +482,7 @@ namespace CarRental.Program
                     cr = Console.ReadLine();
                     int chk = cr != string.Empty ? int.Parse(cr) : -1;
 
-                    bool success = this.logic.UpdateComplaintData(compId, rentId, description, time, chk);
+                    bool success = this.complaintLogic.UpdateComplaintData(compId, rentId, description, time, chk);
                     string msg = success ? "Sikeres módosítás." : "Hiba történt a módosítás során.";
                     Console.WriteLine(msg);
                     if (!timeParse)
@@ -498,7 +511,7 @@ namespace CarRental.Program
                 {
                     Console.WriteLine("Add meg a felhasználó azonosítóját amit törölni szeretnél!");
                     int id = int.Parse(Console.ReadLine());
-                    bool success = this.logic.DeleteAccountData(id);
+                    bool success = this.accLogic.DeleteAccountData(id);
                     string msg = success ? "Sikeres törlés." : "Hiba történt a törlés során.";
                     Console.WriteLine(msg);
                 }
@@ -506,7 +519,7 @@ namespace CarRental.Program
                 {
                     Console.WriteLine("Add meg az autó rendszámát amit törölni szeretnél!");
                     string plate = Console.ReadLine();
-                    bool success = this.logic.DeleteCarData(plate);
+                    bool success = this.carLogic.DeleteCarData(plate);
                     string msg = success ? "Sikeres törlés." : "Hiba történt a törlés során.";
                     Console.WriteLine(msg);
                 }
@@ -514,7 +527,7 @@ namespace CarRental.Program
                 {
                     Console.WriteLine("Add meg a jogosítvány számát amit törölni szeretnél!");
                     string id = Console.ReadLine();
-                    bool success = this.logic.DeleteLicenseData(id);
+                    bool success = this.licenseLogic.DeleteLicenseData(id);
                     string msg = success ? "Sikeres törlés." : "Hiba történt a törlés során.";
                     Console.WriteLine(msg);
                 }
@@ -522,7 +535,7 @@ namespace CarRental.Program
                 {
                     Console.WriteLine("Add meg a bérlés azonosítóját amit törölni szeretnél!");
                     int id = int.Parse(Console.ReadLine());
-                    bool success = this.logic.DeleteRentData(id);
+                    bool success = this.rentLogic.DeleteRentData(id);
                     string msg = success ? "Sikeres törlés." : "Hiba történt a törlés során.";
                     Console.WriteLine(msg);
                 }
@@ -530,7 +543,7 @@ namespace CarRental.Program
                 {
                     Console.WriteLine("Add meg a bejelentés azonosítóját amit törölni szeretnél!");
                     int id = int.Parse(Console.ReadLine());
-                    bool success = this.logic.DeleteComplaintData(id);
+                    bool success = this.complaintLogic.DeleteComplaintData(id);
                     string msg = success ? "Sikeres törlés." : "Hiba történt a törlés során.";
                     Console.WriteLine(msg);
                 }
@@ -557,7 +570,7 @@ namespace CarRental.Program
             Console.WriteLine("Válaszd ki milyen kategóriájú autót vezetnél szívesen:");
             Console.WriteLine("1 - olcsó\n2 - normál\n3 - prémium\n");
             category = int.Parse(Console.ReadLine());
-            string xml = this.logic.GetRecommendationFromJava(minute, size, category);
+            string xml = this.businessLogic.GetRecommendationFromJava(minute, size, category);
             Console.WriteLine(xml);
         }
 
@@ -569,7 +582,7 @@ namespace CarRental.Program
                 Console.WriteLine("Add meg az autó rendszámát, aminek a statisztikáit meg akarod jeleníteni!");
                 string id = Console.ReadLine();
                 Console.WriteLine(">> MEGADOTT AUTÓ STATISZTIKÁI <<");
-                Console.WriteLine(this.logic.GetCarStats(id));
+                Console.WriteLine(this.businessLogic.GetCarStats(id));
                 success = true;
             }
             while (!success);
@@ -577,11 +590,11 @@ namespace CarRental.Program
 
         private void GetAllCarStats()
         {
-            var cars = this.logic.GetCarData();
+            var cars = this.carLogic.GetCarData();
             Console.WriteLine(">> AUTÓK STATISZTIKÁI <<\n");
             foreach (var car in cars)
             {
-                Console.WriteLine(this.logic.GetCarStats(car.CarId));
+                Console.WriteLine(this.businessLogic.GetCarStats(car.CarId));
             }
         }
 
