@@ -1,0 +1,15 @@
+﻿@model CarRental.Web.Models.AccountsViewModel
+@{
+    ViewBag.Title = "AccountIndex";
+}
+
+<h2>Account Main Page</h2>
+<div class="bg-warning">
+    @TempData["editResult"]
+</div>
+
+@Html.Partial("AccountEdit", Model.CurrentlyEdited)
+<div class="divider">
+
+</div>
+@Html.Partial("AccountList", Model.AccountsInDatabase)
