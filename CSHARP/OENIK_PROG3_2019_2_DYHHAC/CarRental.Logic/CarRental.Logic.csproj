@@ -10,11 +10,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CarRental.Logic</RootNamespace>
     <AssemblyName>CarRental.Logic</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,11 +39,8 @@
     <CodeAnalysisRuleSet>oenik.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CarRental.Data">
-      <HintPath>..\CarRental.Data\bin\Debug\CarRental.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="CarRental.Repository">
-      <HintPath>..\CarRental.Repository\bin\Debug\CarRental.Repository.dll</HintPath>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
@@ -61,10 +59,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountLogic.cs" />
+    <Compile Include="CarLogic.cs" />
+    <Compile Include="ComplaintLogic.cs" />
+    <Compile Include="DTO\Account.cs" />
+    <Compile Include="DTO\Car.cs" />
+    <Compile Include="DTO\Complaint.cs" />
+    <Compile Include="DTO\License.cs" />
+    <Compile Include="DTO\Rent.cs" />
+    <Compile Include="IAccountLogic.cs" />
+    <Compile Include="ICarLogic.cs" />
+    <Compile Include="IComplaintLogic.cs" />
+    <Compile Include="ILicenseLogic.cs" />
+    <Compile Include="IRentLogic.cs" />
+    <Compile Include="LicenseLogic.cs" />
+    <Compile Include="LogicFactory.cs" />
+    <Compile Include="MapperFactory.cs" />
+    <Compile Include="RentLogic.cs" />
     <Compile Include="ResultClasses\CarStats.cs" />
     <Compile Include="ResultClasses\DailyIncomeResult.cs" />
     <Compile Include="ResultClasses\DistancesByCarResult.cs" />
-    <Compile Include="ILogic.cs" />
+    <Compile Include="IBusinessLogic.cs" />
     <Compile Include="BusinessLogic.cs" />
     <Compile Include="ResultClasses\OverallIncomeResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,6 +95,16 @@
   <ItemGroup>
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CarRental.Data\CarRental.Data.csproj">
+      <Project>{5349df91-004b-4e03-be02-02622b6796c3}</Project>
+      <Name>CarRental.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CarRental.Repository\CarRental.Repository.csproj">
+      <Project>{d1dee4fc-ebd3-4525-b076-936f36b58f5c}</Project>
+      <Name>CarRental.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

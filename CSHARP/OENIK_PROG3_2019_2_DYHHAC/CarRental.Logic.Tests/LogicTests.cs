@@ -28,7 +28,13 @@ namespace CarRental.Logic.Tests
         private Mock<IRepository<Rent, int>> rentRepo;
         private Mock<IRepository<Complaint, int>> complaintRepo;
 
-        private ILogic mockedLogic;
+        private IBusinessLogic businessLogic;
+        private IAccountLogic accLogic;
+        private ICarLogic carLogic;
+        private ILicenseLogic licenseLogic;
+        private IRentLogic rentLogic;
+        private IComplaintLogic complaintLogic;
+
         private List<Account> accounts;
         private List<Car> cars;
         private List<Rent> rents;
@@ -145,7 +151,12 @@ namespace CarRental.Logic.Tests
             this.rentRepo.Setup(x => x.GetAll()).Returns(this.rents.AsQueryable());
             this.licenseRepo.Setup(x => x.GetAll()).Returns(this.licenses.AsQueryable());
             this.complaintRepo.Setup(x => x.GetAll()).Returns(this.complaints.AsQueryable());
-            this.mockedLogic = new BusinessLogic(this.accountRepo.Object, this.carRepo.Object, this.licenseRepo.Object, this.rentRepo.Object, this.complaintRepo.Object);
+            this.businessLogic = new BusinessLogic(this.accountRepo.Object, this.carRepo.Object, this.licenseRepo.Object, this.rentRepo.Object, this.complaintRepo.Object);
+            this.accLogic = new AccountLogic(this.accountRepo.Object);
+            this.rentLogic = new RentLogic(this.rentRepo.Object);
+            this.licenseLogic = new LicenseLogic(this.licenseRepo.Object);
+            this.complaintLogic = new ComplaintLogic(this.complaintRepo.Object);
+            this.carLogic = new CarLogic(this.carRepo.Object);
         }
 
         /// <summary>
@@ -154,7 +165,7 @@ namespace CarRental.Logic.Tests
         [Test]
         public void WhenAddAccount_WithCorrectInput_ItGetsAddedToRepository()
         {
-            bool success = this.mockedLogic.AddNewAccount("Teszt Elek", "teszt.elek@gmail.com", "Budapest", DateTime.Parse("1996-01-11"), 50, 1000);
+            bool success = this.accLogic.AddNewAccount("Teszt Elek", "teszt.elek@gmail.com", "Budapest", DateTime.Parse("1996-01-11"), 50, 1000);
             this.accountRepo.Verify(x => x.Add(It.IsAny<Account>()), Times.Once);
             Assert.That(success == true);
         }
@@ -165,7 +176,7 @@ namespace CarRental.Logic.Tests
         [Test]
         public void WhenAddAccount_WithIncorrectInput_ItThrowsException()
         {
-            Assert.Throws<FormatException>(() => this.mockedLogic.AddNewAccount("Teszt Elek", "teszt.elek@gmail.com", "Budapest", DateTime.Parse("123465"), 50, 1000));
+            Assert.Throws<FormatException>(() => this.accLogic.AddNewAccount("Teszt Elek", "teszt.elek@gmail.com", "Budapest", DateTime.Parse("123465"), 50, 1000));
             this.accountRepo.Verify(x => x.Add(It.IsAny<Account>()), Times.Never);
         }
 
@@ -175,7 +186,7 @@ namespace CarRental.Logic.Tests
         [Test]
         public void WhenAddCar_WithCorrectInput_ItGetsAddedToRepository()
         {
-            bool success = this.mockedLogic.AddNewCar("NNX-845", "Volkswagen", "e-Golf", 100, 100);
+            bool success = this.carLogic.AddNewCar("NNX-845", "Volkswagen", "e-Golf", 100, 100);
             this.carRepo.Verify(x => x.Add(It.IsAny<Car>()), Times.Once);
             Assert.That(success == true);
         }
@@ -186,7 +197,7 @@ namespace CarRental.Logic.Tests
         [Test]
         public void WhenAddCar_WithIncorrectInput_ItThrowsException()
         {
-            Assert.Throws<FormatException>(() => this.mockedLogic.AddNewCar("NNX-845", "1", "2", 999999999, 99999));
+            Assert.Throws<FormatException>(() => this.carLogic.AddNewCar("NNX-845", "1", "2", 999999999, 99999));
             this.carRepo.Verify(x => x.Add(It.IsAny<Car>()), Times.Never);
         }
 
@@ -196,7 +207,7 @@ namespace CarRental.Logic.Tests
         [Test]
         public void WhenAddLicense_WithCorrectInput_ItGetsAddedToRepository()
         {
-            bool success = this.mockedLogic.AddNewLicense("SA12345", 1, "B", DateTime.Parse("2018-01-12"), DateTime.Parse("2022-01-12"), 0);
+            bool success = this.licenseLogic.AddNewLicense("SA12345", 1, "B", DateTime.Parse("2018-01-12"), DateTime.Parse("2022-01-12"), 0);
             this.licenseRepo.Verify(x => x.Add(It.IsAny<License>()), Times.Once);
             Assert.That(success == true);
         }
@@ -207,7 +218,7 @@ namespace CarRental.Logic.Tests
         [Test]
         public void WhenAddLicense_WithIncorrectInput_ItThrowsException()
         {
-            Assert.Throws<FormatException>(() => this.mockedLogic.AddNewLicense("SA1234564", 50, "B", DateTime.Parse("1234-41-515"), DateTime.Parse("12452-15-52"), 50500));
+            Assert.Throws<FormatException>(() => this.licenseLogic.AddNewLicense("SA1234564", 50, "B", DateTime.Parse("1234-41-515"), DateTime.Parse("12452-15-52"), 50500));
             this.licenseRepo.Verify(x => x.Add(It.IsAny<License>()), Times.Never);
         }
 
@@ -217,7 +228,7 @@ namespace CarRental.Logic.Tests
         [Test]
         public void WhenAddRent_WithCorrectInput_ItGetsAddedToRepository()
         {
-            bool success = this.mockedLogic.AddNewRent(1, "REM-990", DateTime.Parse("2019-11-23 21:22:00"), DateTime.Parse("2019-11-23 21:40:00"), 10, 1300);
+            bool success = this.rentLogic.AddNewRent(1, "REM-990", DateTime.Parse("2019-11-23 21:22:00"), DateTime.Parse("2019-11-23 21:40:00"), 10, 1300);
             this.rentRepo.Verify(x => x.Add(It.IsAny<Rent>()), Times.Once);
             Assert.That(success == true);
         }
@@ -228,7 +239,7 @@ namespace CarRental.Logic.Tests
         [Test]
         public void WhenAddRent_WithIncorrectInput_ItThrowsException()
         {
-            Assert.Throws<FormatException>(() => this.mockedLogic.AddNewRent(1, "REM990", DateTime.Parse("201911-23 29:32:00"), DateTime.Parse("2019-121-213 21:40:00"), 10, 1300));
+            Assert.Throws<FormatException>(() => this.rentLogic.AddNewRent(1, "REM990", DateTime.Parse("201911-23 29:32:00"), DateTime.Parse("2019-121-213 21:40:00"), 10, 1300));
             this.rentRepo.Verify(x => x.Add(It.IsAny<Rent>()), Times.Never);
         }
 
@@ -238,7 +249,7 @@ namespace CarRental.Logic.Tests
         [Test]
         public void WhenAddComplaint_WithCorrectInput_ItGetsAddedToRepository()
         {
-            bool success = this.mockedLogic.AddNewComplaint(5, "Nem indul a kocsi.", DateTime.Now, 0);
+            bool success = this.complaintLogic.AddNewComplaint(5, "Nem indul a kocsi.", DateTime.Now, 0);
             this.complaintRepo.Verify(x => x.Add(It.IsAny<Complaint>()), Times.Once);
             Assert.That(success == true);
         }
@@ -249,215 +260,215 @@ namespace CarRental.Logic.Tests
         [Test]
         public void WhenAddComplaint_WithIncorrectInput_ItThrowsException()
         {
-            Assert.Throws<FormatException>(() => this.mockedLogic.AddNewComplaint(5, "asdf", DateTime.Parse("1235+5152-51"), 5));
+            Assert.Throws<FormatException>(() => this.complaintLogic.AddNewComplaint(5, "asdf", DateTime.Parse("1235+5152-51"), 5));
             this.complaintRepo.Verify(x => x.Add(It.IsAny<Complaint>()), Times.Never);
         }
 
         /// <summary>
-        /// Tests if the <see cref="ILogic.GetAccountData"/> returns the correct data set.
+        /// Tests if the <see cref="IAccountLogic.GetAccountData"/> returns the correct data set.
         /// </summary>
         [Test]
         public void WhenGetAccountData_ReturnsRepositoryData()
         {
-            IQueryable<Account> acc = this.mockedLogic.GetAccountData();
+            var acc = this.accLogic.GetAccountData();
             this.accountRepo.Verify(x => x.GetAll(), Times.Once);
             Assert.That(acc, Is.EqualTo(this.accounts));
         }
 
         /// <summary>
-        /// Tests if the <see cref="ILogic.GetCarData"/> returns the correct data set.
+        /// Tests if the <see cref="ICarLogic.GetCarData"/> returns the correct data set.
         /// </summary>
         [Test]
         public void WhenGetCarData_ReturnsRepositoryData()
         {
-            IQueryable<Car> car = this.mockedLogic.GetCarData();
+            var car = this.carLogic.GetCarData();
             this.carRepo.Verify(x => x.GetAll(), Times.Once);
             Assert.That(car, Is.EqualTo(this.cars));
         }
 
         /// <summary>
-        /// Tests if the <see cref="ILogic.GetLicenseData"/> returns the correct data set.
+        /// Tests if the <see cref="ILicenseLogic.GetLicenseData"/> returns the correct data set.
         /// </summary>
         [Test]
         public void WhenGetLicenseData_ReturnsRepositoryData()
         {
-            IQueryable<License> lic = this.mockedLogic.GetLicenseData();
+            var lic = this.licenseLogic.GetLicenseData();
             this.licenseRepo.Verify(x => x.GetAll(), Times.Once);
             Assert.That(lic, Is.EqualTo(this.licenses));
         }
 
         /// <summary>
-        /// Tests if the <see cref="ILogic.GetRentData"/> returns the correct data set.
+        /// Tests if the <see cref="IRentLogic.GetRentData"/> returns the correct data set.
         /// </summary>
         [Test]
         public void WhenGetRentData_ReturnsRepositoryData()
         {
-            IQueryable<Rent> r = this.mockedLogic.GetRentData();
+            var r = this.rentLogic.GetRentData();
             this.rentRepo.Verify(x => x.GetAll(), Times.Once);
             Assert.That(r, Is.EqualTo(this.rents));
         }
 
         /// <summary>
-        /// Tests if the <see cref="ILogic.GetComplaintData"/> returns the correct data set.
+        /// Tests if the <see cref="IComplaintLogic.GetComplaintData"/> returns the correct data set.
         /// </summary>
         [Test]
         public void WhenGetComplaintData_ReturnsRepositoryData()
         {
-            IQueryable<Complaint> c = this.mockedLogic.GetComplaintData();
+            var c = this.complaintLogic.GetComplaintData();
             this.complaintRepo.Verify(x => x.GetAll(), Times.Once);
             Assert.That(c, Is.EqualTo(this.complaints));
         }
 
         /// <summary>
-        /// Tests if the <see cref="ILogic.UpdateAccountData(int, string, string, string, DateTime, int, int)"/> calls the <see cref="IRepository{T, TK}.Update(TK, T)"/> method.
+        /// Tests if the <see cref="IAccountLogic.UpdateAccountData(int, string, string, string, DateTime, int, int)"/> calls the <see cref="IRepository{T, TK}.Update(TK, T)"/> method.
         /// </summary>
         [Test]
         public void WhenUpdateAccountData_ItGetsUpdatedInRepository()
         {
-            bool success = this.mockedLogic.UpdateAccountData(2, "Teszt Lajos", "teszt.lajos@gmail.com", "New York", DateTime.Now, 50, 1000);
+            bool success = this.accLogic.UpdateAccountData(2, "Teszt Lajos", "teszt.lajos@gmail.com", "New York", DateTime.Now, 50, 1000);
             this.accountRepo.Verify(x => x.Update(2, It.IsAny<Account>()), Times.Once);
             Assert.IsTrue(success);
         }
 
         /// <summary>
-        /// Tests if the <see cref="ILogic.UpdateCarData(string, string, string, int, int)"/> calls the <see cref="IRepository{T, TK}.Update(TK, T)"/> method.
+        /// Tests if the <see cref="ICarLogic.UpdateCarData(string, string, string, int, int)"/> calls the <see cref="IRepository{T, TK}.Update(TK, T)"/> method.
         /// </summary>
         [Test]
         public void WhenUpdateCarData_ItGetsUpdatedInRepository()
         {
-            bool success = this.mockedLogic.UpdateCarData("REM-990", "Teszt", "Teszt", 50, 1500);
+            bool success = this.carLogic.UpdateCarData("REM-990", "Teszt", "Teszt", 50, 1500);
             this.carRepo.Verify(x => x.Update("REM-990", It.IsAny<Car>()), Times.Once);
             Assert.IsTrue(success);
         }
 
         /// <summary>
-        /// Tests if the <see cref="ILogic.UpdateLicenseData(string, int, string, DateTime, DateTime, int)"/> calls the <see cref="IRepository{T, TK}.Update(TK, T)"/> method.
+        /// Tests if the <see cref="ILicenseLogic.UpdateLicenseData(string, int, string, DateTime, DateTime, int)"/> calls the <see cref="IRepository{T, TK}.Update(TK, T)"/> method.
         /// </summary>
         [Test]
         public void WhenUpdateLicenseData_ItGetsUpdatedInRepository()
         {
-            bool success = this.mockedLogic.UpdateLicenseData("HX211743", 1, "B", DateTime.Now, DateTime.Now.AddYears(4), 0);
+            bool success = this.licenseLogic.UpdateLicenseData("HX211743", 1, "B", DateTime.Now, DateTime.Now.AddYears(4), 0);
             this.licenseRepo.Verify(x => x.Update("HX211743", It.IsAny<License>()), Times.Once);
             Assert.IsTrue(success);
         }
 
         /// <summary>
-        /// Tests if the <see cref="ILogic.UpdateRentData(int, int, string, DateTime, DateTime, int, int)"/> calls the <see cref="IRepository{T, TK}.Update(TK, T)"/> method.
+        /// Tests if the <see cref="IRentLogic.UpdateRentData(int, int, string, DateTime, DateTime, int, int)"/> calls the <see cref="IRepository{T, TK}.Update(TK, T)"/> method.
         /// </summary>
         [Test]
         public void WhenUpdateRentData_ItGetsUpdatedInRepository()
         {
-            bool success = this.mockedLogic.UpdateRentData(5, 1, "REM-990", DateTime.Now, DateTime.Now.AddMinutes(32), 15, 2500);
+            bool success = this.rentLogic.UpdateRentData(5, 1, "REM-990", DateTime.Now, DateTime.Now.AddMinutes(32), 15, 2500);
             this.rentRepo.Verify(x => x.Update(5, It.IsAny<Rent>()), Times.Once);
             Assert.IsTrue(success);
         }
 
         /// <summary>
-        /// Tests if the <see cref="ILogic.UpdateComplaintData(int, int, string, DateTime, int)"/> calls the <see cref="IRepository{T, TK}.Update(TK, T)"/> method.
+        /// Tests if the <see cref="IComplaintLogic.UpdateComplaintData(int, int, string, DateTime, int)"/> calls the <see cref="IRepository{T, TK}.Update(TK, T)"/> method.
         /// </summary>
         [Test]
         public void WhenUpdateComplaintData_ItGetsUpdatedInRepository()
         {
-            bool success = this.mockedLogic.UpdateComplaintData(1, 5, "Nem indul az autó.", DateTime.Now, 1);
+            bool success = this.complaintLogic.UpdateComplaintData(1, 5, "Nem indul az autó.", DateTime.Now, 1);
             this.complaintRepo.Verify(x => x.Update(1, It.IsAny<Complaint>()), Times.Once);
             Assert.IsTrue(success);
         }
 
         /// <summary>
-        /// Tests if the <see cref="ILogic.DeleteAccountData(int)"/> calls the <see cref="IRepository{T, TK}.Delete(TK)"/> method.
+        /// Tests if the <see cref="IAccountLogic.DeleteAccountData(int)"/> calls the <see cref="IRepository{T, TK}.Delete(TK)"/> method.
         /// </summary>
         [Test]
         public void WhenDeleteAccountData_ItGetsDeletedInRepository()
         {
-            bool success = this.mockedLogic.DeleteAccountData(1);
+            bool success = this.accLogic.DeleteAccountData(1);
             this.accountRepo.Verify(x => x.Delete(1), Times.Once);
             Assert.IsTrue(success);
         }
 
         /// <summary>
-        /// Tests if the <see cref="ILogic.DeleteCarData(string)"/> calls the <see cref="IRepository{T, TK}.Delete(TK)"/> method.
+        /// Tests if the <see cref="ICarLogic.DeleteCarData(string)"/> calls the <see cref="IRepository{T, TK}.Delete(TK)"/> method.
         /// </summary>
         [Test]
         public void WhenDeleteCarData_ItGetsDeletedInRepository()
         {
-            bool success = this.mockedLogic.DeleteCarData("REM-990");
+            bool success = this.carLogic.DeleteCarData("REM-990");
             this.carRepo.Verify(x => x.Delete("REM-990"), Times.Once);
             Assert.IsTrue(success);
         }
 
         /// <summary>
-        /// Tests if the <see cref="ILogic.DeleteLicenseData(string)"/> calls the <see cref="IRepository{T, TK}.Delete(TK)"/> method.
+        /// Tests if the <see cref="ILicenseLogic.DeleteLicenseData(string)"/> calls the <see cref="IRepository{T, TK}.Delete(TK)"/> method.
         /// </summary>
         [Test]
         public void WhenDeleteLicenseData_ItGetsDeletedInRepository()
         {
-            bool success = this.mockedLogic.DeleteLicenseData("HX211743");
+            bool success = this.licenseLogic.DeleteLicenseData("HX211743");
             this.licenseRepo.Verify(x => x.Delete("HX211743"), Times.Once);
             Assert.IsTrue(success);
         }
 
         /// <summary>
-        /// Tests if the <see cref="ILogic.DeleteRentData(int)"/> calls the <see cref="IRepository{T, TK}.Delete(TK)"/> method.
+        /// Tests if the <see cref="IRentLogic.DeleteRentData(int)"/> calls the <see cref="IRepository{T, TK}.Delete(TK)"/> method.
         /// </summary>
         [Test]
         public void WhenDeleteRentData_ItGetsDeletedInRepository()
         {
-            bool success = this.mockedLogic.DeleteRentData(1);
+            bool success = this.rentLogic.DeleteRentData(1);
             this.rentRepo.Verify(x => x.Delete(1), Times.Once);
             Assert.IsTrue(success);
         }
 
         /// <summary>
-        /// Tests if the <see cref="ILogic.DeleteComplaintData(int)"/> calls the <see cref="IRepository{T, TK}.Delete(TK)"/> method.
+        /// Tests if the <see cref="IComplaintLogic.DeleteComplaintData(int)"/> calls the <see cref="IRepository{T, TK}.Delete(TK)"/> method.
         /// </summary>
         [Test]
         public void WhenDeleteComplaintData_ItGetsDeletedInRepository()
         {
-            bool success = this.mockedLogic.DeleteComplaintData(1);
+            bool success = this.complaintLogic.DeleteComplaintData(1);
             this.complaintRepo.Verify(x => x.Delete(1), Times.Once);
             Assert.IsTrue(success);
         }
 
         /// <summary>
-        /// Tests if the <see cref="ILogic.GetDailyIncome"/> method returns the expected result.
+        /// Tests if the <see cref="IBusinessLogic.GetDailyIncome"/> method returns the expected result.
         /// </summary>
         [Test]
         public void WhenGetDailyIncome_ItReturnsExpectedResult()
         {
-            IEnumerable<DailyIncomeResult> result = this.mockedLogic.GetDailyIncome();
+            IEnumerable<DailyIncomeResult> result = this.businessLogic.GetDailyIncome();
             Assert.That(result.Where(x => x.Month == 10 && x.Day == 2).First().Income == 52000);
             Assert.That(result.Where(x => x.Month == 10 && x.Day == 1).First().Income == 1300);
         }
 
         /// <summary>
-        /// Tests if the <see cref="ILogic.GetOverallIncome"/> method returns the expected result.
+        /// Tests if the <see cref="IBusinessLogic.GetOverallIncome"/> method returns the expected result.
         /// </summary>
         [Test]
         public void WhenGetOverallIncome_ItReturnsExpectedResult()
         {
-            OverallIncomeResult result = this.mockedLogic.GetOverallIncome();
+            OverallIncomeResult result = this.businessLogic.GetOverallIncome();
             Assert.That(result.OverallIncome == 53300);
             Assert.That(result.Average == 26650);
         }
 
         /// <summary>
-        /// Tests if the <see cref="ILogic.GetUserWithMostRents"/> method returns the expected result.
+        /// Tests if the <see cref="IBusinessLogic.GetUserWithMostRents"/> method returns the expected result.
         /// </summary>
         [Test]
         public void WhenGetUserWithMostRents_ItReturnsExpectedResult()
         {
-            RentsByUserResult result = this.mockedLogic.GetUserWithMostRents();
+            RentsByUserResult result = this.businessLogic.GetUserWithMostRents();
             Assert.That(result.AccountName == "Vincze Kata");
             Assert.That(result.Count == 5);
         }
 
         /// <summary>
-        /// Tests if the <see cref="ILogic.GetDistanceByCar"/> method returns the expected result.
+        /// Tests if the <see cref="IBusinessLogic.GetDistanceByCar"/> method returns the expected result.
         /// </summary>
         [Test]
         public void WhenGetDistanceByCar_ItReturnsExpectedResult()
         {
-            IEnumerable<DistancesByCarResult> result = this.mockedLogic.GetDistanceByCar();
+            IEnumerable<DistancesByCarResult> result = this.businessLogic.GetDistanceByCar();
             Assert.That(result.Where(x => x.Car == "REM-990").First().Distance == 18);
             Assert.That(result.Where(x => x.Car == "RZF-406").First().Distance == 92);
             Assert.That(result.Where(x => x.Car == "RMB-898").First().Distance == 3);
@@ -472,12 +483,12 @@ namespace CarRental.Logic.Tests
         }
 
         /// <summary>
-        /// Tests if the <see cref="ILogic.GetRentsByUser"/> method returns the expected result by testing the corner cases (user with most and least rents).
+        /// Tests if the <see cref="IBusinessLogic.GetRentsByUser"/> method returns the expected result by testing the corner cases (user with most and least rents).
         /// </summary>
         [Test]
         public void WhenGetRentsByUser_ItReturnsExpectedResult()
         {
-            IEnumerable<RentsByUserResult> result = this.mockedLogic.GetRentsByUser();
+            IEnumerable<RentsByUserResult> result = this.businessLogic.GetRentsByUser();
 
             Assert.That(result.OrderByDescending(x => x.Count).First().AccountName == "Vincze Kata");
             Assert.That(result.OrderByDescending(x => x.Count).First().Count == 5);

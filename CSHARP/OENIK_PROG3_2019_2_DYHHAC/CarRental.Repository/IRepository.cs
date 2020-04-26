@@ -29,7 +29,7 @@ namespace CarRental.Repository
         /// Returns all objects of the database (table).
         /// </summary>
         /// <returns>All objects of the database (table).</returns>
-        IQueryable<T> GetAll();
+        IEnumerable<T> GetAll();
 
         /// <summary>
         /// Adds a new element to the database.
