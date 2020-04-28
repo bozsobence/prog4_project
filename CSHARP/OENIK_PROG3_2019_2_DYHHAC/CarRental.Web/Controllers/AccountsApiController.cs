@@ -28,7 +28,7 @@ namespace CarRental.Web.Controllers
             this.mapper = Models.MapperFactory.CreateMapper();
         }
 
-        // GET: api/CarsApi
+        // GET: api/AccountsApi
         [ActionName("all")]
         [HttpGet]
         public IEnumerable<Account> GetAll()
@@ -37,7 +37,7 @@ namespace CarRental.Web.Controllers
             return mapper.Map<IEnumerable<Logic.DTO.Account>, IEnumerable<Web.Models.Account>>(accounts);
         }
 
-        // GET: api/CarsApi/del/id
+        // GET: api/AccountsApi/del/id
         [ActionName("del")]
         [HttpGet]
         public ApiResult DeleteAccount(int id)
