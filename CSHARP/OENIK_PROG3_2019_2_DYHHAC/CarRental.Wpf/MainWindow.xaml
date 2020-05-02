@@ -5,8 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarRental.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        Loaded="Window_Loaded"
+        Closing="Window_Closing">
+    <Window.DataContext>
+        <local:MainVM />
+    </Window.DataContext>
     <Grid>
-        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <DataGrid ItemsSource="{Binding Path=AllAccounts}" SelectedItem="{Binding Path=SelectedAccount}" IsReadOnly="False" HorizontalAlignment="Left" Height="354" Margin="10,55,0,0" VerticalAlignment="Top" Width="772"/>
+            <Button Content="LOAD" Command="{Binding Path=LoadCmd}" HorizontalAlignment="Left" Margin="238,20,0,0" VerticalAlignment="Top" Width="76"/>
+            <Button Content="ADD NEW" Command="{Binding Path=AddCmd}" HorizontalAlignment="Left" Margin="318,20,0,0" VerticalAlignment="Top" Width="76"/>
+            <Button Content="MODIFY" Command="{Binding Path=ModCmd}" HorizontalAlignment="Left" Margin="398,20,0,0" VerticalAlignment="Top" Width="76"/>
+            <Button Content="DELETE" Command="{Binding Path=DelCmd}" HorizontalAlignment="Left" Margin="478,20,0,0" VerticalAlignment="Top" Width="76"/>
+
+        </Grid>
     </Grid>
 </Window>
