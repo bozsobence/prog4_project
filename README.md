@@ -30,3 +30,17 @@ Jelen projekthez is ezt az adatbázist használtam fel, némileg átalakítva.
     * Autók hozzáadása, módosítása, törlése
     * Bérlések adatainak hozzáadása, módosítása, törlése
 * A Java projekttel a felhasználó a várható használati adatok megadása után  megkapja a számára legoptimálisabb előfizetési konstrukciót.
+
+# A projekt komponensei
+
+* Konzol alkalmazás ([CarRental.Program](https://github.com/bozsobence/prog4_project/tree/master/CSHARP/OENIK_PROG3_2019_2_DYHHAC/CarRental.Program))
+    * CRUD műveleteket tesz lehetővé
+    * Előre meghatározott lekérdezések eredményét jeleníti meg
+* Webalkalmazás ([CarRental.Web](https://github.com/bozsobence/prog4_project/tree/master/CSHARP/OENIK_PROG3_2019_2_DYHHAC/CarRental.Web))
+    * CRUD műveletek megvalósítása ASP.NET MVC webalkalmazásban
+    * API végpont
+* Konzol kliens ([CarRental.ConsoleClient](https://github.com/bozsobence/prog4_project/tree/master/CSHARP/OENIK_PROG3_2019_2_DYHHAC/CarRental.ConsoleClient))
+    * CRUD műveletek megvalósítása az API végponton keresztül konzolos felületen
+* WPF kliens ([CarRental.Wpf](https://github.com/bozsobence/prog4_project/tree/master/CSHARP/OENIK_PROG3_2019_2_DYHHAC/CarRental.Wpf))
+    * Grafikus felület a CRUD műveletekhez
+    * API végpontot használja
